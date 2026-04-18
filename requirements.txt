@@ -1,0 +1,11 @@
+vietocr
+paddleocr
+google-genai
+requests
+python-dotenv
+sentence-transformers
+qdrant-client
+fastapi
+uvicorn
+pydantic
+python-multipart
