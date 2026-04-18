@@ -1,0 +1,278 @@
+{
+  "RBC": [
+    "rbc",
+    "r.b.c",
+    "rbc count",
+    "red blood cell",
+    "red blood cells",
+    "red blood cell count",
+    "red cell count",
+    "erythrocyte",
+    "erythrocytes",
+    "hong cau",
+    "hồng cầu",
+    "rbc (hồng cầu)"
+  ],
+  "WBC": [
+    "wbc",
+    "w.b.c",
+    "wbc count",
+    "white blood cell",
+    "white blood cells",
+    "leukocyte",
+    "leukocytes",
+    "bach cau",
+    "bạch cầu",
+    "wbc (bạch cầu)",
+    "tlc",
+    "tlc count",
+    "total leukocyte count"
+  ],
+  "HGB": [
+    "hgb",
+    "hb",
+    "hemoglobin",
+    "haemoglobin",
+    "huyet sac to",
+    "hgb (hemoglobin)",
+    "huyết sắc tố"
+  ],
+  "HCT": [
+    "hct",
+    "hematocrit",
+    "hematocrit (hct)",
+    "haematocrit",
+    "dung tich hong cau",
+    "hct (hematocrite)",
+    "hematocrite",
+    "hématocrit (hct)",
+    "pcv (hematocrit)"
+  ],
+  "MCV": [
+    "mcv",
+    "mean corpuscular volume",
+    "the tich trung binh hc"
+  ],
+  "MCH": [
+    "mch",
+    "mean cell haemoglobin",
+    "mean cell hemoglobin",
+    "mean corpuscular haemoglobin",
+    "mean corpuscular hemoglobin",
+    "luong hb trung binh hc"
+  ],
+  "MCHC": [
+    "mchc",
+    "mean cell haemoglobin concentration",
+    "mean cell hemoglobin concentration",
+    "mean corpuscular haemoglobin concentration",
+    "mean corpuscular hemoglobin concentration",
+    "nong do hb trung binh hc"
+  ],
+  "RDW": [
+    "rdw",
+    "red cell distribution width"
+  ],
+  "RDW_SD": [
+    "rdw_sd",
+    "rdw sd",
+    "rdw-sd",
+    "red cell distribution width sd"
+  ],
+  "RDW_CV": [
+    "rdw_cv",
+    "rdw cv",
+    "rdw-cv",
+    "red cell distribution width cv"
+  ],
+  "PLT": [
+    "plt",
+    "platelet",
+    "platelet count",
+    "platelets",
+    "tieu cau",
+    "tiểu cầu",
+    "plt (tiểu cầu)"
+  ],
+  "MPV": [
+    "mpv",
+    "mean platelet volume"
+  ],
+  "PCT": [
+    "pct",
+    "plateletcrit"
+  ],
+  "PDW": [
+    "pdw",
+    "platelet distribution width"
+  ],
+  "PLCR": [
+    "p-lcr",
+    "plcr",
+    "p lcr",
+    "platelet large cell ratio"
+  ],
+  "IG_PERCENT": [
+    "immature granulocyte",
+    "immature granulocytes",
+    "bach cau non",
+    "ig%",
+    "ig %",
+    "ty le ig",
+    "immature granulocyte percent",
+    "immature granulocytes percent",
+    "tỷ lệ ig"
+  ],
+  "IG_ABS": [
+    "ig",
+    "1g",
+    "ig#",
+    "1g#",
+    "ig #",
+    "1g #",
+    "so luong ig",
+    "so luong 1g",
+    "so luong bach cau non",
+    "sl bc non",
+    "immature granulocyte count",
+    "immature granulocytes count",
+    "absolute ig",
+    "absolute 1g",
+    "absolute immature granulocyte",
+    "số lượng ig"
+  ],
+  "NEUT_PERCENT": [
+    "neut",
+    "neu",
+    "neut%",
+    "neu%",
+    "neut %",
+    "neu %",
+    "neutrophil",
+    "neutrophils",
+    "bach cau trung tinh",
+    "bc (trung tính)",
+    "tỷ lệ bc trung tính (neut)"
+  ],
+  "NEUT_ABS": [
+    "neut#",
+    "neu#",
+    "neut #",
+    "neu #",
+    "absolute neutrophil",
+    "absolute neutrophils",
+    "absolute neutrophil count",
+    "neutrophil count",
+    "so luong bc trung tinh",
+    "so luong bach cau trung tinh",
+    "sl bc (trung tính)",
+    "sl cb (trrung tính)",
+    "sl cb (trung tính)",
+    "số lượng bc trung tính"
+  ],
+  "LYM_PERCENT": [
+    "lym",
+    "lymph",
+    "lymphocyte",
+    "lymphocytes",
+    "lympho",
+    "bach cau lympho",
+    "bc lympho",
+    "tỷ lệ bc lympho (lymph)"
+  ],
+  "LYM_ABS": [
+    "lym#",
+    "lymph#",
+    "lym #",
+    "lymph #",
+    "absolute lymphocyte",
+    "absolute lymphocytes",
+    "absolute lymphocyte count",
+    "lymphocyte count",
+    "so luong bc lympho",
+    "so luong bach cau lympho",
+    "sl bc lympho",
+    "số lượng bc lympho"
+  ],
+  "MONO_PERCENT": [
+    "mono",
+    "monocyte",
+    "monocytes",
+    "bach cau mono",
+    "bc mono",
+    "tỷ lệ bc mono (mono)"
+  ],
+  "MONO_ABS": [
+    "mono#",
+    "mono #",
+    "absolute monocyte",
+    "absolute monocytes",
+    "absolute monocyte count",
+    "monocyte count",
+    "so luong bc mono",
+    "so luong bach cau mono",
+    "sl bc mono",
+    "số lượng bc mono"
+  ],
+  "EOS_PERCENT": [
+    "eos",
+    "eosin",
+    "eosinophil",
+    "eosinophils",
+    "bc ai toan",
+    "bach cau ai toan",
+    "bc ưa axit",
+    "tỷ lệ bc ái toan (eosin)"
+  ],
+  "EOS_ABS": [
+    "eos#",
+    "eos #",
+    "absolute eosinophil",
+    "absolute eosinophils",
+    "absolute eosinophil count",
+    "eosinophil count",
+    "so luong bc ai toan",
+    "so luong bach cau ai toan",
+    "sl bc ưa axit",
+    "số lượng bc ái toan"
+  ],
+  "BASO_PERCENT": [
+    "baso",
+    "basophil",
+    "basophils",
+    "bc ai kiem",
+    "bach cau ai kiem",
+    "bc ưa ba sơ",
+    "bc ưa bazơ",
+    "tỷ lệ bc ái kiềm (baso)"
+  ],
+  "BASO_ABS": [
+    "baso#",
+    "baso #",
+    "absolute basophil",
+    "absolute basophil count",
+    "basophil count",
+    "so luong bc ai kiem",
+    "so luong bach cau ai kiem",
+    "sl bc ưa ba sơ",
+    "sl bc ưa bazơ",
+    "số lượng bc ái kiềm"
+  ],
+  "NRBC_PERCENT": [
+    "nrbc%",
+    "nrbc %",
+    "ty le nrbc",
+    "nucleated red blood cell percent",
+    "nucleated red blood cells percent",
+    "tỷ lệ nrbc"
+  ],
+  "NRBC_ABS": [
+    "nrbc#",
+    "nrbc #",
+    "so luong nrbc",
+    "nucleated red blood cell count",
+    "nucleated red blood cells count",
+    "absolute nrbc",
+    "số lượng nrbc"
+  ]
+}

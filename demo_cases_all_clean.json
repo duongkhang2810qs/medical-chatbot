@@ -1,0 +1,1305 @@
+[
+  {
+    "case_id": "CASE_001",
+    "type": "pattern_analysis",
+    "input": {
+      "IG_PERCENT": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "IG%",
+        "value": "0.9%",
+        "ref": "0–0.45%",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Elevated immature granulocytes (IG%) – possible left shift, bone marrow stress response or early infection",
+    "patterns": [
+      {
+        "pattern_name": "left_shift_stress_response",
+        "interpretation": "Elevated IG% suggests left shift – possible bone marrow stress, early infection, or recovery from cytopenia",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "IG_PERCENT_high"
+        ],
+        "evidence": [
+          {
+            "text": "because an alteration in the number and type of leu- kocytes is often associated with disease processes, total white blood cell (wbc) count (cells per μl) and differential counts are informative. neut",
+            "source": "harrison.pdf",
+            "page": 481
+          },
+          {
+            "text": "see also cancer, infections in chronic, 444, 450 cyclic, 132, 257, 444 diagnosis of, 449 drug-induced, 444, 444t enterocolitis associated with, 560, 577, 577f, 1353 etiology of, 444t febrile, 554, 562",
+            "source": "harrison.pdf",
+            "page": 4051
+          },
+          {
+            "text": "antithymocyte globulin (atg), 70 aplastic anemia (aa) clinical features of, 66 diseases, 67t, 68t differential diagnosis, 66 drugs associated with, 65t etiology and pathophysiology, 65–66 treatments, ",
+            "source": "clinical_hematology.pdf",
+            "page": 684
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "CASE_002",
+    "type": "pattern_analysis",
+    "input": {
+      "WBC": "high",
+      "NEUT": "high",
+      "HGB": "low",
+      "MCV": "low",
+      "MCH": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "WBC",
+        "value": "12.88 G/L",
+        "ref": "4.0–10.0",
+        "status": "High"
+      },
+      {
+        "test": "NEUT%",
+        "value": "87.6%",
+        "ref": "50–75%",
+        "status": "High"
+      },
+      {
+        "test": "NEUT_ABS",
+        "value": "11.29 G/L",
+        "ref": "2.0–7.5",
+        "status": "High"
+      },
+      {
+        "test": "MCV",
+        "value": "82.3 fL",
+        "ref": "85–95",
+        "status": "Low"
+      },
+      {
+        "test": "MCH",
+        "value": "28.0 pg",
+        "ref": "28–32",
+        "status": "Low-borderline"
+      }
+    ],
+    "summary": "Detected 2 possible clinical patterns from CBC results.",
+    "combined_interpretation": "Possible bacterial infection ; Possible microcytic anemia / iron deficiency",
+    "patterns": [
+      {
+        "pattern_name": "bacterial_infection",
+        "interpretation": "Elevated WBC with dominant neutrophilia suggests acute bacterial infection",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "WBC_high",
+          "NEUT_high"
+        ],
+        "evidence": [
+          {
+            "text": "increased production is also associated with chronic inflammation and certain myeloproliferative diseases. increased marrow release and mobilization of the marginated leukocyte pool are induced by glu",
+            "source": "harrison.pdf",
+            "page": 486
+          },
+          {
+            "text": "the presentation of an embolic event with a new cardiac murmur suggests this diagnosis. blood cultures are negative in this disease of unknown pathogenesis. infective endocarditis can be a complicatio",
+            "source": "harrison.pdf",
+            "page": 602
+          },
+          {
+            "text": "see also cancer, infections in chronic, 444, 450 cyclic, 132, 257, 444 diagnosis of, 449 drug-induced, 444, 444t enterocolitis associated with, 560, 577, 577f, 1353 etiology of, 444t febrile, 554, 562",
+            "source": "harrison.pdf",
+            "page": 4051
+          }
+        ]
+      },
+      {
+        "pattern_name": "microcytic_anemia",
+        "interpretation": "Low MCV with borderline MCH suggests microcytic anemia, possibly iron deficiency or anemia of chronic disease",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "MCV_low",
+          "MCH_low"
+        ],
+        "evidence": [
+          {
+            "text": "the anemia associated with functional iron deficiency is usually mild and asymptomatic.25 although usually normocytic, the mcv is often on the low end of normal and may be in the microcytic range. the",
+            "source": "clinical_hematology.pdf",
+            "page": 17
+          },
+          {
+            "text": "replacement therapy, 126 risk factors, 126 severe pancytopenia, 126 wbc, 126 microcytic anemias blood volume expansion, 121 chelation therapy, 125 erythropoietic drive, 125 ferritin level, 121 frank d",
+            "source": "clinical_hematology.pdf",
+            "page": 666
+          },
+          {
+            "text": "with β-thalassemia trait, the rdw is usually normal, whereas with hypoxic erythrocytosis and pv, the rdw may be elevated due to asso- ciated iron deficiency. today, however, the assay for jak2 v617f h",
+            "source": "harrison.pdf",
+            "page": 845
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "CASE_003",
+    "type": "pattern_analysis",
+    "input": {
+      "HGB": "high",
+      "MCH": "high",
+      "MCHC": "high",
+      "NEUT_PERCENT": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "HGB",
+        "value": "155 g/L",
+        "ref": "110–154",
+        "status": "High-borderline"
+      },
+      {
+        "test": "MCH",
+        "value": "34.1 pg",
+        "ref": "28–32",
+        "status": "High"
+      },
+      {
+        "test": "MCHC",
+        "value": "361 g/L",
+        "ref": "320–360",
+        "status": "High"
+      },
+      {
+        "test": "NEUT%",
+        "value": "46%",
+        "ref": "50–75%",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 2 possible clinical patterns from CBC results.",
+    "combined_interpretation": "Hyperchromic red cells (high MCH/MCHC) – possible macrocytic features or spherocytosis ; Relative neutropenia",
+    "patterns": [
+      {
+        "pattern_name": "hyperchromic_macrocytic",
+        "interpretation": "Elevated MCH and MCHC suggest hyperchromic red cells – consider macrocytic anemia (B12/folate deficiency) or hereditary spherocytosis",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "MCH_high",
+          "MCHC_high"
+        ],
+        "evidence": [
+          {
+            "text": "dehydrated stomatocytosis (dhs; also referred to as xerocytosis) is a (usually compensated) macrocytic hemolytic disorder, with increased mchc (generally higher than 36 g/dl) associated with mild jaun",
+            "source": "harrison.pdf",
+            "page": 821
+          },
+          {
+            "text": "an increased mean corpuscular hemoglobin concentration (mchc >34) and increased red cell distribution width (rdw >14%) associated with normal or slightly decreased mcv on an ordinary blood count repor",
+            "source": "harrison.pdf",
+            "page": 820
+          },
+          {
+            "text": "intracellular organisms, 406 irf, 406 mathematical equation, 405 mchc, 405 mcv, 405 microscopic inspection, 406 optical and fluorescent cell-counting methods, 406 rdw, 405–406 red cell count, 405 reti",
+            "source": "clinical_hematology.pdf",
+            "page": 698
+          }
+        ]
+      },
+      {
+        "pattern_name": "relative_neutropenia",
+        "interpretation": "NEUT% below reference range – relative neutropenia, may reflect viral infection or lymphocyte predominance",
+        "confidence": "low",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "NEUT_PERCENT_low"
+        ],
+        "evidence": [
+          {
+            "text": "see also cancer, infections in chronic, 444, 450 cyclic, 132, 257, 444 diagnosis of, 449 drug-induced, 444, 444t enterocolitis associated with, 560, 577, 577f, 1353 etiology of, 444t febrile, 554, 562",
+            "source": "harrison.pdf",
+            "page": 4051
+          },
+          {
+            "text": "hiv infection has been consistently associated with precancer- ous cervical lesions, including low-grade cervical intraepithelial lesions (cin) and cin 3, the immediate precursor to cervical cancer. w",
+            "source": "harrison.pdf",
+            "page": 1540
+          },
+          {
+            "text": "several studies have indicated that exhaustion of hiv-specific cd8+ t cells during prolonged immune activation is associated with upregulation of several inhibitory receptors, such as the programmed d",
+            "source": "harrison.pdf",
+            "page": 1582
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "CASE_004",
+    "type": "pattern_analysis",
+    "input": {
+      "WBC": "high",
+      "NEUT": "high",
+      "HGB": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "WBC",
+        "value": "15.50 G/L",
+        "ref": "4.0–10.0",
+        "status": "High"
+      },
+      {
+        "test": "NEUT%",
+        "value": "84.1%",
+        "ref": "50–75%",
+        "status": "High"
+      },
+      {
+        "test": "NEUT_ABS",
+        "value": "13.03 G/L",
+        "ref": "2.0–7.5",
+        "status": "High"
+      },
+      {
+        "test": "HGB",
+        "value": "146 g/L",
+        "ref": "110–154",
+        "status": "Low-borderline"
+      }
+    ],
+    "summary": "Detected 2 possible clinical patterns from CBC results.",
+    "combined_interpretation": "Significant leukocytosis with neutrophilia – high suspicion of bacterial infection or systemic inflammation ; Mild anemia",
+    "patterns": [
+      {
+        "pattern_name": "bacterial_infection_severe",
+        "interpretation": "Marked leukocytosis (WBC 15.50) with dominant neutrophilia strongly suggests acute bacterial infection or severe systemic stress",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "WBC_high",
+          "NEUT_high"
+        ],
+        "evidence": [
+          {
+            "text": "increased production is also associated with chronic inflammation and certain myeloproliferative diseases. increased marrow release and mobilization of the marginated leukocyte pool are induced by glu",
+            "source": "harrison.pdf",
+            "page": 486
+          },
+          {
+            "text": "the presentation of an embolic event with a new cardiac murmur suggests this diagnosis. blood cultures are negative in this disease of unknown pathogenesis. infective endocarditis can be a complicatio",
+            "source": "harrison.pdf",
+            "page": 602
+          },
+          {
+            "text": "see also cancer, infections in chronic, 444, 450 cyclic, 132, 257, 444 diagnosis of, 449 drug-induced, 444, 444t enterocolitis associated with, 560, 577, 577f, 1353 etiology of, 444t febrile, 554, 562",
+            "source": "harrison.pdf",
+            "page": 4051
+          }
+        ]
+      },
+      {
+        "pattern_name": "anemia_chronic_disease",
+        "interpretation": "Mild decrease in HGB in context of infection may indicate anemia of chronic disease or inflammation",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_low"
+        ],
+        "evidence": [
+          {
+            "text": "the anemia associated with acute infection or inflammation is typ- ically mild but becomes more pronounced over time. acute infection can produce a decrease in hemoglobin levels of 2–3 g/dl within 1 o",
+            "source": "harrison.pdf",
+            "page": 794
+          },
+          {
+            "text": "paroxysmal nocturnal hemoglobinuria decreased intake of iron dietary deficiency limited meat malabsorption achlorhydria gastric atrophy partial gastrectomy gastric bypass proton pump inhibitors helico",
+            "source": "clinical_hematology.pdf",
+            "page": 16
+          },
+          {
+            "text": "generally, anemia is recognized in the laboratory when a patient’s hemoglobin level or hematocrit is reduced below an expected value (the normal range). when the hemoglobin level falls to 120 g/l (12 ",
+            "source": "harrison.pdf",
+            "page": 472
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "CASE_005",
+    "type": "pattern_analysis",
+    "input": {
+      "WBC": "high",
+      "NEUT": "high",
+      "HGB": "low",
+      "MCV": "low",
+      "MCH": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "WBC",
+        "value": "19.47 G/L",
+        "ref": "4.0–10.0",
+        "status": "High"
+      },
+      {
+        "test": "NEUT%",
+        "value": "68.9%",
+        "ref": "50–75%",
+        "status": "Normal-high"
+      },
+      {
+        "test": "NEUT_ABS",
+        "value": "13.08 G/L",
+        "ref": "2.0–7.5",
+        "status": "High"
+      },
+      {
+        "test": "HGB",
+        "value": "124 g/L",
+        "ref": "110–154",
+        "status": "Low"
+      },
+      {
+        "test": "MCV",
+        "value": "80.5 fL",
+        "ref": "85–95",
+        "status": "Low"
+      },
+      {
+        "test": "MCH",
+        "value": "26.9 pg",
+        "ref": "28–32",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 3 possible clinical patterns from CBC results.",
+    "combined_interpretation": "Iron deficiency anemia with concurrent infection – microcytic hypochromic anemia ; Significant leukocytosis with absolute neutrophilia",
+    "patterns": [
+      {
+        "pattern_name": "iron_deficiency_anemia",
+        "interpretation": "Low HGB, MCV, and MCH consistent with iron deficiency or microcytic hypochromic anemia",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_low",
+          "MCV_low",
+          "MCH_low"
+        ],
+        "evidence": [
+          {
+            "text": "with β-thalassemia trait, the rdw is usually normal, whereas with hypoxic erythrocytosis and pv, the rdw may be elevated due to asso- ciated iron deficiency. today, however, the assay for jak2 v617f h",
+            "source": "harrison.pdf",
+            "page": 845
+          },
+          {
+            "text": "the anemia associated with functional iron deficiency is usually mild and asymptomatic.25 although usually normocytic, the mcv is often on the low end of normal and may be in the microcytic range. the",
+            "source": "clinical_hematology.pdf",
+            "page": 17
+          },
+          {
+            "text": "■ ■x-linked sideroblastic anemia xlsa results from the deficient activity of the erythroid form of ala-synthase (ala-synthase 2) and is associated with ineffective ery- thropoiesis, weakness, and pall",
+            "source": "harrison.pdf",
+            "page": 3287
+          }
+        ]
+      },
+      {
+        "pattern_name": "bacterial_infection",
+        "interpretation": "WBC 19.47 with absolute neutrophilia (13.08 G/L) strongly suggests acute bacterial infection or significant physiologic stress",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "WBC_high",
+          "NEUT_high"
+        ],
+        "evidence": [
+          {
+            "text": "increased production is also associated with chronic inflammation and certain myeloproliferative diseases. increased marrow release and mobilization of the marginated leukocyte pool are induced by glu",
+            "source": "harrison.pdf",
+            "page": 486
+          },
+          {
+            "text": "the presentation of an embolic event with a new cardiac murmur suggests this diagnosis. blood cultures are negative in this disease of unknown pathogenesis. infective endocarditis can be a complicatio",
+            "source": "harrison.pdf",
+            "page": 602
+          },
+          {
+            "text": "see also cancer, infections in chronic, 444, 450 cyclic, 132, 257, 444 diagnosis of, 449 drug-induced, 444, 444t enterocolitis associated with, 560, 577, 577f, 1353 etiology of, 444t febrile, 554, 562",
+            "source": "harrison.pdf",
+            "page": 4051
+          }
+        ]
+      },
+      {
+        "pattern_name": "concurrent_anemia_infection",
+        "interpretation": "Combination of microcytic anemia and active infection – iron deficiency may be compounded by anemia of inflammation",
+        "confidence": "medium",
+        "match_score": 0.8,
+        "matched_conditions": [
+          "HGB_low",
+          "WBC_high"
+        ],
+        "evidence": [
+          {
+            "text": "the anemia associated with acute infection or inflammation is typ- ically mild but becomes more pronounced over time. acute infection can produce a decrease in hemoglobin levels of 2–3 g/dl within 1 o",
+            "source": "harrison.pdf",
+            "page": 794
+          },
+          {
+            "text": "red blood cells (rbcs): concomitant anemia partially offsets the hyperviscosity associated with severe hyperleukocytosis. thus, rbc transfusion should be avoided if possible when the wbc is higher tha",
+            "source": "clinical_hematology.pdf",
+            "page": 233
+          },
+          {
+            "text": "although many studies in ckd patients have found that anemia and resistance to exogenous esas are associated with a poor progno- sis, the relative contribution to a poor outcome of the low hematocrit ",
+            "source": "harrison.pdf",
+            "page": 2357
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_001",
+    "type": "pattern_analysis",
+    "input": {
+      "PLT": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "PLT",
+        "value": "85 G/L",
+        "ref": "150–400",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Low platelet count – possible immune thrombocytopenia, bone marrow suppression, or viral infection",
+    "patterns": [
+      {
+        "pattern_name": "thrombocytopenia",
+        "interpretation": "Low platelet count – possible immune thrombocytopenia, bone marrow suppression, or viral infection",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "PLT_low"
+        ],
+        "evidence": [
+          {
+            "text": "not indicated: bleeding unassociated with thrombocytopenia (in the absence of a clinically significant platelet function defect), other defects in hemostasis (such as factor deficiencies). platelets a",
+            "source": "clinical_hematology.pdf",
+            "page": 485
+          },
+          {
+            "text": "nutritional deficiencies folate deficiency (commonly associated with alcoholism) and vitamin b12 deficiency may cause decreased megakaryocytopoiesis and thrombocytopenia, usually in conjunction with a",
+            "source": "clinical_hematology.pdf",
+            "page": 376
+          },
+          {
+            "text": "treatment is appropriate for patients with platelet counts <30,000/μl or clinically significant bleeding.4 the selection of specific therapies should take into account patient preference; some individ",
+            "source": "clinical_hematology.pdf",
+            "page": 378
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_002",
+    "type": "pattern_analysis",
+    "input": {
+      "PLT": "low",
+      "WBC": "low",
+      "HGB": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "PLT",
+        "value": "62 G/L",
+        "status": "Low"
+      },
+      {
+        "test": "WBC",
+        "value": "2.1 G/L",
+        "status": "Low"
+      },
+      {
+        "test": "HGB",
+        "value": "89 g/L",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Pancytopenia – all cell lines low, consider aplastic anemia, bone marrow failure, or hypersplenism",
+    "patterns": [
+      {
+        "pattern_name": "pancytopenia",
+        "interpretation": "Pancytopenia – all cell lines low, consider aplastic anemia, bone marrow failure, or hypersplenism",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "PLT_low",
+          "WBC_low",
+          "HGB_low"
+        ],
+        "evidence": [
+          {
+            "text": "see also erythroid enzymopathies plasmablastic lymphoma (pbl), 218 plasma cell leukemia (pcl), 245 platelet dysfunction, 419 platelet function analyzer (pfa), 304 platelet-rich plasma (prp), 304 plate",
+            "source": "clinical_hematology.pdf",
+            "page": 770
+          },
+          {
+            "text": "see aplastic anemia bleeding tendencies in, 454 differential diagnosis of, 793t in eosinophilic fasciitis, 407, 794 in paroxysmal nocturnal hemoglobinuria, 789 pathognomic cells in, 799f bone marrow t",
+            "source": "harrison.pdf",
+            "page": 3925
+          },
+          {
+            "text": "other information that may be useful includes exposure to certain toxic agents or drugs and symptoms related to other disorders commonly associated with anemia. these include symptoms and signs such a",
+            "source": "harrison.pdf",
+            "page": 473
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_003",
+    "type": "pattern_analysis",
+    "input": {
+      "HGB": "high",
+      "HCT": "high",
+      "RBC": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "HGB",
+        "value": "185 g/L",
+        "status": "High"
+      },
+      {
+        "test": "HCT",
+        "value": "0.55",
+        "status": "High"
+      },
+      {
+        "test": "RBC",
+        "value": "6.2 T/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Elevated RBC, HGB, HCT – possible polycythemia vera or secondary polycythemia (hypoxia, dehydration)",
+    "patterns": [
+      {
+        "pattern_name": "polycythemia",
+        "interpretation": "Elevated RBC, HGB, HCT – possible polycythemia vera or secondary polycythemia (hypoxia, dehydration)",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_high",
+          "HCT_high",
+          "RBC_high"
+        ],
+        "evidence": [
+          {
+            "text": "conversely, erythrocytosis may be masked by expanded plasma volume secondary to splenomegaly or by occult blood loss. iron deficiency can also cause a decrease in the hematocrit in patients with pv. s",
+            "source": "clinical_hematology.pdf",
+            "page": 143
+          },
+          {
+            "text": "isolated erythrocytosis in the absence of splenomegaly suggests the presence of a high o2 affinity hemoglobin. high o2 affinity hemoglobin variants shift the hemoglobin-o2 dissociation curve leftward,",
+            "source": "harrison.pdf",
+            "page": 806
+          },
+          {
+            "text": "red blood cells (rbcs): concomitant anemia partially offsets the hyperviscosity associated with severe hyperleukocytosis. thus, rbc transfusion should be avoided if possible when the wbc is higher tha",
+            "source": "clinical_hematology.pdf",
+            "page": 233
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_004",
+    "type": "pattern_analysis",
+    "input": {
+      "EOS": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "EOS%",
+        "value": "12.5%",
+        "status": "High"
+      },
+      {
+        "test": "EOS_ABS",
+        "value": "1.2 G/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Elevated eosinophils – consider allergic reaction, parasitic infection, or drug reaction",
+    "patterns": [
+      {
+        "pattern_name": "eosinophilia",
+        "interpretation": "Elevated eosinophils – consider allergic reaction, parasitic infection, or drug reaction",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "EOS_high"
+        ],
+        "evidence": [
+          {
+            "text": "allergies such as hay fever, asthma, eczema, serum sickness, allergic vasculitis, and pemphigus are associated with eosinophilia. eosinophilia also occurs in collagen vascular diseases (e.g., rheumato",
+            "source": "harrison.pdf",
+            "page": 490
+          },
+          {
+            "text": "tissue hypoxia, 298 ttp, 299 vascular access catheters, 297 vte, 299 warfarin, 299 donor lymphocyte infusion (dli), 182, 252 donor/recipient chimerism real-time pcr str analysis, 457 restriction fragm",
+            "source": "clinical_hematology.pdf",
+            "page": 705
+          },
+          {
+            "text": "resistance to imatinib is associated with a t6741 mutation in pdgfr-α; this mutation occurs in the adenosine triphosphate (atp)-binding region of pdgfr-α at the same position as the t3151 mutation in ",
+            "source": "clinical_hematology.pdf",
+            "page": 554
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_005",
+    "type": "pattern_analysis",
+    "input": {
+      "WBC": "high",
+      "LYMPH": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "WBC",
+        "value": "13.2 G/L",
+        "status": "High"
+      },
+      {
+        "test": "LYMPH%",
+        "value": "68%",
+        "status": "High"
+      },
+      {
+        "test": "LYMPH_ABS",
+        "value": "8.9 G/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Lymphocytosis with elevated WBC – possible viral infection (EBV, CMV, COVID-19) or reactive lymphocytosis",
+    "patterns": [
+      {
+        "pattern_name": "viral_infection",
+        "interpretation": "Lymphocytosis with elevated WBC – possible viral infection (EBV, CMV, COVID-19) or reactive lymphocytosis",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "WBC_high",
+          "LYMPH_high"
+        ],
+        "evidence": [
+          {
+            "text": "a correla- tion between low igg and iga and infection risk has been established, but isolated igm reduction does not seem to be associated with excess infection risk. also, cll cells can secrete monoc",
+            "source": "harrison.pdf",
+            "page": 877
+          },
+          {
+            "text": "however, protracted interstitial pneumonitis has been associated with perinatally acquired cmv infection, particularly in premature infants, and occasionally has been accompanied by infection with chl",
+            "source": "harrison.pdf",
+            "page": 1529
+          },
+          {
+            "text": "molds, 262 other viral infections, 264 preemptive therapy, 263 surveillance and management of cytomegalovirus, 263t t-cell–depleted allografts, 263 viral infections, 263 yeast, 262 late sequelae of tr",
+            "source": "clinical_hematology.pdf",
+            "page": 663
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_006",
+    "type": "pattern_analysis",
+    "input": {
+      "HGB": "low",
+      "MCV": "high",
+      "RDW": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "HGB",
+        "value": "95 g/L",
+        "status": "Low"
+      },
+      {
+        "test": "MCV",
+        "value": "108 fL",
+        "status": "High"
+      },
+      {
+        "test": "RDW",
+        "value": "18%",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Macrocytic anemia with high RDW – suggest B12 or folate deficiency (megaloblastic anemia)",
+    "patterns": [
+      {
+        "pattern_name": "megaloblastic_anemia",
+        "interpretation": "Macrocytic anemia with high RDW – suggest B12 or folate deficiency (megaloblastic anemia)",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_low",
+          "MCV_high",
+          "RDW_high"
+        ],
+        "evidence": [
+          {
+            "text": "because folic acid may “feed” tumors, it probably should be avoided in those with established tumors unless there is severe megaloblastic anemia due to folate deficiency. hematologic findings ■ ■perip",
+            "source": "harrison.pdf",
+            "page": 811
+          },
+          {
+            "text": "nutritional deficiencies folate deficiency (commonly associated with alcoholism) and vitamin b12 deficiency may cause decreased megakaryocytopoiesis and thrombocytopenia, usually in conjunction with a",
+            "source": "clinical_hematology.pdf",
+            "page": 376
+          },
+          {
+            "text": "macrocytic anemia may be caused by folate and vitamin b12 deficiency due to small- bowel bacterial overgrowth and malabsorption or by drugs such as methotrexate. microangiopathic hemolytic anemia caus",
+            "source": "harrison.pdf",
+            "page": 2824
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_007",
+    "type": "pattern_analysis",
+    "input": {
+      "HGB": "low",
+      "MCV": "normal",
+      "RDW": "normal",
+      "WBC": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "HGB",
+        "value": "100 g/L",
+        "status": "Low"
+      },
+      {
+        "test": "WBC",
+        "value": "11.5 G/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Normocytic anemia with leukocytosis – consistent with anemia of chronic disease or inflammation",
+    "patterns": [
+      {
+        "pattern_name": "anemia_chronic_disease",
+        "interpretation": "Normocytic anemia with leukocytosis – consistent with anemia of chronic disease or inflammation",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_low",
+          "MCV_normal",
+          "RDW_normal",
+          "WBC_high"
+        ],
+        "evidence": [
+          {
+            "text": "replacement therapy, 126 risk factors, 126 severe pancytopenia, 126 wbc, 126 microcytic anemias blood volume expansion, 121 chelation therapy, 125 erythropoietic drive, 125 ferritin level, 121 frank d",
+            "source": "clinical_hematology.pdf",
+            "page": 666
+          },
+          {
+            "text": "the anemia is moderate to extremely severe, usually normocytic and normochromic, and due partly to intravascular hemolysis; hence, it is associated with hemoglobinemia, hemoglobi- nuria, high ldh, and",
+            "source": "harrison.pdf",
+            "page": 825
+          },
+          {
+            "text": "the anemia associated with acute infection or inflammation is typ- ically mild but becomes more pronounced over time. acute infection can produce a decrease in hemoglobin levels of 2–3 g/dl within 1 o",
+            "source": "harrison.pdf",
+            "page": 794
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_008",
+    "type": "pattern_analysis",
+    "input": {
+      "PLT": "low",
+      "WBC": "high",
+      "NEUT": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "PLT",
+        "value": "45 G/L",
+        "status": "Low"
+      },
+      {
+        "test": "WBC",
+        "value": "22.0 G/L",
+        "status": "High"
+      },
+      {
+        "test": "NEUT_ABS",
+        "value": "18.0 G/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Severe leukocytosis with thrombocytopenia – possible severe sepsis, DIC, or hematologic malignancy",
+    "patterns": [
+      {
+        "pattern_name": "severe_infection_thrombocytopenia",
+        "interpretation": "Severe leukocytosis with thrombocytopenia – possible severe sepsis, DIC, or hematologic malignancy",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "PLT_low",
+          "WBC_high",
+          "NEUT_high"
+        ],
+        "evidence": [
+          {
+            "text": "lymphadenopathy, 132 neutrophilia, 132 non-hodgkin’s lymphoma, 133 physical examination, 132 x-linked lymphoproliferative syndrome, 133 neutropenia acute myelogenous leukemia, 132 anc, 131 asymptomati",
+            "source": "clinical_hematology.pdf",
+            "page": 687
+          },
+          {
+            "text": "mobilizing agents, 353 national marrow donor program, 354 nsaids, 354 pbsc grafts, 354 peripheral blood stem cell (pbsc), 353 plerixafor-mobilized cells, 353 stem cells mobilization, 353 orphan protei",
+            "source": "clinical_hematology.pdf",
+            "page": 673
+          },
+          {
+            "text": "immune-mediated refractoriness indicates alloimmunization to hla or human platelet antigens (hpa). nonimmune-mediated causes of platelet refractoriness: fever, infection, splenomegaly, disseminated in",
+            "source": "clinical_hematology.pdf",
+            "page": 486
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_009",
+    "type": "pattern_analysis",
+    "input": {
+      "HGB": "low",
+      "MCV": "low",
+      "RDW": "normal",
+      "MCH": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "HGB",
+        "value": "105 g/L",
+        "status": "Low"
+      },
+      {
+        "test": "MCV",
+        "value": "68 fL",
+        "status": "Low"
+      },
+      {
+        "test": "RDW",
+        "value": "13%",
+        "status": "Normal"
+      },
+      {
+        "test": "MCH",
+        "value": "22 pg",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Low MCV and MCH with normal RDW – microcytic anemia with uniform cell size, consistent with thalassemia trait",
+    "patterns": [
+      {
+        "pattern_name": "thalassemia_trait",
+        "interpretation": "Low MCV and MCH with normal RDW – microcytic anemia with uniform cell size, consistent with thalassemia trait",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_low",
+          "MCV_low",
+          "RDW_normal",
+          "MCH_low"
+        ],
+        "evidence": [
+          {
+            "text": "a sustained increase in reticulocyte count indicates the presence of hemolytic anemia. hemoglobin fractionation by high- performance liquid chromatography (hplc) or capillary electropho- resis, especi",
+            "source": "harrison.pdf",
+            "page": 797
+          },
+          {
+            "text": "thalassemia trait is often mistaken for iron deficiency.8 in contrast to iron deficiency, β-thalassemia trait is associated with a normal red cell distribution width (rdw), basophilic stippling and ta",
+            "source": "clinical_hematology.pdf",
+            "page": 177
+          },
+          {
+            "text": "β-thalassemia alleles, δ- and β-thalassemia, hb e and β-thalassemia, β-thalassemia with hereditary persistence of fetal hemoglobin (hpfh), or co-existence of α- and β- thalassemia. the phenotype of tw",
+            "source": "clinical_hematology.pdf",
+            "page": 61
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_010",
+    "type": "pattern_analysis",
+    "input": {
+      "MONO": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "MONO%",
+        "value": "14%",
+        "status": "High"
+      },
+      {
+        "test": "MONO_ABS",
+        "value": "1.3 G/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Elevated monocytes – consider chronic infection, autoimmune disease, or recovery from acute infection",
+    "patterns": [
+      {
+        "pattern_name": "monocytosis",
+        "interpretation": "Elevated monocytes – consider chronic infection, autoimmune disease, or recovery from acute infection",
+        "confidence": "low",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "MONO_high"
+        ],
+        "evidence": [
+          {
+            "text": "monocytosis is associated with tuberculosis, brucellosis, subacute bac- terial endocarditis, rocky mountain spotted fever, malaria, and visceral leishmaniasis (kala azar). monocytosis also occurs with",
+            "source": "harrison.pdf",
+            "page": 489
+          },
+          {
+            "text": "treatment of anemia associated with chronic inflammatory diseases the anemia of rheumatoid arthritis has been reported to respond to parenteral iron alone, as well as to esa alone, with elevations of ",
+            "source": "clinical_hematology.pdf",
+            "page": 23
+          },
+          {
+            "text": "few clues had emerged to explain host differences associated with chronic infection until recently, when variation in a single nucleotide polymorphism (snp) on chromosome 19, il28b (which codes for if",
+            "source": "harrison.pdf",
+            "page": 2644
+          }
+        ]
+      }
+    ],
+    "confidence": "low",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_011",
+    "type": "pattern_analysis",
+    "input": {
+      "NEUT": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "NEUT_ABS",
+        "value": "0.8 G/L",
+        "status": "Low"
+      },
+      {
+        "test": "NEUT%",
+        "value": "15%",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Severe neutropenia – risk of bacterial infection; consider drug-induced, autoimmune, or bone marrow failure",
+    "patterns": [
+      {
+        "pattern_name": "neutropenia",
+        "interpretation": "Severe neutropenia – risk of bacterial infection; consider drug-induced, autoimmune, or bone marrow failure",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "NEUT_low"
+        ],
+        "evidence": [
+          {
+            "text": "see also cancer, infections in chronic, 444, 450 cyclic, 132, 257, 444 diagnosis of, 449 drug-induced, 444, 444t enterocolitis associated with, 560, 577, 577f, 1353 etiology of, 444t febrile, 554, 562",
+            "source": "harrison.pdf",
+            "page": 4051
+          },
+          {
+            "text": "immune-related neutropenia this form of neutropenia is typically associated with specific antibodies directed to neutrophil antigens (not to be confused with anti-nuclear antibodies). many syndromes a",
+            "source": "clinical_hematology.pdf",
+            "page": 168
+          },
+          {
+            "text": "see chronic granulomatous diseases (cgds) complement deficiency, 2700, 2700t, 2712 diseases associated with, s8 gata2 deficiency. see gata2 deficiency leukocyte adhesion deficiency, 445, 446t, 2711 me",
+            "source": "harrison.pdf",
+            "page": 4078
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_012",
+    "type": "pattern_analysis",
+    "input": {
+      "PLT": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "PLT",
+        "value": "650 G/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "High platelet count – consider reactive thrombocytosis (iron deficiency, infection) or essential thrombocythemia",
+    "patterns": [
+      {
+        "pattern_name": "thrombocytosis",
+        "interpretation": "High platelet count – consider reactive thrombocytosis (iron deficiency, infection) or essential thrombocythemia",
+        "confidence": "low",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "PLT_high"
+        ],
+        "evidence": [
+          {
+            "text": "thrombocytosis in response to acute or chronic inflammation has not been clearly associated with an increased thrombotic risk. in fact, patients with markedly elevated platelet counts (>1.5 million), ",
+            "source": "harrison.pdf",
+            "page": 949
+          },
+          {
+            "text": "nutritional deficiencies folate deficiency (commonly associated with alcoholism) and vitamin b12 deficiency may cause decreased megakaryocytopoiesis and thrombocytopenia, usually in conjunction with a",
+            "source": "clinical_hematology.pdf",
+            "page": 376
+          },
+          {
+            "text": "treatment is appropriate for patients with platelet counts <30,000/μl or clinically significant bleeding.4 the selection of specific therapies should take into account patient preference; some individ",
+            "source": "clinical_hematology.pdf",
+            "page": 378
+          }
+        ]
+      }
+    ],
+    "confidence": "low",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_013",
+    "type": "pattern_analysis",
+    "input": {
+      "RDW": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "RDW",
+        "value": "17.5%",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Elevated RDW indicates anisocytosis – red cell size variation; may suggest mixed nutritional deficiency or early iron deficiency",
+    "patterns": [
+      {
+        "pattern_name": "anisocytosis",
+        "interpretation": "Elevated RDW indicates anisocytosis – red cell size variation; may suggest mixed nutritional deficiency or early iron deficiency",
+        "confidence": "low",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "RDW_high"
+        ],
+        "evidence": [
+          {
+            "text": "the anemia is moderate to extremely severe, usually normocytic and normochromic, and due partly to intravascular hemolysis; hence, it is associated with hemoglobinemia, hemoglobi- nuria, high ldh, and",
+            "source": "harrison.pdf",
+            "page": 825
+          },
+          {
+            "text": "■ ■x-linked sideroblastic anemia xlsa results from the deficient activity of the erythroid form of ala-synthase (ala-synthase 2) and is associated with ineffective ery- thropoiesis, weakness, and pall",
+            "source": "harrison.pdf",
+            "page": 3287
+          },
+          {
+            "text": "because folic acid may “feed” tumors, it probably should be avoided in those with established tumors unless there is severe megaloblastic anemia due to folate deficiency. hematologic findings ■ ■perip",
+            "source": "harrison.pdf",
+            "page": 811
+          }
+        ]
+      }
+    ],
+    "confidence": "low",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_014",
+    "type": "pattern_analysis",
+    "input": {
+      "WBC": "low",
+      "NEUT": "low"
+    },
+    "abnormal_flags": [
+      {
+        "test": "WBC",
+        "value": "1.2 G/L",
+        "status": "Low"
+      },
+      {
+        "test": "NEUT_ABS",
+        "value": "0.1 G/L",
+        "status": "Low"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Severe agranulocytosis – very high risk of life-threatening infection; urgent medical evaluation required",
+    "patterns": [
+      {
+        "pattern_name": "agranulocytosis",
+        "interpretation": "Severe agranulocytosis – very high risk of life-threatening infection; urgent medical evaluation required",
+        "confidence": "high",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "WBC_low",
+          "NEUT_low"
+        ],
+        "evidence": [
+          {
+            "text": "kostmann in 1956 described severe neutropenia associated with recurrent bacterial infections in several families in northern sweden. kostmann syndrome is an autosomal recessive form of severe congenit",
+            "source": "clinical_hematology.pdf",
+            "page": 169
+          },
+          {
+            "text": "severe congenital neutropenia and cyclic neutropenia originally described as an autosomal recessive disorder (kostmann syndrome) but majority of scn cases due to dominant-acting point mutations in the",
+            "source": "clinical_hematology.pdf",
+            "page": 119
+          },
+          {
+            "text": "because an alteration in the number and type of leu- kocytes is often associated with disease processes, total white blood cell (wbc) count (cells per μl) and differential counts are informative. neut",
+            "source": "harrison.pdf",
+            "page": 481
+          }
+        ]
+      }
+    ],
+    "confidence": "high",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  },
+  {
+    "case_id": "FAKE_015",
+    "type": "pattern_analysis",
+    "input": {
+      "HGB": "low",
+      "RDW": "high",
+      "MCHC": "high"
+    },
+    "abnormal_flags": [
+      {
+        "test": "HGB",
+        "value": "85 g/L",
+        "status": "Low"
+      },
+      {
+        "test": "RDW",
+        "value": "20%",
+        "status": "High"
+      },
+      {
+        "test": "MCHC",
+        "value": "375 g/L",
+        "status": "High"
+      }
+    ],
+    "summary": "Detected 1 possible clinical pattern from CBC results.",
+    "combined_interpretation": "Low HGB with high MCHC and RDW – possible hemolytic anemia (spherocytosis, sickle cell, G6PD deficiency)",
+    "patterns": [
+      {
+        "pattern_name": "hemolytic_anemia",
+        "interpretation": "Low HGB with high MCHC and RDW – possible hemolytic anemia (spherocytosis, sickle cell, G6PD deficiency)",
+        "confidence": "medium",
+        "match_score": 1.0,
+        "matched_conditions": [
+          "HGB_low",
+          "RDW_high",
+          "MCHC_high"
+        ],
+        "evidence": [
+          {
+            "text": "polychromatophilia—the red cell cytoplasm has a bluish hue, reflect- ing the persistence of ribosomes still actively making hemoglobin in a young red cell vital stains are necessary to see precipitate",
+            "source": "harrison.pdf",
+            "page": 466
+          },
+          {
+            "text": "als, 3415 clinical features of, 3017, 3415 genetic considerations in, 3413t, 3415, 3645t, 3648, 3655, 3655t spinocerebellar ataxia (sca) classification of, 3423 clinical features of, 3423 genetic cons",
+            "source": "harrison.pdf",
+            "page": 4101
+          },
+          {
+            "text": "a sustained increase in reticulocyte count indicates the presence of hemolytic anemia. hemoglobin fractionation by high- performance liquid chromatography (hplc) or capillary electropho- resis, especi",
+            "source": "harrison.pdf",
+            "page": 797
+          }
+        ]
+      }
+    ],
+    "confidence": "medium",
+    "warning": "This is not a medical diagnosis. Results are for reference only."
+  }
+]

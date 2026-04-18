@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Chatbot</title>
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --light-blue: #e3f2fd;
+            --bg-gray: #f0f2f5;
+            --chat-bg: #ffffff;
+            --text-main: #2c3e50;
+            --danger: #e74c3c;
+            --success: #27ae60;
+            --warning: #f39c12;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-gray); height: 100vh; overflow: hidden;}
+
+        #startup-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 50px; height: 50px; border: 5px solid #ccc;
+            border-top-color: var(--primary-blue); border-radius: 50%;
+            animation: spin 1s linear infinite; margin-bottom: 20px;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .app-container { display: flex; height: 100vh; width: 100%; padding: 15px; gap: 15px; }
+
+        .chat-section {
+            flex: 6; display: flex; flex-direction: column;
+            background: var(--chat-bg); border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden;
+        }
+        .chat-header {
+            background: var(--primary-blue); color: white; padding: 15px 20px;
+            font-size: 18px; font-weight: bold; display: flex; align-items: center; gap: 10px;
+        }
+        .chat-history {
+            flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px); background-size: 20px 20px;
+        }
+        
+        .message { max-width: 85%; padding: 12px 18px; border-radius: 15px; line-height: 1.6; font-size: 15px; position: relative; }
+        .ai-message { background: var(--light-blue); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user-message { background: var(--primary-blue); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+        .chat-input-area {
+            padding: 15px; border-top: 1px solid #eee; display: flex; gap: 10px; background: white;
+        }
+        .chat-input-area input {
+            flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 20px; outline: none; font-size: 15px; transition: 0.3s;
+        }
+        .chat-input-area input:focus { border-color: var(--primary-blue); }
+        
+        .chat-input-area button {
+            background: var(--primary-blue); color: white; border: none; padding: 0 20px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .chat-input-area button:hover { background: #004494; }
+
+        .taskbar-section {
+            flex: 4; display: flex; flex-direction: column; gap: 15px; overflow-y: auto;
+        }
+        .panel {
+            background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .panel h3 { color: var(--text-main); margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid var(--light-blue); padding-bottom: 8px;}
+        
+        .image-preview-container {
+            width: 100%; min-height: 300px; border: 2px dashed var(--primary-blue);
+            border-radius: 8px; background: var(--light-blue); margin-bottom: 15px;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; overflow: hidden; position: relative; transition: 0.3s;
+        }
+        .image-preview-container:hover { background: #d4eaf7; }
+        #upload-placeholder { text-align: center; color: var(--primary-blue); font-weight: bold; font-size: 14px; padding: 20px;}
+        #image-preview { max-width: 100%; max-height: 450px; object-fit: contain; }
+
+        .btn-primary { background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; transition: 0.3s;}
+        .btn-primary:hover:not(:disabled) { background: #004494; }
+        
+        .btn-success { background: var(--success); color: white; border: none; padding: 12px; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 15px;}
+        .btn-success:hover:not(:disabled) { background: #219653; }
+
+        button:disabled { opacity: 0.6 !important; cursor: not-allowed !important; pointer-events: none; }
+
+        .info-box {
+            background: #fff; border: 1px solid #cde4f5; padding: 10px; border-radius: 8px; margin-bottom: 15px;
+            font-size: 13px; line-height: 1.5; color: var(--text-main);
+        }
+        .legend-box { display: flex; gap: 10px; margin-top: 8px; font-weight: bold; justify-content: space-between;}
+        
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { border: 1px solid #ddd; padding: 6px; text-align: left; vertical-align: middle; }
+        th { background: #f8f9fa; position: sticky; top: 0; z-index: 1; }
+        
+        .edit-cell { 
+            width: 100%; padding: 4px; border: 1px solid transparent; 
+            background: transparent; font-family: inherit; font-size: inherit; 
+            border-radius: 4px; transition: 0.2s;
+        }
+        .edit-cell:focus { border: 1px solid var(--primary-blue); background: white; outline: none; }
+        select.edit-cell { font-weight: bold; cursor: pointer; color: var(--text-main); }
+        input.edit-val { font-weight: bold; text-align: center; }
+        
+        .ref-display-text {
+            cursor: pointer; padding: 4px 8px; border: 1px dashed transparent;
+            border-radius: 4px; transition: 0.2s; text-align: center; font-size: 12px; color: #555; font-weight: bold;
+        }
+        .ref-display-text:hover { border-color: var(--primary-blue); background-color: #f8f9fa; }
+        
+        .ref-container { display: flex; align-items: center; justify-content: center; gap: 3px; }
+        .ref-input { width: 28%; text-align: center; -moz-appearance: textfield; appearance: textfield; }
+        .ref-input::-webkit-outer-spin-button, .ref-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .unit-input { width: 25%; text-align: center; }
+        
+        .btn-done-edit {
+            background: var(--success); color: white; border: none; border-radius: 4px;
+            padding: 4px 8px; cursor: pointer; font-size: 12px; margin-left: 2px;
+        }
+
+        .edit-cell:disabled { background: transparent; border-color: transparent; color: inherit; cursor: default; -webkit-appearance: none; appearance: none; }
+        .edit-cell:disabled::placeholder { color: transparent; }
+        .ref-display-text.locked { cursor: default; border-color: transparent !important; background: transparent !important; }
+        .hidden { display: none !important; }
+        .typing-indicator { display: inline-block; font-style: italic; color: #555; }
+        .typing-indicator::after { content: '...'; animation: dots 1.5s steps(5, end) infinite; }
+        @keyframes dots { 0%, 20% { color: rgba(0,0,0,0); text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);} 40% { color: #333; text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0);} 60% { text-shadow: .25em 0 0 #333, .5em 0 0 rgba(0,0,0,0);} 80%, 100% { text-shadow: .25em 0 0 #333, .5em 0 0 #333;}}
+    </style>
+</head>
+<body>
+
+    <div id="startup-loader">
+        <div class="spinner"></div>
+        <h2 style="color: var(--primary-blue);">Đang kết nối tới Hệ thống AI...</h2>
+        <p style="color: #666; margin-top: 10px;">Đang tải Microservices (OCR, Chatbot)...</p>
+    </div>
+
+    <div class="app-container">
+        <!-- BÊN TRÁI: GIAO DIỆN CHATBOT -->
+        <div class="chat-section">
+            <div class="chat-header">👨‍⚕️ Bác Sĩ AI - Huyết Học Lâm Sàng</div>
+            <div class="chat-history" id="chatHistory">
+                <div class="message ai-message">
+                    <div>Xin chào! Tôi là trợ lý Y tế AI. Bạn có thể tải ảnh phiếu xét nghiệm máu (CBC) ở cột bên phải để tôi phân tích, hoặc đặt câu hỏi trực tiếp cho tôi ở ô bên dưới nhé.</div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Nhập câu hỏi trao đổi với bác sĩ..." onkeypress="handleKeyPress(event)">
+                <button id="btnSendChat" onclick="sendChatMessage()">Gửi</button>
+            </div>
+        </div>
+
+        <!-- BÊN PHẢI: TASKBAR CÔNG CỤ -->
+        <div class="taskbar-section">
+            <div class="panel" id="panel-upload">
+                <h3>📎 Tải Phiếu Xét Nghiệm</h3>
+                <div class="image-preview-container" id="upload-box" onclick="document.getElementById('imageInput').click()">
+                    <div id="upload-placeholder">
+                        <div style="font-size: 32px; margin-bottom: 8px;">📸</div>
+                        <div>Nhấp vào đây để chọn ảnh phiếu</div>
+                    </div>
+                    <img id="image-preview" class="hidden" alt="Bản xem trước">
+                </div>
+                <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
+                <button id="btn-upload" class="btn-primary" onclick="uploadImage()" disabled>Quét Ảnh (OCR)</button>
+            </div>
+
+            <div class="panel hidden" id="panel-confirm" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <h3 style="margin-bottom: 10px;">✅ Bảng Dữ Liệu</h3>
+                <div class="info-box" id="confirm-desc">
+                    <div id="count-text" style="font-size: 14px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;"></div>
+                    <div class="legend-box">
+                    <span style="color: var(--danger);">🔴 Bất thường</span>
+                    <span style="color: var(--success);">🟢 Bình thường</span>
+                    <span style="color: var(--warning);">🟡 Thiếu tham chiếu</span>
+                </div>
+            </div>
+            <div id="tableContainer" style="overflow-y: auto; flex: 1; padding-right: 5px;"></div>
+            <button id="btn-confirm" class="btn-success" onclick="confirmAndAnalyze()">Gửi cho Bác sĩ AI</button>
+            <button id="btn-reload" class="btn-primary" style="background: #95a5a6; margin-top: 10px;" onclick="resetSessionAndUI()">Tải phiếu khác</button>
+        </div>
+    </div>
+
+    <script>
+        function generateSessionId() {
+            return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        }
+        let USER_SESSION_ID = generateSessionId();
+
+        let currentOcrData = [];
+        let isSubmitted = false;
+
+        // KIẾN TRÚC MỚI (CHỈ 2 PORT)
+        const OCR_API_BASE = 'http://127.0.0.1:8001/api/v1';
+        const CHAT_API_BASE = 'http://127.0.0.1:8002/api/v1'; // Dùng chung cho Analyze và Chat
+
+        function resetSessionAndUI() {
+            USER_SESSION_ID = generateSessionId(); 
+            currentOcrData = [];
+            isSubmitted = false;
+
+            document.getElementById('chatHistory').innerHTML = `
+                <div class="message ai-message">
+                    <div>Xin chào! Tôi là trợ lý Y tế AI. Bạn có thể tải ảnh phiếu xét nghiệm máu (CBC) ở cột bên phải để tôi phân tích, hoặc đặt câu hỏi trực tiếp cho tôi ở ô bên dưới nhé.</div>
+                </div>
+            `;
+            
+            document.getElementById('panel-confirm').classList.add('hidden');
+            document.getElementById('panel-upload').classList.remove('hidden');
+            
+            document.getElementById('imageInput').value = "";
+            document.getElementById('image-preview').src = "";
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('upload-placeholder').classList.remove('hidden');
+            document.getElementById('btn-upload').disabled = true;
+            document.getElementById('btn-confirm').classList.remove('hidden');
+        }
+
+        const TEST_OPTIONS = [
+            "RBC", "WBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW_SD", "RDW_CV",
+            "PLT", "MPV", "PCT", "PDW", "PLCR", "IG_PERCENT", "IG_ABS",
+            "NEUT_PERCENT", "NEUT_ABS", "LYM_PERCENT", "LYM_ABS", "MONO_PERCENT",
+            "MONO_ABS", "EOS_PERCENT", "EOS_ABS", "BASO_PERCENT", "BASO_ABS",
+            "NRBC_PERCENT", "NRBC_ABS"
+        ];
+
+        async function checkBackendReady() {
+            try {
+                await Promise.all([
+                    fetch(`${OCR_API_BASE}/extract`, { method: 'OPTIONS' }),
+                    fetch(`${CHAT_API_BASE}/chat`, { method: 'OPTIONS' })
+                ]);
+                const loader = document.getElementById('startup-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            } catch (e) {
+                setTimeout(checkBackendReady, 2000);
+            }
+        }
+
+        function addChatMessage(sender, text, isHtml = false) {
+            const chatHistory = document.getElementById('chatHistory');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender === 'ai' ? 'ai-message' : 'user-message'}`;
+            msgDiv.innerHTML = `<div>${isHtml ? text : formatText(text)}</div>`;
+            chatHistory.appendChild(msgDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            return msgDiv;
+        }
+
+        function formatText(text) {
+            let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            return html.replace(/\n/g, '<br>');
+        }
+
+        function formatRefRange(min, max, unit) {
+            let u = unit ? ` ${unit}` : '';
+            if (min != null && max != null) return `${min} - ${max}${u}`;
+            if (min == null && max != null) return `< ${max}${u}`;
+            if (min != null && max == null) return `> ${min}${u}`;
+            return `${u}`;
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+
+        async function sendChatMessage() {
+            const inputField = document.getElementById('chatInput');
+            const text = inputField.value.trim();
+            if (!text) return;
+
+            inputField.value = '';
+            addChatMessage('user', text);
+            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang suy nghĩ</span>", true);
+
+            try {
+                const response = await fetch(`${CHAT_API_BASE}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        text: text, 
+                        session_id: USER_SESSION_ID
+                    })
+                });
+
+                const data = await response.json();
+                typingMsg.remove();
+
+                if (data.status === "success") {
+                    addChatMessage('ai', data.answer, false);
+                } else {
+                    addChatMessage('ai', "❌ Lỗi: " + data.message);
+                }
+            } catch (error) {
+                typingMsg.remove();
+                addChatMessage('ai', "❌ Lỗi mất kết nối tới Chatbot Service.");
+            }
+        }
+
+        function handleImageSelect(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('image-preview');
+            const placeholder = document.getElementById('upload-placeholder');
+            const btnUpload = document.getElementById('btn-upload');
+
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                btnUpload.disabled = false;
+            } else {
+                preview.src = "";
+                preview.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                btnUpload.disabled = true;
+            }
+        }
+
+        async function uploadImage() {
+            const fileInput = document.getElementById('imageInput');
+            const btnUpload = document.getElementById('btn-upload');
+            const uploadBox = document.getElementById('upload-box');
+            if (fileInput.files.length === 0) return;
+
+            btnUpload.disabled = true;
+            fileInput.disabled = true;
+            uploadBox.style.pointerEvents = 'none';
+            uploadBox.style.opacity = '0.7';
+            btnUpload.innerText = "Đang quét ảnh...";
+
+            addChatMessage('user', "Tôi muốn quét file ảnh này.");
+            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang đọc dữ liệu từ ảnh (OCR)</span>", true);
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            try {
+                const response = await fetch(`${OCR_API_BASE}/extract`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                typingMsg.remove();
+
+                btnUpload.disabled = false;
+                fileInput.disabled = false;
+                uploadBox.style.pointerEvents = 'auto';
+                uploadBox.style.opacity = '1';
+                btnUpload.innerText = "Quét Ảnh (OCR)";
+
+                if (data.status === "success") {
+                    currentOcrData = data.ocr_table;
+                    isSubmitted = false;
+                    currentOcrData.forEach((item, index) => {
+                        item.is_editing_ref = false;
+                        recalculateStatus(index);
+                    });
+
+                    renderConfirmTable();
+                    document.getElementById('panel-upload').classList.add('hidden');
+                    document.getElementById('panel-confirm').classList.remove('hidden');
+                    addChatMessage('ai', "Tôi đã bóc tách xong! Vui lòng kiểm tra lại bảng dữ liệu bên phải. Chỉnh sửa nếu AI đọc sai số, sau đó bấm 'Gửi cho Bác sĩ AI'.");
+                } else {
+                    addChatMessage('ai', "❌ Lỗi quét ảnh: " + data.message);
+                }
+            } catch (error) {
+                typingMsg.remove();
+                btnUpload.disabled = false;
+                fileInput.disabled = false;
+                uploadBox.style.pointerEvents = 'auto';
+                uploadBox.style.opacity = '1';
+                btnUpload.innerText = "Quét Ảnh (OCR)";
+                addChatMessage('ai', "❌ Không thể kết nối tới OCR Service (Cổng 8001).");
+            }
+        }
+
+        function recalculateStatus(index) {
+            let item = currentOcrData[index];
+            let val = parseFloat(item.value);
+            let min = item.ref_range.ref_min;
+            let max = item.ref_range.ref_max;
+            if (!isNaN(val)) {
+                if (min !== null && val < parseFloat(min)) item.status = "Low";
+                else if (max !== null && val > parseFloat(max)) item.status = "High";
+                else if (min !== null || max !== null) item.status = "Normal";
+                else item.status = null;
+            } else {
+                item.status = null;
+            }
+        }
+
+        function updateCellData(index, field, value) {
+            currentOcrData[index][field] = value;
+            recalculateStatus(index);
+            renderConfirmTable();
+        }
+
+        function updateRefData(index, field, value) {
+            let numVal = value.trim() === '' ? null : parseFloat(value);
+            currentOcrData[index].ref_range[field] = numVal;
+            recalculateStatus(index);
+            renderConfirmTable();
+        }
+
+        function enableRefEdit(index) {
+            if (isSubmitted) return;
+            currentOcrData[index].is_editing_ref = true;
+            renderConfirmTable();
+        }
+
+        function disableRefEdit(index, event) {
+            if (event) event.stopPropagation();
+            currentOcrData[index].is_editing_ref = false;
+            renderConfirmTable();
+        }
+
+        function renderConfirmTable() {
+            document.getElementById('count-text').innerHTML = isSubmitted
+                ? "<strong>Dữ liệu đã xác nhận.</strong>"
+                : `Đã trích xuất: <strong>${currentOcrData.length}</strong> chỉ số. (Chạm vào ô để sửa)`;
+
+            let html = `<table><tr>
+                        <th style="width: 32%; text-align: center;">Tên Chỉ Số</th>
+                        <th style="width: 20%; text-align: center;">Kết Quả</th>
+                        <th style="width: 48%; text-align: center;">Tham Chiếu & Đơn Vị</th>
+                    </tr>`;
+
+            let disabledAttr = isSubmitted ? 'disabled' : '';
+
+            currentOcrData.forEach((item, index) => {
+                let statusColor = "var(--warning)";
+                if (item.status === "High" || item.status === "Low") statusColor = "var(--danger)";
+                else if (item.status === "Normal") statusColor = "var(--success)";
+
+                let optionsHtml = '';
+                let foundMatch = false;
+                TEST_OPTIONS.forEach(opt => {
+                    let selected = (item.test_name === opt) ? 'selected' : '';
+                    if (selected) foundMatch = true;
+                    optionsHtml += `<option value="${opt}" ${selected}>${opt}</option>`;
+                });
+                if (!foundMatch && item.test_name) {
+                    optionsHtml = `<option value="${item.test_name}" selected>${item.test_name}</option>` + optionsHtml;
+                }
+
+                let minVal = item.ref_range.ref_min !== null ? item.ref_range.ref_min : '';
+                let maxVal = item.ref_range.ref_max !== null ? item.ref_range.ref_max : '';
+                let unitVal = item.unit !== null ? item.unit : '';
+                let refStr = formatRefRange(item.ref_range.ref_min, item.ref_range.ref_max, item.unit);
+
+                let refCellHtml = '';
+                if (item.is_editing_ref && !isSubmitted) {
+                    refCellHtml = `
+                        <div class="ref-container">
+                            <input type="number" step="any" class="edit-cell ref-input" placeholder="Min" value="${minVal}" onchange="updateRefData(${index}, 'ref_min', this.value)">
+                            <span style="color: #888;">-</span>
+                            <input type="number" step="any" class="edit-cell ref-input" placeholder="Max" value="${maxVal}" onchange="updateRefData(${index}, 'ref_max', this.value)">
+                            <input type="text" class="edit-cell unit-input" placeholder="Đv" value="${unitVal}" onchange="updateCellData(${index}, 'unit', this.value)">
+                            <button class="btn-done-edit" onclick="disableRefEdit(${index}, event)" title="Xong">✔</button>
+                        </div>`;
+                } else {
+                    refCellHtml = `<div class="ref-display-text ${isSubmitted ? 'locked' : ''}" onclick="enableRefEdit(${index})" title="${isSubmitted ? '' : 'Chạm để sửa'}">${refStr}</div>`;
+                }
+
+                html += `<tr>
+                        <td><select class="edit-cell" ${disabledAttr} onchange="updateCellData(${index}, 'test_name', this.value)">${optionsHtml}</select></td>
+                        <td><input type="text" class="edit-cell edit-val" ${disabledAttr} value="${item.value !== null ? item.value : ''}" onchange="updateCellData(${index}, 'value', this.value)" style="color: ${statusColor};" placeholder="Trống"></td>
+                        <td>${refCellHtml}</td>
+                    </tr>`;
+            });
+            html += `</table>`;
+            document.getElementById('tableContainer').innerHTML = html;
+        }
+
+        async function confirmAndAnalyze() {
+            let detailedIndicators = currentOcrData.filter(item => item.test_name.trim() !== "");
+            const btnReload = document.getElementById('btn-reload');
+
+            isSubmitted = true;
+            currentOcrData.forEach(item => item.is_editing_ref = false);
+            renderConfirmTable();
+
+            document.getElementById('btn-confirm').classList.add('hidden');
+            btnReload.disabled = true;
+            btnReload.innerText = "Đang phân tích...";
+
+            addChatMessage('user', "Đây là dữ liệu đã xác nhận. Hãy phân tích giúp tôi.");
+            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang phân tích y khoa bằng RAG và LLM</span>", true);
+
+            try {
+                const response = await fetch(`${CHAT_API_BASE}/analyze`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        indicators: detailedIndicators,
+                        session_id: USER_SESSION_ID
+                    })
+                });
+
+                const data = await response.json();
+                typingMsg.remove();
+                btnReload.disabled = false;
+                btnReload.innerText = "Tải phiếu khác";
+
+                if (data.status === "success") {
+                    addChatMessage('ai', data.summary, false);
+                } else {
+                    addChatMessage('ai', "❌ Lỗi phân tích: " + data.message);
+                }
+            } catch (error) {
+                typingMsg.remove();
+                btnReload.disabled = false;
+                btnReload.innerText = "Tải phiếu khác";
+                addChatMessage('ai', "❌ Lỗi mất kết nối tới AI Service (Cổng 8002).");
+            }
+        }
+
+        checkBackendReady();
+    </script>
+</body>
+</html>
