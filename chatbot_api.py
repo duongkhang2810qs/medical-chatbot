@@ -1,3 +1,7 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -33,20 +37,23 @@ async def analyze_options(): return {"status": "ok"}
 @app.post("/api/v1/analyze")
 async def analyze_report(data: ConfirmedData):
     try:
-        # 1. Gọi RAG Service Phân tích chuyên sâu (Bản V11)
-        summary = rag_service.analyze_indicators_with_llm(data.indicators)
+        print(f"\n[API] Nhận yêu cầu phân tích phiếu từ session: {data.session_id}")
+        summary = rag_service.analyze_indicators_with_llm(data.indicators, session_id=data.session_id)
         
-        # 2. LƯU BỘ NHỚ CHO CHATBOT:
-        # Lưu cả Bảng dữ liệu thô và Bản tóm tắt vào phiên của User này
-        chatbot_service.update_session_memory(
+        session = chatbot_service.update_session_memory(
             session_id=data.session_id,
             active_report_data=data.indicators,
             report_summary=summary
         )
         
+        session["history"].append({"role": "user", "content": "Đây là dữ liệu đã xác nhận. Hãy phân tích giúp tôi."})
+        session["history"].append({"role": "assistant", "content": summary})
+        
+        # [FIX] Đã gỡ bỏ langfuse_context.flush() ở đây để tránh treo API
+        print("[API] Đã phân tích xong, trả kết quả về UI.")
         return {"status": "success", "summary": summary}
     except Exception as e:
-        print(traceback.format_exc())
+        print(f"[API LỖI] {traceback.format_exc()}")
         return {"status": "error", "message": str(e)}
 
 # ==========================================
@@ -58,14 +65,16 @@ async def chat_options(): return {"status": "ok"}
 @app.post("/api/v1/chat")
 async def chat_bot(msg: ChatMessage):
     try:
-        # Gửi Text và ID. Chatbot sẽ tự lục lọi bộ nhớ (Session) để trả lời.
+        print(f"\n[API] Nhận tin nhắn chat: '{msg.text}'")
         result = chatbot_service.handle_chat(text=msg.text, session_id=msg.session_id)
         
+        # [FIX] Đã gỡ bỏ langfuse_context.flush() ở đây
+        print("[API] Trả lời chat thành công.")
         return {
             "status": "success",
             "answer": result["answer"],
             "intent": result["intent"]
         }
     except Exception as e:
-        print(traceback.format_exc())
+        print(f"[API LỖI] {traceback.format_exc()}")
         return {"status": "error", "message": str(e)}

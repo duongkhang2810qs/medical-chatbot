@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Chatbot</title>
+    <title>Trợ lý Xét nghiệm</title>
     <style>
         :root {
             --primary-blue: #0056b3;
@@ -98,7 +98,7 @@
         .legend-box { display: flex; gap: 10px; margin-top: 8px; font-weight: bold; justify-content: space-between;}
         
         table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th, td { border: 1px solid #ddd; padding: 6px; text-align: left; vertical-align: middle; }
+        th, td { border: 1px solid #ddd; padding: 4px; text-align: left; vertical-align: middle; }
         th { background: #f8f9fa; position: sticky; top: 0; z-index: 1; }
         
         .edit-cell { 
@@ -119,12 +119,18 @@
         .ref-container { display: flex; align-items: center; justify-content: center; gap: 3px; }
         .ref-input { width: 28%; text-align: center; -moz-appearance: textfield; appearance: textfield; }
         .ref-input::-webkit-outer-spin-button, .ref-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        .unit-input { width: 25%; text-align: center; }
+        .unit-input { width: 32%; text-align: center; text-overflow: ellipsis; }
         
         .btn-done-edit {
             background: var(--success); color: white; border: none; border-radius: 4px;
             padding: 4px 8px; cursor: pointer; font-size: 12px; margin-left: 2px;
         }
+
+        .action-btn { border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; font-weight: bold; color: white; font-size: 12px; transition: 0.2s;}
+        .btn-add { background: var(--success); }
+        .btn-add:hover { background: #219653; }
+        .btn-del { background: var(--danger); }
+        .btn-del:hover { background: #c0392b; }
 
         .edit-cell:disabled { background: transparent; border-color: transparent; color: inherit; cursor: default; -webkit-appearance: none; appearance: none; }
         .edit-cell:disabled::placeholder { color: transparent; }
@@ -139,22 +145,21 @@
 
     <div id="startup-loader">
         <div class="spinner"></div>
-        <h2 style="color: var(--primary-blue);">Đang kết nối tới Hệ thống AI...</h2>
-        <p style="color: #666; margin-top: 10px;">Đang tải Microservices (OCR, Chatbot)...</p>
+        <h2 style="color: var(--primary-blue);">Đang kết nối hệ thống...</h2>
     </div>
 
     <div class="app-container">
         <!-- BÊN TRÁI: GIAO DIỆN CHATBOT -->
         <div class="chat-section">
-            <div class="chat-header">👨‍⚕️ Bác Sĩ AI - Huyết Học Lâm Sàng</div>
+            <div class="chat-header">📋 Trợ lý Xét nghiệm máu</div>
             <div class="chat-history" id="chatHistory">
                 <div class="message ai-message">
-                    <div>Xin chào! Tôi là trợ lý Y tế AI. Bạn có thể tải ảnh phiếu xét nghiệm máu (CBC) ở cột bên phải để tôi phân tích, hoặc đặt câu hỏi trực tiếp cho tôi ở ô bên dưới nhé.</div>
+                    <div>Xin chào! Tôi là Trợ lý phân tích xét nghiệm máu. Bạn có thể tải ảnh phiếu xét nghiệm máu (Huyết học/Sinh hóa) ở cột bên phải để tôi hỗ trợ đọc chỉ số, hoặc đặt câu hỏi trực tiếp cho tôi ở ô bên dưới nhé.</div>
                 </div>
             </div>
             
             <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="Nhập câu hỏi trao đổi với bác sĩ..." onkeypress="handleKeyPress(event)">
+                <input type="text" id="chatInput" placeholder="Nhập câu hỏi trao đổi với Trợ lý..." onkeypress="handleKeyPress(event)">
                 <button id="btnSendChat" onclick="sendChatMessage()">Gửi</button>
             </div>
         </div>
@@ -171,7 +176,7 @@
                     <img id="image-preview" class="hidden" alt="Bản xem trước">
                 </div>
                 <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="handleImageSelect(event)">
-                <button id="btn-upload" class="btn-primary" onclick="uploadImage()" disabled>Quét Ảnh (OCR)</button>
+                <button id="btn-upload" class="btn-primary" onclick="uploadImage()" disabled>Trích xuất chỉ số</button>
             </div>
 
             <div class="panel hidden" id="panel-confirm" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
@@ -184,8 +189,10 @@
                     <span style="color: var(--warning);">🟡 Thiếu tham chiếu</span>
                 </div>
             </div>
+            
             <div id="tableContainer" style="overflow-y: auto; flex: 1; padding-right: 5px;"></div>
-            <button id="btn-confirm" class="btn-success" onclick="confirmAndAnalyze()">Gửi cho Bác sĩ AI</button>
+            
+            <button id="btn-confirm" class="btn-success" onclick="confirmAndAnalyze()">Gửi cho Trợ lý phân tích</button>
             <button id="btn-reload" class="btn-primary" style="background: #95a5a6; margin-top: 10px;" onclick="resetSessionAndUI()">Tải phiếu khác</button>
         </div>
     </div>
@@ -201,7 +208,77 @@
 
         // KIẾN TRÚC MỚI (CHỈ 2 PORT)
         const OCR_API_BASE = 'http://127.0.0.1:8001/api/v1';
-        const CHAT_API_BASE = 'http://127.0.0.1:8002/api/v1'; // Dùng chung cho Analyze và Chat
+        const CHAT_API_BASE = 'http://127.0.0.1:8002/api/v1';
+
+        // ==========================================
+        // TỪ ĐIỂN CHỈ SỐ & ĐƠN VỊ (ONTOLOGY)
+        // ==========================================
+        const UNIT_ONTOLOGY = {
+            "RBC": ["10^12/L", "T/L"],
+            "WBC": ["10^9/L", "G/L", "10^3/uL"],
+            "HGB": ["g/L"],
+            "HCT": ["%", "L/L"],
+            "MCV": ["fL"],
+            "MCH": ["pg"],
+            "MCHC": ["g/L", "g/dL"],
+            "RDW_SD": ["fL", ""],
+            "RDW_CV": ["%", ""],
+            "PLT": ["10^9/L", "G/L", "10^3/uL"],
+            "MPV": ["fL", ""],
+            "PCT": ["%"],
+            "PDW": ["fL"],
+            "PLCR": ["%"],
+            "IG_PERCENT": ["%"],
+            "IG_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "NEUT_PERCENT": ["%"],
+            "NEUT_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "LYM_PERCENT": ["%"],
+            "LYM_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "MONO_PERCENT": ["%"],
+            "MONO_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "EOS_PERCENT": ["%"],
+            "EOS_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "BASO_PERCENT": ["%"],
+            "BASO_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "NRBC_PERCENT": ["%"],
+            "NRBC_ABS": ["10^9/L", "G/L", "10^3/uL"],
+            "UREA": ["mmol/L", "mmol/l"],
+            "GLUCOSE": ["mmol/L", "mmol/l"],
+            "CREATININE": ["umol/L", "umol/l", "µmol/L"],
+            "NA": ["mmol/L", "mmol/l"],
+            "K": ["mmol/L", "mmol/l"],
+            "CL": ["mmol/L", "mmol/l"],
+            "AST": ["U/L", "U/l"],
+            "ALT": ["U/L", "U/l"],
+            "CK_MB": ["U/L", "U/l"],
+            "HBA1C": ["%"],
+            "PRO_BNP": ["pg/ml", "pg/mL"],
+            "TROPONIN_T": ["ng/l", "ng/L"],
+            "CHOLESTEROL": ["mmol/L", "mmol/l"],
+            "TRIGLYCERIDE": ["mmol/L", "mmol/l"],
+            "HDL_C": ["mmol/L", "mmol/l"],
+            "LDL_C": ["mmol/L", "mmol/l"],
+            "URIC_ACID": ["umol/l", "umol/L", "µmol/L"],
+            "FERRITIN": ["ng/ml", "ng/mL"],
+            "ALBUMIN": ["g/L", "g/l"],
+            "CALCIUM_ION": ["mmol/L", "mmol/l"],
+            "PTH": ["pg/mL", "pmol/L", ""],
+            "FT4": ["ng/dL", "ng/dl"],
+            "CORTISOL": ["nmol/L", "nmol/l"],
+            "TSH": ["uIU/mL", "µIU/mL", "uIU/ml"],
+            "ACTH": ["pmol/l", "pmol/L"],
+            "PH_BG": [""],
+            "PCO2": ["mmHg"],
+            "PO2": ["mmHg"],
+            "SO2": ["%"],
+            "HCO3": ["mmol/L", "mmol/l"],
+            "THB": ["g/dL", "g/dl"],
+            "COHB": ["%"],
+            "O2HB": ["%"],
+            "HHB": ["%"],
+            "BARO": ["mbar"]
+        };
+        const TEST_OPTIONS = Object.keys(UNIT_ONTOLOGY).sort();
 
         function resetSessionAndUI() {
             USER_SESSION_ID = generateSessionId(); 
@@ -210,7 +287,7 @@
 
             document.getElementById('chatHistory').innerHTML = `
                 <div class="message ai-message">
-                    <div>Xin chào! Tôi là trợ lý Y tế AI. Bạn có thể tải ảnh phiếu xét nghiệm máu (CBC) ở cột bên phải để tôi phân tích, hoặc đặt câu hỏi trực tiếp cho tôi ở ô bên dưới nhé.</div>
+                    <div>Xin chào! Tôi là Trợ lý phân tích xét nghiệm máu. Bạn có thể tải ảnh phiếu xét nghiệm máu (Huyết học/Sinh hóa) ở cột bên phải để tôi hỗ trợ đọc chỉ số, hoặc đặt câu hỏi trực tiếp cho tôi ở ô bên dưới nhé.</div>
                 </div>
             `;
             
@@ -224,14 +301,6 @@
             document.getElementById('btn-upload').disabled = true;
             document.getElementById('btn-confirm').classList.remove('hidden');
         }
-
-        const TEST_OPTIONS = [
-            "RBC", "WBC", "HGB", "HCT", "MCV", "MCH", "MCHC", "RDW_SD", "RDW_CV",
-            "PLT", "MPV", "PCT", "PDW", "PLCR", "IG_PERCENT", "IG_ABS",
-            "NEUT_PERCENT", "NEUT_ABS", "LYM_PERCENT", "LYM_ABS", "MONO_PERCENT",
-            "MONO_ABS", "EOS_PERCENT", "EOS_ABS", "BASO_PERCENT", "BASO_ABS",
-            "NRBC_PERCENT", "NRBC_ABS"
-        ];
 
         async function checkBackendReady() {
             try {
@@ -336,10 +405,10 @@
             fileInput.disabled = true;
             uploadBox.style.pointerEvents = 'none';
             uploadBox.style.opacity = '0.7';
-            btnUpload.innerText = "Đang quét ảnh...";
+            btnUpload.innerText = "Đang trích xuất chỉ số...";
 
-            addChatMessage('user', "Tôi muốn quét file ảnh này.");
-            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang đọc dữ liệu từ ảnh (OCR)</span>", true);
+            addChatMessage('user', "Tôi muốn trích xuất chỉ số từ file ảnh này.");
+            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang trích xuất chỉ số</span>", true);
 
             const formData = new FormData();
             formData.append("file", fileInput.files[0]);
@@ -356,7 +425,7 @@
                 fileInput.disabled = false;
                 uploadBox.style.pointerEvents = 'auto';
                 uploadBox.style.opacity = '1';
-                btnUpload.innerText = "Quét Ảnh (OCR)";
+                btnUpload.innerText = "Trích xuất chỉ số";
 
                 if (data.status === "success") {
                     currentOcrData = data.ocr_table;
@@ -369,9 +438,9 @@
                     renderConfirmTable();
                     document.getElementById('panel-upload').classList.add('hidden');
                     document.getElementById('panel-confirm').classList.remove('hidden');
-                    addChatMessage('ai', "Tôi đã bóc tách xong! Vui lòng kiểm tra lại bảng dữ liệu bên phải. Chỉnh sửa nếu AI đọc sai số, sau đó bấm 'Gửi cho Bác sĩ AI'.");
+                    addChatMessage('ai', "Tôi đã trích xuất xong! Vui lòng kiểm tra lại bảng dữ liệu bên phải. Hãy chỉnh sửa nếu chỉ số nào bị sai (bạn có thể dùng nút '+' hoặc 'x' để thêm/xóa dòng), sau đó bấm 'Gửi cho Trợ lý phân tích'.");
                 } else {
-                    addChatMessage('ai', "❌ Lỗi quét ảnh: " + data.message);
+                    addChatMessage('ai', "❌ Lỗi trích xuất chỉ số: " + data.message);
                 }
             } catch (error) {
                 typingMsg.remove();
@@ -379,7 +448,7 @@
                 fileInput.disabled = false;
                 uploadBox.style.pointerEvents = 'auto';
                 uploadBox.style.opacity = '1';
-                btnUpload.innerText = "Quét Ảnh (OCR)";
+                btnUpload.innerText = "Trích xuất chỉ số";
                 addChatMessage('ai', "❌ Không thể kết nối tới OCR Service (Cổng 8001).");
             }
         }
@@ -401,6 +470,17 @@
 
         function updateCellData(index, field, value) {
             currentOcrData[index][field] = value;
+            
+            // Logic liên kết chéo: Đổi Tên Xét nghiệm -> Tự động nhảy Đơn vị hợp lệ đầu tiên
+            if (field === 'test_name') {
+                let allowedUnits = UNIT_ONTOLOGY[value];
+                if (allowedUnits && allowedUnits.length > 0) {
+                    if (!allowedUnits.includes(currentOcrData[index].unit)) {
+                        currentOcrData[index].unit = allowedUnits[0]; // Chọn mặc định cái đầu tiên
+                    }
+                }
+            }
+            
             recalculateStatus(index);
             renderConfirmTable();
         }
@@ -424,15 +504,46 @@
             renderConfirmTable();
         }
 
+        // CHỨC NĂNG THÊM HÀNG MỚI
+        function insertRow(index) {
+            if (isSubmitted) return;
+            // Khởi tạo hàng trống với chỉ số đầu tiên trong từ điển
+            let defaultTest = TEST_OPTIONS[0];
+            let defaultUnit = UNIT_ONTOLOGY[defaultTest] ? UNIT_ONTOLOGY[defaultTest][0] : "";
+            
+            let newRow = {
+                test_name: defaultTest,
+                value: "",
+                unit: defaultUnit,
+                ref_range: { ref_min: null, ref_max: null },
+                status: null,
+                is_editing_ref: true // Mở sẵn chế độ sửa
+            };
+            
+            currentOcrData.splice(index + 1, 0, newRow);
+            renderConfirmTable();
+        }
+
+        // CHỨC NĂNG XÓA HÀNG
+        function deleteRow(index) {
+            if (isSubmitted) return;
+            if (confirm(`Bạn có chắc chắn muốn xóa dòng [${currentOcrData[index].test_name}] không?`)) {
+                currentOcrData.splice(index, 1);
+                renderConfirmTable();
+            }
+        }
+
         function renderConfirmTable() {
             document.getElementById('count-text').innerHTML = isSubmitted
                 ? "<strong>Dữ liệu đã xác nhận.</strong>"
                 : `Đã trích xuất: <strong>${currentOcrData.length}</strong> chỉ số. (Chạm vào ô để sửa)`;
 
+            // Tự động phân bổ lại độ rộng cột khi ẩn cột Thao tác
             let html = `<table><tr>
-                        <th style="width: 32%; text-align: center;">Tên Chỉ Số</th>
-                        <th style="width: 20%; text-align: center;">Kết Quả</th>
-                        <th style="width: 48%; text-align: center;">Tham Chiếu & Đơn Vị</th>
+                        <th style="width: ${isSubmitted ? '35%' : '28%'}; text-align: center;">Tên Chỉ Số</th>
+                        <th style="width: ${isSubmitted ? '20%' : '15%'}; text-align: center;">Kết Quả</th>
+                        <th style="width: ${isSubmitted ? '45%' : '42%'}; text-align: center;">Tham Chiếu & Đơn Vị</th>
+                        ${!isSubmitted ? '<th style="width: 15%; text-align: center;">Thao tác</th>' : ''}
                     </tr>`;
 
             let disabledAttr = isSubmitted ? 'disabled' : '';
@@ -442,6 +553,7 @@
                 if (item.status === "High" || item.status === "Low") statusColor = "var(--danger)";
                 else if (item.status === "Normal") statusColor = "var(--success)";
 
+                // Render Dropdown Tên Xét Nghiệm
                 let optionsHtml = '';
                 let foundMatch = false;
                 TEST_OPTIONS.forEach(opt => {
@@ -455,27 +567,62 @@
 
                 let minVal = item.ref_range.ref_min !== null ? item.ref_range.ref_min : '';
                 let maxVal = item.ref_range.ref_max !== null ? item.ref_range.ref_max : '';
-                let unitVal = item.unit !== null ? item.unit : '';
                 let refStr = formatRefRange(item.ref_range.ref_min, item.ref_range.ref_max, item.unit);
 
+                // Render Khối Chỉnh sửa (Range + Dropdown Unit)
                 let refCellHtml = '';
                 if (item.is_editing_ref && !isSubmitted) {
+                    
+                    // Lấy mảng Unit chuẩn theo Tên Chỉ số hiện tại
+                    let allowedUnits = UNIT_ONTOLOGY[item.test_name] || [];
+                    let unitOptionsHtml = '';
+                    let foundUnit = false;
+                    
+                    allowedUnits.forEach(u => {
+                        let sel = (item.unit === u) ? 'selected' : '';
+                        if (sel) foundUnit = true;
+                        unitOptionsHtml += `<option value="${u}" ${sel}>${u}</option>`;
+                    });
+                    
+                    // Nếu Unit do OCR nhận diện bị sai lệch hoặc không có trong ontology, giữ nguyên nó như lựa chọn mặc định
+                    if (!foundUnit && item.unit) {
+                        unitOptionsHtml = `<option value="${item.unit}" selected>${item.unit}</option>` + unitOptionsHtml;
+                    } else if (allowedUnits.length === 0 && !item.unit) {
+                        unitOptionsHtml = `<option value="" selected>Đv</option>`;
+                    }
+
                     refCellHtml = `
                         <div class="ref-container">
                             <input type="number" step="any" class="edit-cell ref-input" placeholder="Min" value="${minVal}" onchange="updateRefData(${index}, 'ref_min', this.value)">
                             <span style="color: #888;">-</span>
                             <input type="number" step="any" class="edit-cell ref-input" placeholder="Max" value="${maxVal}" onchange="updateRefData(${index}, 'ref_max', this.value)">
-                            <input type="text" class="edit-cell unit-input" placeholder="Đv" value="${unitVal}" onchange="updateCellData(${index}, 'unit', this.value)">
+                            
+                            <select class="edit-cell unit-input" onchange="updateCellData(${index}, 'unit', this.value)">
+                                ${unitOptionsHtml}
+                            </select>
+                            
                             <button class="btn-done-edit" onclick="disableRefEdit(${index}, event)" title="Xong">✔</button>
                         </div>`;
                 } else {
                     refCellHtml = `<div class="ref-display-text ${isSubmitted ? 'locked' : ''}" onclick="enableRefEdit(${index})" title="${isSubmitted ? '' : 'Chạm để sửa'}">${refStr}</div>`;
+                }
+                
+                // Render Cột Nút Hành Động
+                let actionCellHtml = '';
+                if (!isSubmitted) {
+                    actionCellHtml = `
+                        <div style="display:flex; gap:4px; justify-content:center;">
+                            <button class="action-btn btn-add" onclick="insertRow(${index})" title="Thêm hàng dưới ô này">+</button>
+                            <button class="action-btn btn-del" onclick="deleteRow(${index})" title="Xóa hàng này">x</button>
+                        </div>
+                    `;
                 }
 
                 html += `<tr>
                         <td><select class="edit-cell" ${disabledAttr} onchange="updateCellData(${index}, 'test_name', this.value)">${optionsHtml}</select></td>
                         <td><input type="text" class="edit-cell edit-val" ${disabledAttr} value="${item.value !== null ? item.value : ''}" onchange="updateCellData(${index}, 'value', this.value)" style="color: ${statusColor};" placeholder="Trống"></td>
                         <td>${refCellHtml}</td>
+                        ${!isSubmitted ? `<td>${actionCellHtml}</td>` : ''}
                     </tr>`;
             });
             html += `</table>`;
@@ -484,6 +631,11 @@
 
         async function confirmAndAnalyze() {
             let detailedIndicators = currentOcrData.filter(item => item.test_name.trim() !== "");
+            if (detailedIndicators.length === 0) {
+                alert("Bảng dữ liệu đang trống, vui lòng thêm chỉ số trước khi phân tích.");
+                return;
+            }
+            
             const btnReload = document.getElementById('btn-reload');
 
             isSubmitted = true;
@@ -495,7 +647,7 @@
             btnReload.innerText = "Đang phân tích...";
 
             addChatMessage('user', "Đây là dữ liệu đã xác nhận. Hãy phân tích giúp tôi.");
-            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang phân tích y khoa bằng RAG và LLM</span>", true);
+            const typingMsg = addChatMessage('ai', "<span class='typing-indicator'>Đang phân tích y khoa</span>", true);
 
             try {
                 const response = await fetch(`${CHAT_API_BASE}/analyze`, {
@@ -521,7 +673,7 @@
                 typingMsg.remove();
                 btnReload.disabled = false;
                 btnReload.innerText = "Tải phiếu khác";
-                addChatMessage('ai', "❌ Lỗi mất kết nối tới AI Service (Cổng 8002).");
+                addChatMessage('ai', "❌ Lỗi mất kết nối tới AI Service.");
             }
         }
 
