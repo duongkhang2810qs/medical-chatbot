@@ -1,6 +1,12 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import json
 from typing import Any, Dict, List
 import rag_service
+import lab_core
+from langfuse.decorators import observe, langfuse_context
 
 SESSIONS: Dict[str, Dict[str, Any]] = {}
 
@@ -30,19 +36,16 @@ def update_session_memory(session_id: str, text: str = None, active_report_data:
         session["active_report_summary"] = report_summary
     return session
 
+@observe(as_type="span", name="Detect Intent (Semantic)")
 def detect_intent(text: str, session: Dict) -> str:
-    report_cues = ["của tôi", "kết quả", "report", "phiếu", "chỉ số này", "nó", "cái này", "bất thường", "có sao không", "xét nghiệm", "chỉ số"]
-    if session.get("active_report") and any(cue in text.lower() for cue in report_cues):
-        return "report_followup"
-    
-    medical_keywords = ["wbc", "rbc", "hgb", "hct", "mcv", "mch", "mchc", "plt", "neut", "lym", "mono", "eos", "baso", "ig", "máu", "xét nghiệm", "cbc", "bạch cầu", "hồng cầu", "thiếu máu", "tiểu cầu", "bệnh"]
-    if any(k in text.lower() for k in medical_keywords):
-        return "medical_knowledge"
-        
-    return "general_chat"
+    print("[LOGIC] Bắt đầu Semantic Routing...")
+    has_report = session.get("active_report") is not None
+    intent = rag_service.semantic_route_intent(text, has_report=has_report)
+    print(f"[LOGIC] Đã điều hướng sang luồng: {intent}")
+    return intent
 
 # ========================================================
-# CÁC HÀM XÂY DỰNG PROMPT (GIỮ NGUYÊN 100% NHƯ BẠN YÊU CẦU)
+# CÁC HÀM XÂY DỰNG PROMPT
 # ========================================================
 def _format_history(session: Dict[str, Any], limit: int = 10) -> str:
     history = session.get("history", [])[-limit:]
@@ -67,15 +70,26 @@ def _format_full_report(report_data: List[Dict[str, Any]]) -> str:
         test_name = item.get("test_name", "?")
         value = item.get("value", "?")
         unit = item.get("unit", "")
-        status = item.get("status", "Unknown")
+        status = item.get("status")
+        
+        status_str = status if status is not None else "Không rõ"
+        unit_str = unit if str(unit).strip() else "[Không ghi đơn vị]"
 
         ref = item.get("ref_range", {}) or {}
-        ref_min = ref.get("ref_min", "?")
-        ref_max = ref.get("ref_max", "?")
+        ref_min = ref.get("ref_min")
+        ref_max = ref.get("ref_max")
+
+        if ref_min is None and ref_max is None:
+            ref_str = "Không có sẵn"
+        elif ref_min is None:
+            ref_str = f"< {ref_max}"
+        elif ref_max is None:
+            ref_str = f"> {ref_min}"
+        else:
+            ref_str = f"{ref_min} - {ref_max}"
 
         lines.append(
-            f"- {test_name}: {value} {unit} "
-            f"(ref {ref_min} - {ref_max}) => {status}"
+            f"- {test_name}: Kết quả = {value} {unit_str} | Tham chiếu = {ref_str} | Trạng thái = {status_str}"
         )
     return "\n".join(lines)
 
@@ -163,11 +177,11 @@ def build_report_followup_prompt(
 
     abnormal_text = "\n".join(
         [
-            f"- {item['test_name']}: {item['value']} {item['unit']} "
-            f"(ref {item['ref_range']['ref_min']} - {item['ref_range']['ref_max']}) => {item['status']}"
+            f"- {item['test_name']}: {item['value']} {item.get('unit', '[Không ghi đơn vị]')} "
+            f"(Tham chiếu: {item['ref_range'].get('ref_min', 'Không có')} - {item['ref_range'].get('ref_max', 'Không có')}) => {item['status']}"
             for item in abnormal_items
         ]
-    ) or "Không có chỉ số bất thường rõ ràng."
+    ) or "Không có chỉ số bất thường."
 
     ev_text = "\n".join(
         [
@@ -179,22 +193,29 @@ def build_report_followup_prompt(
 
     report_id = None
     full_report_block = "(không có full report)"
+    total_indices = 0
+    
     if full_report:
         report_id = full_report.get("id")
-        full_report_block = _format_full_report(full_report.get("data", []))
+        report_data = full_report.get("data", [])
+        total_indices = len(report_data)
+        full_report_block = _format_full_report(report_data)
 
     return f"""
-You are a hematology specialist. Answer in Vietnamese.
+You are a friendly and empathetic hematology specialist. Answer in Vietnamese.
 
 {memory_block}
 
 CURRENT REPORT ID:
 {report_id}
 
+TOTAL INDICES EXTRACTED:
+Bệnh nhân có tổng cộng {total_indices} chỉ số trong phiếu xét nghiệm này.
+
 CURRENT CBC REPORT SUMMARY:
 {report_summary}
 
-ABNORMAL ITEMS:
+📊 TOÀN BỘ CHỈ SỐ BẤT THƯỜNG ĐƯỢC PHÁT HIỆN:
 {abnormal_text}
 
 FULL CBC REPORT:
@@ -207,57 +228,56 @@ EVIDENCE:
 {ev_text}
 
 Rules:
-- Answer in Vietnamese
+- Answer in a friendly, conversational Vietnamese tone.
 - Combine user's report data + recent history + evidence
-- The FULL CBC REPORT is the source of truth for this patient
-- If the user asks about a normal index, you MUST check it from FULL CBC REPORT
-- If the user asks something referring to prior conversation, use Recent history
-- MUST cite evidence like [1], [2] when making medical claims
-- ONLY use citation indices that actually exist in EVIDENCE
-- Each citation [i] must correspond exactly to evidence item [i]
-- DO NOT hallucinate
-- If the question is answerable from report data only, answer directly and say no external evidence is needed
-- If the question cannot be answered from current report/history/evidence, say so clearly
+- The FULL CBC REPORT and the ABNORMAL ITEMS list are the absolute source of truth for this patient.
+- CRITICAL: NEVER mention internal prompt variable names like "FULL CBC REPORT" or "TOÀN BỘ CHỈ SỐ BẤT THƯỜNG ĐƯỢC PHÁT HIỆN". Refer to them naturally as "phiếu xét nghiệm của bạn" hoặc "các chỉ số bất thường".
+- CRITICAL: BẮT BUỘC liệt kê ĐẦY ĐỦ 100% các chỉ số bất thường liên quan đến câu hỏi, tuyệt đối không lược bỏ.
+- CRITICAL: DO NOT use markdown headers (`#` or `###`). Use bold text (`**...**`) for emphasis.
+- CRITICAL: Use friendly Vietnamese names for tests (e.g., Hồng cầu (RBC), Bạch cầu (WBC), Tiểu cầu (PLT)) instead of dry acronyms.
+- CRITICAL ANTI-HALLUCINATION 1: If a reference range is "Không có sẵn" in the FULL CBC REPORT, you MUST firmly state that the report does not provide it. DO NOT invent or hallucinate a reference range using your external medical knowledge.
+- CRITICAL ANTI-HALLUCINATION 2: If the user challenges you about a missing reference range (e.g., "Are you sure it doesn't have one?"), politely stand your ground. Confirm that based on the uploaded report data, it is truly missing.
+- CRITICAL ANTI-HALLUCINATION 3: If a test result's unit is "[Không ghi đơn vị]", you MUST NOT assume, invent, or append any unit (like '%', 'g/L') to the value. Just use the exact number provided in the report.
+- MUST cite evidence like [1], [2] when making medical claims.
+- ONLY use citation indices that actually exist in EVIDENCE.
+- DO NOT hallucinate external evidence.
 
 Structure:
-1. Trả lời ngắn
-2. Liên hệ trực tiếp với report hiện tại
-3. Nếu cần, liên hệ với lịch sử hội thoại
-4. Giải thích y khoa
-5. Khuyến nghị
+**1. Trả lời ngắn gọn:** Trả lời trực tiếp và thân thiện.
+**2. Liên hệ với phiếu xét nghiệm:** Phân tích dữ liệu từ báo cáo.
+**3. Giải thích y khoa (nếu cần):** Giải thích dễ hiểu, tránh hàn lâm.
+**4. Lời khuyên:** Khuyến nghị thực tế cho bệnh nhân.
 """.strip()
 
 # ========================================================
 # HÀM XỬ LÝ CHAT CHÍNH (ĐIỀU PHỐI)
 # ========================================================
+@observe(name="Chat Workflow")
 def handle_chat(text: str, session_id: str) -> Dict:
-    # 1. Cập nhật câu hỏi của User vào bộ nhớ
+    langfuse_context.update_current_trace(
+        session_id=session_id,
+        tags=["chat_interaction"],
+        user_id="patient_anonymous"
+    )
+
     session = update_session_memory(session_id, text=text)
-    
-    # 2. Phân loại câu hỏi
     intent = detect_intent(text, session)
     
-    # 3. Kịch bản 1: Trò chuyện chung
     if intent == "general_chat":
         prompt = build_general_prompt(text, session)
-        
-    # 4. Kịch bản 2: Hỏi y khoa chung
     elif intent == "medical_knowledge":
-        evidence = rag_service.search_qdrant(text, rag_service.embedding_model, rag_service.qdrant_client, top_k=5)
+        print(f"[LOGIC] Tra cứu Qdrant cho Medical Knowledge: {text}")
+        evidence = lab_core.qdrant_search(text, top_k=5)
         prompt = build_medical_prompt(text, evidence, session)
-        
-    # 5. Kịch bản 3: Hỏi về tờ phiếu xét nghiệm
     elif intent == "report_followup":
-        # Tìm kiếm tài liệu y khoa
-        evidence = rag_service.search_qdrant(text + " clinical interpretation cbc", rag_service.embedding_model, rag_service.qdrant_client, top_k=5)
+        print(f"[LOGIC] Tra cứu Qdrant cho Report Follow-up: {text}")
+        evidence = lab_core.qdrant_search(text + " clinical interpretation cbc biochem", top_k=5)
         
-        # Lấy tóm tắt và dữ liệu từ bộ nhớ
         report_summary = session.get("active_report_summary") or "Chưa có tóm tắt."
         full_report_dict = session.get("active_report")
         report_data = full_report_dict.get("data", []) if full_report_dict else []
         abnormal_items = [i for i in report_data if i.get("status") in ["High", "Low"]]
         
-        # Gắn vào Prompt đúng y như Format của bạn
         prompt = build_report_followup_prompt(
             query=text,
             report_summary=report_summary,
@@ -267,8 +287,10 @@ def handle_chat(text: str, session_id: str) -> Dict:
             full_report=full_report_dict
         )
 
-    # 6. Gọi LLM và lưu vào lịch sử
+    print("[LOGIC] Bắt đầu gọi LLM trả lời chat...")
     answer = rag_service.call_llm(prompt)
     session["history"].append({"role": "assistant", "content": answer})
+    print("[LOGIC] Trả lời LLM thành công.")
     
+    # Đã gỡ bỏ flush() gây treo ở đây
     return {"intent": intent, "answer": answer}
