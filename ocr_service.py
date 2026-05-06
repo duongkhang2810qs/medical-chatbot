@@ -59,10 +59,11 @@ print("Khởi tạo Unified PaddleOCR (Unwarp + Detection + Recognition)...")
 ocr_engine = PaddleOCR(
     device="gpu" if paddle.device.is_compiled_with_cuda() else "cpu",
     lang="vi",
-    use_doc_orientation_classify=True,
-    use_doc_unwarping=True,
+    use_doc_orientation_classify=False,
+    use_doc_unwarping=False,
     use_textline_orientation=False,
-    ocr_version="PP-OCRv5"
+    ocr_version="PP-OCRv5",
+    enable_mkldnn=False
 )
 
 # Lazy-load cho CPU: Gán bằng None, chỉ load khi GPU bị OOM
@@ -298,10 +299,11 @@ def predict_unified(image_or_path):
                 ocr_cpu = PaddleOCR(
                     device="cpu",
                     lang="vi",
-                    use_doc_orientation_classify=True,
-                    use_doc_unwarping=True,
+                    use_doc_orientation_classify=False,
+                    use_doc_unwarping=False,
                     use_textline_orientation=False,
-                    ocr_version="PP-OCRv5"
+                    ocr_version="PP-OCRv5",
+                    enable_mkldnn=False
                 )
             results = ocr_cpu.predict(input_data)
         else:

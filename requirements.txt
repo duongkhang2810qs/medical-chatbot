@@ -1,5 +1,9 @@
 vietocr
-paddleocr
+paddlepaddle>=3.0.0
+paddleocr>=3.0.0
+numpy==1.26.4
+opencv-python>=4.9.0
+Pillow
 google-genai
 requests
 python-dotenv
@@ -9,3 +13,6 @@ fastapi
 uvicorn
 pydantic
 python-multipart
+neo4j
+langfuse
+PyMuPDF

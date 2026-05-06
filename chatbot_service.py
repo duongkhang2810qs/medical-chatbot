@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import json
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 import rag_service
 from langfuse.decorators import observe, langfuse_context
 
@@ -170,7 +170,7 @@ def build_report_followup_prompt(
     abnormal_items: List[Dict[str, Any]],
     evidence: List[Dict[str, Any]],
     session: Dict[str, Any],
-    full_report: Dict[str, Any] | None = None,
+    full_report: Optional[Dict[str, Any]] = None,
 ) -> str:
     memory_block = build_memory_block(session)
 
