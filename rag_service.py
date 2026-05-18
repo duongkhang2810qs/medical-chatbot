@@ -2,7 +2,6 @@ import os
 import json
 import uuid
 import requests
-import numpy as np
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -12,26 +11,27 @@ ENV_PATH = BASE_DIR / ".env"
 load_dotenv(dotenv_path=ENV_PATH)
 
 # =========================================================
-# KẾT NỐI CÁC EXTERNAL SERVICES (LLM, NEO4J, QDRANT)
+# KẾT NỐI CÁC EXTERNAL SERVICES (LLM, NEO4J)
 # =========================================================
 from google import genai
 from google.genai import types
-from sentence_transformers import SentenceTransformer
 from neo4j import GraphDatabase
 from langfuse.decorators import observe, langfuse_context
 
-# Import Core Engine duy nhất
+# Import Core Engine
 import config
 import lab_core
 
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "deepseek/deepseek-chat")
+LOCAL_LLM_URL = os.getenv("LOCAL_LLM_URL", "http://localhost:11434/api/generate")
+LOCAL_LLM_MODEL = os.getenv("LOCAL_LLM_MODEL", "qwen2.5:3b")
 
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 
-print("🔧 Khởi tạo AI Services (Neo4j, Embeddings)...")
+print("🔧 Khởi tạo AI Services (Neo4j)...")
 try:
     neo4j_driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
     neo4j_driver.verify_connectivity()
@@ -40,53 +40,12 @@ except Exception as e:
     print(f"⚠️ Lỗi kết nối Neo4j: {e}")
     neo4j_driver = None
 
-embedding_model = SentenceTransformer(config.EMBEDDING_MODEL_NAME)
+# Ghi chú: Đã gỡ bỏ SentenceTransformer vì LangGraph LLM Router đã đảm nhiệm việc định tuyến.
 
 # =========================================================
-# SEMANTIC ROUTING (PHÂN LUỒNG Ý ĐỊNH CHATBOT)
+# GỌI LLM (DYNAMIC PROVIDER ROUTING)
 # =========================================================
-ROUTE_EXAMPLES = {
-    "report_followup": [
-        "của tôi", "kết quả", "report", "phiếu", "chỉ số này", "nó", "cái này", 
-        "bất thường", "có sao không", "xét nghiệm của tôi", "đọc giúp tôi",
-        "chỉ số wbc của tôi cao quá", "tại sao giảm", "kiểm tra lại", "bị bệnh gì"
-    ],
-    "medical_knowledge": [
-        "wbc là gì", "rbc là gì", "hgb", "hct", "mcv", "mch", "mchc", "plt", "neut", 
-        "lym", "mono", "eos", "baso", "ig", "máu", "cbc", "bạch cầu là gì", 
-        "hồng cầu", "bệnh thiếu máu", "tiểu cầu", "triệu chứng", "nguyên nhân"
-    ],
-    "general_chat": [
-        "xin chào", "hello", "hi", "cảm ơn", "thank you", "bạn là ai", 
-        "tạm biệt", "chào bác sĩ", "ok", "dạ", "chào"
-    ]
-}
-ROUTE_EMBEDDINGS = {intent: embedding_model.encode(examples) for intent, examples in ROUTE_EXAMPLES.items()}
-
-def cosine_similarity(a, b):
-    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
-
-@observe(as_type="span", name="Semantic Routing")
-def semantic_route_intent(query: str, has_report: bool = False) -> str:
-    query_emb = embedding_model.encode(query)
-    best_intent, best_score = "general_chat", -1
-
-    for intent, embs in ROUTE_EMBEDDINGS.items():
-        max_score = max([cosine_similarity(query_emb, e) for e in embs])
-        if max_score > best_score:
-            best_score, best_intent = max_score, intent
-
-    langfuse_context.update_current_observation(output={"intent": best_intent, "confidence": float(best_score)})
-
-    if has_report and best_intent == "medical_knowledge" and best_score < 0.6:
-        return "report_followup"
-    return best_intent if best_score >= 0.35 else "general_chat"
-
-
-# =========================================================
-# GỌI LLM (DEEPSEEK / GEMINI)
-# =========================================================
-@observe(as_type="generation", name="Gemini Fallback Generation")
+@observe(as_type="generation", name="Gemini Generation")
 def call_gemini(prompt):
     api_key = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
@@ -105,17 +64,50 @@ def call_deepseek(prompt):
     res.raise_for_status()
     return res.json()["choices"][0]["message"]["content"].strip()
 
+@observe(as_type="generation", name="Local LLM Generation")
+def call_local_llm(prompt):
+    payload = {
+        "model": LOCAL_LLM_MODEL,
+        "prompt": prompt,
+        "stream": False,
+        "options": {
+            "temperature": 0.2,
+            "num_predict": 2000
+        }
+    }
+    res = requests.post(LOCAL_LLM_URL, json=payload, timeout=60)
+    res.raise_for_status()
+    return res.json().get("response", "").strip()
+
+# Từ điển ánh xạ tên provider với hàm thực thi tương ứng
+PROVIDER_FUNCTIONS = {
+    "gemini": call_gemini,
+    "deepseek": call_deepseek,
+    "local": call_local_llm
+}
+
+# Đọc cấu hình từ .env (Nếu không có thì dùng mặc định là deepseek -> gemini -> local)
+LLM_PROVIDER_ORDER = os.getenv("LLM_PROVIDER_ORDER", "deepseek,gemini,local").split(",")
+
 @observe(as_type="span", name="LLM Execution")
 def call_llm(prompt):
-    try:
-        print(f"[LLM] Đang gọi {OPENROUTER_MODEL}...")
-        return call_deepseek(prompt)
-    except Exception as e:
-        print(f"⚠️ OpenRouter lỗi ({e}) -> Fallback sang {GEMINI_MODEL}...")
+    # Chuẩn hóa danh sách
+    order = [p.strip().lower() for p in LLM_PROVIDER_ORDER if p.strip()]
+    
+    for provider in order:
+        if provider not in PROVIDER_FUNCTIONS:
+            print(f"⚠️ Cảnh báo: LLM Provider '{provider}' không hợp lệ. Bỏ qua.")
+            continue
+            
+        print(f"[LLM] Đang gọi {provider.upper()}...")
         try:
-            return call_gemini(prompt)
-        except Exception as ex:
-            return "Hệ thống AI đang bận. Vui lòng thử lại sau."
+            target_function = PROVIDER_FUNCTIONS[provider]
+            return target_function(prompt)
+        except Exception as e:
+            print(f"⚠️ {provider.upper()} lỗi ({e}) -> Fallback sang model tiếp theo...")
+            
+    print("❌ Tất cả các model LLM đều thất bại.")
+    return "Hệ thống AI đang bận hoặc mất kết nối. Vui lòng thử lại sau."
 
 
 # =========================================================
@@ -158,7 +150,7 @@ def fetch_evidence_from_neo4j(abnormal_tests: list, conditions: list) -> list:
 
 
 # =========================================================
-# LUỒNG CHÍNH (GRAPHRAG PIPELINE)
+# LUỒNG PHÂN TÍCH REPORT ĐẦU TIÊN
 # =========================================================
 def format_ui_data_to_case(user_indicators: list, session_id: str) -> dict:
     case_data = {
@@ -195,7 +187,6 @@ def analyze_indicators_with_llm(user_indicators: list, session_id: str = None) -
     cbc_demo = lab_core.load_jsonl(config.CBC_DEMO_PATTERN_PATH) if config.CBC_DEMO_PATTERN_PATH.exists() else []
     biochem_patt = lab_core.load_json(config.BIOCHEM_PATTERN_PATH) if config.BIOCHEM_PATTERN_PATH.exists() else {}
     
-    # [FIX] Đã gọi trực tiếp từ lab_core
     ctx = lab_core.augment_reasoning_context_with_static_patterns(ctx, cbc_demo, biochem_patt)
 
     abnormal_tests = ctx.get("abnormal_tests", [])
@@ -228,7 +219,6 @@ def analyze_indicators_with_llm(user_indicators: list, session_id: str = None) -
     # 5. Gọi LLM và Dọn dẹp Output
     raw_answer = call_llm(prompt)
     
-    # [FIX] Đã gọi trực tiếp từ lab_core
     final_answer = lab_core.build_user_visible_answer(raw_answer, ctx, final_evidence)
 
     return final_answer
