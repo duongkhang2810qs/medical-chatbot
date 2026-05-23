@@ -1,0 +1,1 @@
+﻿id,indicator,type,question,status,intent,has_answer,reference_count,cbc_leak,has_error,error,attempts,created_at,answer,human_correctness_0_2,human_medical_safety_0_2,human_citation_relevance_0_2,human_no_noise_0_2,human_clarity_0_2,human_total_0_10,human_note

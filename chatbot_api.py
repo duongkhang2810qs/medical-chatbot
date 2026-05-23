@@ -46,8 +46,8 @@ async def analyze_report(data: ConfirmedData):
             report_summary=summary
         )
         
-        session["history"].append({"role": "user", "content": "Đây là dữ liệu đã xác nhận. Hãy phân tích giúp tôi."})
-        session["history"].append({"role": "assistant", "content": summary})
+        # [FIX] Đã XÓA 2 dòng gọi session["history"] vì LangGraph đã tự động quản lý bộ nhớ
+        # report_summary đã được lưu vào memory và truyền tự động vào Report Node.
         
         # [FIX] Đã gỡ bỏ langfuse_context.flush() ở đây để tránh treo API
         print("[API] Đã phân tích xong, trả kết quả về UI.")

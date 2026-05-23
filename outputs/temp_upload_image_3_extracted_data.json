@@ -1,1190 +1,1408 @@
 {
-    "extracted_data": [],
+    "extracted_data": [
+        {
+            "test_name": "RBC",
+            "value": 5.44,
+            "unit": "10^12/L",
+            "ref_range": {
+                "ref_min": 3.8,
+                "ref_max": 5.5
+            },
+            "status": "Normal",
+            "raw_text_line": "Höng cäu 5.44 (3,8 - 5,5 × 10^12 /L)"
+        },
+        {
+            "test_name": "HGB",
+            "value": 158,
+            "unit": "g/L",
+            "ref_range": {
+                "ref_min": 110.0,
+                "ref_max": 160.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Huyet sác t5 158 (110 - 160 g/L)"
+        },
+        {
+            "test_name": "HCT",
+            "value": 46.6,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 37.0,
+                "ref_max": 47.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Hématocrit (HCT) 46.6 (37 - 47 %)"
+        },
+        {
+            "test_name": "MCV",
+            "value": 85.7,
+            "unit": "fL",
+            "ref_range": {
+                "ref_min": 85.0,
+                "ref_max": 95.0
+            },
+            "status": "Normal",
+            "raw_text_line": "MCV 85.7 (85 - 95 fL)"
+        },
+        {
+            "test_name": "MCH",
+            "value": 29,
+            "unit": "pg",
+            "ref_range": {
+                "ref_min": 28.0,
+                "ref_max": 32.0
+            },
+            "status": "Normal",
+            "raw_text_line": "MCH 29.0 ( 28 - 32 pg )"
+        },
+        {
+            "test_name": "MCHC",
+            "value": 33.9,
+            "unit": "g/dL",
+            "ref_range": {
+                "ref_min": 32.0,
+                "ref_max": 36.0
+            },
+            "status": "Normal",
+            "raw_text_line": "MCHC 33.9 (32 - 36 g/dL)"
+        },
+        {
+            "test_name": "RDW_SD",
+            "value": 38.8,
+            "unit": "fL",
+            "ref_range": {
+                "ref_min": 35.0,
+                "ref_max": 46.0
+            },
+            "status": "Normal",
+            "raw_text_line": "RDW_SD 38.8 (35 - 46fL)"
+        },
+        {
+            "test_name": "RDW_CV",
+            "value": 12.5,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 11.5,
+                "ref_max": 16.0
+            },
+            "status": "Normal",
+            "raw_text_line": "RDW_CV 12.5 (11,5 - 16%)"
+        },
+        {
+            "test_name": "WBC",
+            "value": 8.02,
+            "unit": "10^9/L",
+            "ref_range": {
+                "ref_min": 4.0,
+                "ref_max": 10.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Bach cău 8.02 (4-10×10^9/L)"
+        },
+        {
+            "test_name": "NRBC_PERCENT",
+            "value": 0,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": null,
+                "ref_max": null
+            },
+            "status": null,
+            "raw_text_line": "Tý l NRBC 0.0 %"
+        },
+        {
+            "test_name": "NEUT_PERCENT",
+            "value": 55.8,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 50.0,
+                "ref_max": 75.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Tý l BC trung tính (NEUT) 55.8 ( 50 - 75 % )"
+        },
+        {
+            "test_name": "LYM_PERCENT",
+            "value": 34.7,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 20.0,
+                "ref_max": 45.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Tý l BC lympho (LYMPH) 34.7 ( 20 - 45 % )"
+        },
+        {
+            "test_name": "MONO_PERCENT",
+            "value": 6.7,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 1.0,
+                "ref_max": 10.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Tý l BC mono (MONO) 6.7 (1 - 10 %)"
+        },
+        {
+            "test_name": "EOS_PERCENT",
+            "value": 2.6,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 0.0,
+                "ref_max": 8.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Ty l BC ái toan (EOSIN) 2.6 (0-8%)"
+        },
+        {
+            "test_name": "BASO_PERCENT",
+            "value": 0.2,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 0.0,
+                "ref_max": 2.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Tý lę BC ái kim (BASO) 0.2 (0-2%)"
+        },
+        {
+            "test_name": "IG_PERCENT",
+            "value": 0.9,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 0.0,
+                "ref_max": 0.45
+            },
+            "status": "High",
+            "raw_text_line": "Tý lê IG 0.9 (0-0.45%)"
+        },
+        {
+            "test_name": "NRBC_ABS",
+            "value": 0,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": null,
+                "ref_max": 0.01
+            },
+            "status": "Normal",
+            "raw_text_line": "S6 lugng NRBC 0.00 <0.01 G/L"
+        },
+        {
+            "test_name": "NEUT_ABS",
+            "value": 4.47,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": 2.0,
+                "ref_max": 6.9
+            },
+            "status": "Normal",
+            "raw_text_line": "S6 lupng BC trung tính 4.47 ( 2-6.9 G/l)"
+        },
+        {
+            "test_name": "LYM_ABS",
+            "value": 2.78,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": 0.6,
+                "ref_max": 3.4
+            },
+            "status": "Normal",
+            "raw_text_line": "S6 lugng BC Lympho 2.78 (0.6 - 3.4G/L)"
+        },
+        {
+            "test_name": "MONO_ABS",
+            "value": 0.54,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": 0.0,
+                "ref_max": 0.9
+            },
+            "status": "Normal",
+            "raw_text_line": "S6 lugng BC mono 0.54 (0.0 - 0.9G/L)"
+        },
+        {
+            "test_name": "EOS_ABS",
+            "value": 0.21,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": 0.0,
+                "ref_max": 0.7
+            },
+            "status": "Normal",
+            "raw_text_line": "S lugng BC ái toan 0.21 (0.0 - 0.7 G/L)"
+        },
+        {
+            "test_name": "BASO_ABS",
+            "value": 0.02,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": 0.0,
+                "ref_max": 0.2
+            },
+            "status": "Normal",
+            "raw_text_line": "S6 lupng BC ái kiëm 0.02 (0.0 - 0.2 G/L)"
+        },
+        {
+            "test_name": "IG_ABS",
+            "value": 0.07,
+            "unit": "G/L",
+            "ref_range": {
+                "ref_min": null,
+                "ref_max": null
+            },
+            "status": null,
+            "raw_text_line": "S lugng IG 0.07 G/L"
+        },
+        {
+            "test_name": "PLT",
+            "value": 385,
+            "unit": "10^9/L",
+            "ref_range": {
+                "ref_min": 150.0,
+                "ref_max": 400.0
+            },
+            "status": "Normal",
+            "raw_text_line": "Tiu cău 385 (150 - 400 × 10^9 /L)"
+        },
+        {
+            "test_name": "PDW",
+            "value": 9.1,
+            "unit": "fL",
+            "ref_range": {
+                "ref_min": 6.0,
+                "ref_max": 18.0
+            },
+            "status": "Normal",
+            "raw_text_line": "PDW 9.1 (6-18fL)"
+        },
+        {
+            "test_name": "MPV",
+            "value": 9,
+            "unit": "fL",
+            "ref_range": {
+                "ref_min": 6.5,
+                "ref_max": 11.0
+            },
+            "status": "Normal",
+            "raw_text_line": "MPV 9,0 (6.5-11fL)"
+        },
+        {
+            "test_name": "PLCR",
+            "value": 16.7,
+            "unit": "%",
+            "ref_range": {
+                "ref_min": 13.0,
+                "ref_max": 43.0
+            },
+            "status": "Normal",
+            "raw_text_line": "P-LCR 16.7 (13-43%)"
+        }
+    ],
     "raw_ocr": [
         {
-            "text": "S Y T THÀNH PH ĐÀ NNG",
+            "text": "FAMILY",
             "bbox": [
-                276.0,
-                92.0,
-                522.0,
-                126.0
+                37.0,
+                9.0,
+                87.0,
+                30.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "MS: 22/BV-02",
+            "text": "BNH VIN ĐA KHOA GIA ĐİNH",
             "bbox": [
-                936.0,
+                36.0,
+                18.0,
+                229.0,
+                44.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "KT QU XÉT NGHIM Y KHOA",
+            "bbox": [
+                158.0,
+                36.0,
+                535.0,
+                87.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "LABORATORY REPORT",
+            "bbox": [
+                241.0,
+                72.0,
+                451.0,
+                102.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "*******",
+            "bbox": [
+                303.0,
                 96.0,
-                1057.0,
-                120.0
+                385.0,
+                114.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "Bnh vin đ ko khu cmin n phia Bc Qung Nam",
+            "text": "Tui: 23 Tui",
             "bbox": [
-                149.0,
-                117.0,
-                645.0,
-                160.0
+                310.0,
+                129.0,
+                388.0,
+                151.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "PHIU KT QU XÉT NGHIM SINH HÓA - MIN DCH",
+            "text": "Giói tính: Nam",
             "bbox": [
-                332.0,
-                174.0,
-                1057.0,
+                398.0,
+                125.0,
+                485.0,
+                146.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "ID: 948209_1303250341",
+            "bbox": [
+                493.0,
+                119.0,
+                637.0,
+                141.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "H và tên: Tôn Tht Hài",
+            "bbox": [
+                34.0,
+                139.0,
+                172.0,
+                161.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "Đa chi: 52 Nguyn Văn Linh Nam Dương Hi Châu",
+            "bbox": [
+                34.0,
+                153.0,
+                302.0,
+                181.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "SID: 1748741",
+            "bbox": [
+                310.0,
+                159.0,
+                390.0,
+                181.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "Đà Năng",
+            "bbox": [
+                31.0,
+                178.0,
+                85.0,
+                202.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "Ngày sinh: 26/06/2002",
+            "bbox": [
+                33.0,
+                197.0,
+                157.0,
+                219.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "GIÁ TR BNH",
+            "bbox": [
+                561.0,
+                211.0,
+                646.0,
                 232.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "2600059036",
+            "text": "GIÁ TR BİNH THƯÒNG",
             "bbox": [
-                940.0,
-                170.0,
-                1043.0,
-                194.0
+                295.0,
+                227.0,
+                429.0,
+                256.0
+            ],
+            "tag": "HEADER"
+        },
+        {
+            "text": "KT QUÁ",
+            "bbox": [
+                460.0,
+                232.0,
+                519.0,
+                257.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "H tên: TO NGÔL DCH",
+            "text": "THƯÒNG",
             "bbox": [
-                168.0,
-                264.0,
-                406.0,
-                310.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Tuôi: 58",
-            "bbox": [
+                576.0,
+                230.0,
                 633.0,
-                281.0,
-                722.0,
-                313.0
+                250.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "Gii tính: Nam",
+            "text": "TÊN XÉT NGHIM",
             "bbox": [
-                825.0,
-                290.0,
-                937.0,
-                311.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "S thè BHYT:",
-            "bbox": [
-                169.0,
-                304.0,
-                281.0,
-                336.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "HT2489000009879",
-            "bbox": [
-                282.0,
-                300.0,
-                434.0,
-                329.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Khoa: Khoa Khám bnh",
-            "bbox": [
-                169.0,
-                326.0,
-                356.0,
-                361.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Phòng: Khám Ni 2 - P6",
-            "bbox": [
-                635.0,
-                338.0,
-                822.0,
-                368.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Đ ch Đc Pre - Nam Giang - Qung Nam",
-            "bbox": [
-                167.0,
-                353.0,
-                482.0,
-                388.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Chn đoán:",
-            "bbox": [
-                167.0,
-                383.0,
-                254.0,
-                412.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Bác sĩ chi đnh:",
-            "bbox": [
-                166.0,
-                413.0,
-                284.0,
-                441.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Nguyn Đình Hoàng",
-            "bbox": [
-                291.0,
-                412.0,
-                457.0,
-                441.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Loi mu:",
-            "bbox": [
-                162.0,
-                432.0,
+                65.0,
                 247.0,
+                160.0,
+                268.0
+            ],
+            "tag": "HEADER"
+        },
+        {
+            "text": "KÊT QUÁ",
+            "bbox": [
+                208.0,
+                242.0,
+                264.0,
+                267.0
+            ],
+            "tag": "HEADER"
+        },
+        {
+            "text": "(Đơn v hay dng)",
+            "bbox": [
+                310.0,
+                249.0,
+                413.0,
+                272.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "(Đơn v ít dùng)",
+            "bbox": [
+                558.0,
+                250.0,
+                652.0,
+                270.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "Tng phân tích t bào máu bng máy đm",
+            "bbox": [
+                36.0,
+                284.0,
+                261.0,
+                309.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "laser ( 10:52 21/02/25 - Duyt lúc: 15:36",
+            "bbox": [
+                36.0,
+                302.0,
+                257.0,
+                327.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "24/02/25)",
+            "bbox": [
+                35.0,
+                325.0,
+                95.0,
+                346.0
+            ],
+            "tag": "OTHER"
+        },
+        {
+            "text": "Höng cäu",
+            "bbox": [
+                54.0,
+                343.0,
+                105.0,
+                364.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "5.44",
+            "bbox": [
+                224.0,
+                341.0,
+                252.0,
+                357.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(3,8 - 5,5 × 10^12 /L)",
+            "bbox": [
+                299.0,
+                334.0,
+                427.0,
+                357.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Huyet sác t5",
+            "bbox": [
+                54.0,
+                360.0,
+                120.0,
+                382.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "158",
+            "bbox": [
+                226.0,
+                359.0,
+                250.0,
+                375.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(110 - 160 g/L)",
+            "bbox": [
+                315.0,
+                353.0,
+                410.0,
+                375.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Hématocrit (HCT)",
+            "bbox": [
+                55.0,
+                379.0,
+                142.0,
+                399.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "46.6",
+            "bbox": [
+                225.0,
+                378.0,
+                253.0,
+                393.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(37 - 47 %)",
+            "bbox": [
+                323.0,
+                372.0,
+                401.0,
+                393.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "MCV",
+            "bbox": [
+                57.0,
+                399.0,
+                86.0,
+                415.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "85.7",
+            "bbox": [
+                226.0,
+                396.0,
+                253.0,
+                411.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(85 - 95 fL)",
+            "bbox": [
+                326.0,
+                390.0,
+                400.0,
+                411.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "MCH",
+            "bbox": [
+                57.0,
+                416.0,
+                87.0,
+                435.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "29.0",
+            "bbox": [
+                227.0,
+                414.0,
+                254.0,
+                429.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "( 28 - 32 pg )",
+            "bbox": [
+                325.0,
+                409.0,
+                401.0,
+                430.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "MCHC",
+            "bbox": [
+                59.0,
+                435.0,
+                92.0,
+                451.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "33.9",
+            "bbox": [
+                225.0,
+                431.0,
+                256.0,
+                450.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(32 - 36 g/dL)",
+            "bbox": [
+                321.0,
+                427.0,
+                406.0,
+                449.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "RDW_SD",
+            "bbox": [
+                60.0,
+                455.0,
+                106.0,
+                469.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "38.8",
+            "bbox": [
+                228.0,
+                452.0,
+                255.0,
                 467.0
             ],
-            "tag": "OTHER"
+            "tag": "DATA"
         },
         {
-            "text": "Ngày nhn mu:",
+            "text": "(35 - 46fL)",
             "bbox": [
-                639.0,
-                447.0,
-                758.0,
-                468.0
+                330.0,
+                446.0,
+                396.0,
+                467.0
             ],
-            "tag": "OTHER"
+            "tag": "DATA"
         },
         {
-            "text": "09/04/2026 07:31",
+            "text": "RDW_CV",
             "bbox": [
-                756.0,
-                447.0,
-                898.0,
-                468.0
+                60.0,
+                472.0,
+                106.0,
+                487.0
             ],
-            "tag": "OTHER"
+            "tag": "TEST_NAME"
         },
         {
-            "text": "STT",
+            "text": "12.5",
             "bbox": [
-                168.0,
-                475.0,
-                216.0,
-                507.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Tên xét nghim",
-            "bbox": [
-                348.0,
-                477.0,
+                228.0,
                 470.0,
-                506.0
+                255.0,
+                485.0
             ],
-            "tag": "HEADER"
+            "tag": "DATA"
         },
         {
-            "text": "Kt quå",
+            "text": "(11,5 - 16%)",
             "bbox": [
-                661.0,
-                483.0,
-                730.0,
-                514.0
+                323.0,
+                464.0,
+                403.0,
+                485.0
             ],
-            "tag": "HEADER"
+            "tag": "DATA"
         },
         {
-            "text": "Đon vj",
+            "text": "Bach cău",
             "bbox": [
-                798.0,
-                489.0,
-                853.0,
-                511.0
+                60.0,
+                487.0,
+                106.0,
+                505.0
             ],
-            "tag": "OTHER"
+            "tag": "TEST_NAME"
         },
         {
-            "text": "K.tham chiu",
+            "text": "8.02",
             "bbox": [
-                859.0,
-                484.0,
-                965.0,
-                512.0
+                229.0,
+                487.0,
+                256.0,
+                502.0
             ],
-            "tag": "HEADER"
+            "tag": "DATA"
         },
         {
-            "text": "Máy XN",
+            "text": "(4-10×10^9/L)",
             "bbox": [
-                982.0,
-                483.0,
-                1053.0,
-                510.0
+                312.0,
+                482.0,
+                418.0,
+                502.0
             ],
-            "tag": "HEADER"
+            "tag": "DATA"
         },
         {
-            "text": "1",
+            "text": "Tý l NRBC",
             "bbox": [
-                181.0,
+                61.0,
                 506.0,
-                202.0,
-                531.0
+                119.0,
+                523.0
             ],
             "tag": "TEST_NAME"
         },
         {
-            "text": "Đinh lưng Urê máu [Máu]",
-            "bbox": [
-                216.0,
-                500.0,
-                465.0,
-                536.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "8,7",
-            "bbox": [
-                634.0,
-                511.0,
-                672.0,
-                540.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                743.0,
-                514.0,
-                766.0,
-                538.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "mmol/L",
-            "bbox": [
-                796.0,
-                515.0,
-                855.0,
-                536.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "1,7 - 8,3",
-            "bbox": [
-                879.0,
-                514.0,
-                947.0,
-                536.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                971.0,
-                510.0,
-                1074.0,
-                534.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "2",
-            "bbox": [
-                182.0,
-                535.0,
-                200.0,
-                556.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng Glucose [Máu]",
-            "bbox": [
-                215.0,
-                527.0,
-                460.0,
-                563.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "14,0",
-            "bbox": [
-                631.0,
-                539.0,
-                676.0,
-                565.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                743.0,
-                541.0,
-                765.0,
-                563.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "mmol/L",
-            "bbox": [
-                796.0,
-                542.0,
-                854.0,
-                562.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "3,9 - 6,4",
-            "bbox": [
-                876.0,
-                536.0,
-                949.0,
-                564.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                972.0,
-                536.0,
-                1074.0,
-                561.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "3",
-            "bbox": [
-                181.0,
-                561.0,
-                199.0,
-                583.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng Creatinin (máu)",
-            "bbox": [
-                215.0,
-                553.0,
-                465.0,
-                590.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "176",
-            "bbox": [
-                634.0,
-                564.0,
-                675.0,
-                591.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                743.0,
-                566.0,
-                766.0,
-                590.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "umol/l",
-            "bbox": [
-                798.0,
-                566.0,
-                852.0,
-                589.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "62 - 106",
-            "bbox": [
-                876.0,
-                564.0,
-                948.0,
-                588.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                972.0,
-                563.0,
-                1074.0,
-                585.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "4",
-            "bbox": [
-                182.0,
-                589.0,
-                199.0,
-                610.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng Acid Uric [Máu]",
-            "bbox": [
-                215.0,
-                583.0,
-                473.0,
-                617.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "589",
-            "bbox": [
-                635.0,
-                592.0,
-                674.0,
-                618.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                745.0,
-                595.0,
-                766.0,
-                616.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "umol/l",
-            "bbox": [
-                799.0,
-                594.0,
-                851.0,
-                615.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "202 - 416",
-            "bbox": [
-                874.0,
-                591.0,
-                953.0,
-                615.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                972.0,
-                589.0,
-                1074.0,
-                613.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "5",
-            "bbox": [
-                181.0,
-                615.0,
-                198.0,
-                638.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng Cholesterol toàn phn (máu)",
-            "bbox": [
-                214.0,
-                610.0,
-                570.0,
-                648.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "6,6",
-            "bbox": [
-                635.0,
-                619.0,
-                674.0,
-                646.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                744.0,
-                620.0,
-                766.0,
-                643.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "mmol/L",
-            "bbox": [
-                795.0,
-                618.0,
-                855.0,
-                643.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "3,9 - 5,5",
-            "bbox": [
-                876.0,
-                617.0,
-                950.0,
-                644.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                972.0,
-                615.0,
-                1074.0,
-                640.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "6",
-            "bbox": [
-                181.0,
-                644.0,
-                198.0,
-                664.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng Triglycerid (máu) [Máu]",
-            "bbox": [
-                213.0,
-                637.0,
-                538.0,
-                674.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "11,8",
-            "bbox": [
-                633.0,
-                645.0,
-                677.0,
-                672.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                743.0,
-                646.0,
-                766.0,
-                669.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "mmol/L",
-            "bbox": [
-                795.0,
-                644.0,
-                856.0,
-                669.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "0,5 - 1,9",
-            "bbox": [
-                876.0,
-                642.0,
-                950.0,
-                669.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                973.0,
-                641.0,
-                1076.0,
-                665.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "7",
-            "bbox": [
-                181.0,
-                670.0,
-                198.0,
-                691.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng HDL-C (High density",
-            "bbox": [
-                214.0,
-                666.0,
-                515.0,
-                698.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "0,7",
-            "bbox": [
-                635.0,
-                671.0,
-                674.0,
-                700.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "L",
-            "bbox": [
-                743.0,
-                673.0,
-                767.0,
-                696.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "mmol/L",
-            "bbox": [
-                795.0,
-                672.0,
-                856.0,
-                695.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "≥ 0,9",
-            "bbox": [
-                885.0,
-                669.0,
-                941.0,
-                697.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                973.0,
-                668.0,
-                1076.0,
-                691.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "lipoprotein Cholesterol) [Máu]",
-            "bbox": [
-                215.0,
-                695.0,
-                488.0,
-                725.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "8",
-            "bbox": [
-                181.0,
-                726.0,
-                197.0,
-                747.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đinh lưng LDL - C (Low density",
-            "bbox": [
-                214.0,
-                722.0,
-                519.0,
-                752.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "1,1",
-            "bbox": [
-                636.0,
-                724.0,
-                672.0,
-                754.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "mmol/L",
-            "bbox": [
-                795.0,
-                723.0,
-                857.0,
-                749.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "≤ 3,4",
-            "bbox": [
-                888.0,
-                720.0,
-                942.0,
-                751.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                974.0,
-                721.0,
-                1077.0,
-                745.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "lipoprotein Cholesterol) [Máu]",
-            "bbox": [
-                215.0,
-                750.0,
-                490.0,
-                780.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "9",
-            "bbox": [
-                180.0,
-                782.0,
-                197.0,
-                802.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đo hot đ AST (GOT) [Máu]",
-            "bbox": [
-                214.0,
-                777.0,
-                489.0,
-                806.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "50",
-            "bbox": [
-                639.0,
-                779.0,
-                672.0,
-                804.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                744.0,
-                779.0,
-                768.0,
-                802.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "U/L",
-            "bbox": [
-                809.0,
-                778.0,
-                846.0,
-                801.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "≤37",
-            "bbox": [
-                890.0,
-                774.0,
-                940.0,
-                802.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                973.0,
-                773.0,
-                1079.0,
-                797.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "10",
-            "bbox": [
-                176.0,
-                810.0,
-                202.0,
-                832.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đo hot đ ALT (GPT) [Máu]",
-            "bbox": [
-                214.0,
-                805.0,
-                488.0,
-                835.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "58",
-            "bbox": [
-                640.0,
-                805.0,
-                671.0,
-                831.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                744.0,
-                806.0,
-                768.0,
-                829.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "U/L",
-            "bbox": [
-                809.0,
-                804.0,
-                846.0,
-                828.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "≤41",
-            "bbox": [
-                890.0,
-                800.0,
-                940.0,
-                829.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "COBAS PUR",
-            "bbox": [
-                973.0,
-                799.0,
-                1081.0,
-                826.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "11",
-            "bbox": [
-                176.0,
-                837.0,
-                201.0,
-                859.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Đnh lưng HbA1c [Máu]",
-            "bbox": [
-                215.0,
-                835.0,
-                451.0,
-                861.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "10,3",
-            "bbox": [
-                634.0,
-                832.0,
-                677.0,
-                859.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "H",
-            "bbox": [
-                745.0,
-                833.0,
-                768.0,
-                855.0
+            "text": "0.0",
+            "bbox": [
+                233.0,
+                506.0,
+                254.0,
+                520.0
             ],
             "tag": "DATA"
         },
         {
             "text": "%",
             "bbox": [
-                814.0,
-                832.0,
-                842.0,
-                853.0
+                356.0,
+                504.0,
+                374.0,
+                518.0
             ],
             "tag": "DATA"
         },
         {
-            "text": "4,8 - 6,8",
+            "text": "Tý l BC trung tính (NEUT)",
             "bbox": [
-                880.0,
-                829.0,
-                955.0,
-                855.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "Biorad D-10",
-            "bbox": [
-                974.0,
-                825.0,
-                1072.0,
-                852.0
-            ],
-            "tag": "OTHER"
-        },
-        {
-            "text": "Ghi chú:",
-            "bbox": [
-                160.0,
-                866.0,
-                233.0,
-                887.0
+                61.0,
+                521.0,
+                190.0,
+                542.0
             ],
             "tag": "TEST_NAME"
         },
         {
-            "text": "07 gi 11 phút, Ngày 09 tháng 04 năm 2026",
+            "text": "55.8",
             "bbox": [
-                212.0,
-                917.0,
-                577.0,
-                950.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "08 gi 37 phút, Ngày 09 tháng 04 năm 2026",
-            "bbox": [
-                675.0,
-                910.0,
-                1025.0,
-                940.0
+                229.0,
+                523.0,
+                256.0,
+                538.0
             ],
             "tag": "DATA"
         },
         {
-            "text": "BÁC Sİ CHİ ĐNH",
-            "bbox": [
-                310.0,
-                943.0,
-                485.0,
-                975.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "TRUNG KHOA XÉT NGHM",
-            "bbox": [
-                703.0,
-                936.0,
-                994.0,
-                966.0
-            ],
-            "tag": "DATA"
-        },
-        {
-            "text": "(Ký, ghi rō ho tên)",
+            "text": "( 50 - 75 % )",
             "bbox": [
                 329.0,
-                974.0,
-                466.0,
-                1003.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "(Ký. ghi rõ ho tên)",
-            "bbox": [
-                782.0,
-                966.0,
-                914.0,
-                993.0
+                521.0,
+                402.0,
+                538.0
             ],
             "tag": "DATA"
         },
         {
-            "text": "MN",
+            "text": "Tý l BC lympho (LYMPH)",
             "bbox": [
-                429.0,
-                1001.0,
-                520.0,
-                1043.0
+                61.0,
+                539.0,
+                185.0,
+                560.0
             ],
             "tag": "TEST_NAME"
         },
         {
-            "text": "nim",
+            "text": "34.7",
             "bbox": [
-                344.0,
-                1061.0,
-                416.0,
-                1097.0
+                229.0,
+                541.0,
+                256.0,
+                556.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "( 20 - 45 % )",
+            "bbox": [
+                329.0,
+                539.0,
+                402.0,
+                556.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Tý l BC mono (MONO)",
+            "bbox": [
+                61.0,
+                558.0,
+                176.0,
+                577.0
             ],
             "tag": "TEST_NAME"
         },
         {
-            "text": "Ngay ky 09-042026 08.38",
+            "text": "6.7",
             "bbox": [
-                808.0,
-                1129.0,
-                920.0,
-                1150.0
+                233.0,
+                560.0,
+                254.0,
+                574.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(1 - 10 %)",
+            "bbox": [
+                331.0,
+                554.0,
+                400.0,
+                575.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Ty l BC ái toan (EOSIN)",
+            "bbox": [
+                63.0,
+                577.0,
+                181.0,
+                594.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "2.6",
+            "bbox": [
+                234.0,
+                577.0,
+                253.0,
+                590.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0-8%)",
+            "bbox": [
+                336.0,
+                575.0,
+                397.0,
+                592.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Tý lę BC ái kim (BASO)",
+            "bbox": [
+                62.0,
+                594.0,
+                179.0,
+                612.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.2",
+            "bbox": [
+                234.0,
+                595.0,
+                253.0,
+                608.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0-2%)",
+            "bbox": [
+                337.0,
+                593.0,
+                397.0,
+                610.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Tý lê IG",
+            "bbox": [
+                62.0,
+                613.0,
+                104.0,
+                628.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.9",
+            "bbox": [
+                234.0,
+                613.0,
+                253.0,
+                626.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0-0.45%)",
+            "bbox": [
+                336.0,
+                611.0,
+                397.0,
+                628.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S6 lugng NRBC",
+            "bbox": [
+                60.0,
+                629.0,
+                138.0,
+                648.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.00",
+            "bbox": [
+                231.0,
+                630.0,
+                257.0,
+                645.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "<0.01 G/L",
+            "bbox": [
+                338.0,
+                629.0,
+                397.0,
+                646.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S6 lupng BC trung tính",
+            "bbox": [
+                62.0,
+                649.0,
+                172.0,
+                663.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "4.47",
+            "bbox": [
+                231.0,
+                649.0,
+                256.0,
+                661.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "( 2-6.9 G/l)",
+            "bbox": [
+                331.0,
+                647.0,
+                402.0,
+                664.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S6 lugng BC Lympho",
+            "bbox": [
+                62.0,
+                667.0,
+                162.0,
+                681.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "2.78",
+            "bbox": [
+                232.0,
+                667.0,
+                257.0,
+                679.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0.6 - 3.4G/L)",
+            "bbox": [
+                326.0,
+                663.0,
+                409.0,
+                683.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S6 lugng BC mono",
+            "bbox": [
+                61.0,
+                685.0,
+                152.0,
+                699.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.54",
+            "bbox": [
+                232.0,
+                685.0,
+                257.0,
+                697.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0.0 - 0.9G/L)",
+            "bbox": [
+                325.0,
+                682.0,
+                409.0,
+                701.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S lugng BC ái toan",
+            "bbox": [
+                60.0,
+                702.0,
+                158.0,
+                719.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.21",
+            "bbox": [
+                231.0,
+                703.0,
+                256.0,
+                715.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0.0 - 0.7 G/L)",
+            "bbox": [
+                326.0,
+                700.0,
+                409.0,
+                720.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S6 lupng BC ái kiëm",
+            "bbox": [
+                60.0,
+                721.0,
+                157.0,
+                735.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.02",
+            "bbox": [
+                231.0,
+                722.0,
+                256.0,
+                734.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(0.0 - 0.2 G/L)",
+            "bbox": [
+                328.0,
+                721.0,
+                408.0,
+                738.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "S lugng IG",
+            "bbox": [
+                59.0,
+                738.0,
+                120.0,
+                755.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.07",
+            "bbox": [
+                231.0,
+                740.0,
+                256.0,
+                752.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "G/L",
+            "bbox": [
+                355.0,
+                739.0,
+                380.0,
+                755.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "Tiu cău",
+            "bbox": [
+                59.0,
+                756.0,
+                102.0,
+                771.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "385",
+            "bbox": [
+                231.0,
+                757.0,
+                255.0,
+                772.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(150 - 400 × 10^9 /L)",
+            "bbox": [
+                304.0,
+                756.0,
+                432.0,
+                775.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "PDW",
+            "bbox": [
+                58.0,
+                777.0,
+                85.0,
+                789.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "9.1",
+            "bbox": [
+                233.0,
+                777.0,
+                254.0,
+                791.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(6-18fL)",
+            "bbox": [
+                341.0,
+                774.0,
+                395.0,
+                794.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "MPV",
+            "bbox": [
+                57.0,
+                795.0,
+                83.0,
+                807.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "9,0",
+            "bbox": [
+                233.0,
+                795.0,
+                254.0,
+                809.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(6.5-11fL)",
+            "bbox": [
+                337.0,
+                793.0,
+                400.0,
+                813.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "P-LCR",
+            "bbox": [
+                55.0,
+                811.0,
+                90.0,
+                828.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "16.7",
+            "bbox": [
+                229.0,
+                813.0,
+                257.0,
+                828.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "(13-43%)",
+            "bbox": [
+                338.0,
+                812.0,
+                399.0,
+                832.0
+            ],
+            "tag": "DATA"
+        },
+        {
+            "text": "PCT",
+            "bbox": [
+                55.0,
+                831.0,
+                81.0,
+                846.0
+            ],
+            "tag": "TEST_NAME"
+        },
+        {
+            "text": "0.35",
+            "bbox": [
+                228.0,
+                832.0,
+                257.0,
+                847.0
             ],
             "tag": "OTHER"
         },
         {
-            "text": "Ngay ky: 09/04/2026 07:27",
+            "text": "(0.1-0.5%)",
             "bbox": [
-                332.0,
-                1144.0,
-                450.0,
-                1168.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "Nguyn Đc Hi",
-            "bbox": [
-                794.0,
-                1140.0,
-                936.0,
-                1169.0
+                335.0,
+                831.0,
+                402.0,
+                851.0
             ],
             "tag": "DATA"
         },
         {
-            "text": "Nguyn Đinh Hoàng",
+            "text": "Glucose (Serum) (10:52 21/02/25 - Duyt lúc:",
             "bbox": [
-                300.0,
-                1154.0,
-                481.0,
-                1189.0
+                36.0,
+                850.0,
+                287.0,
+                870.0
             ],
             "tag": "TEST_NAME"
         },
         {
-            "text": "- K quà trên chi có giá tr trên mu xét nghim",
+            "text": "15:36 24/02/25)",
             "bbox": [
-                162.0,
-                1432.0,
-                522.0,
-                1475.0
-            ],
-            "tag": "TEST_NAME"
-        },
-        {
-            "text": "- Mu bnh phm đưc lưu tr 24 gi ti khoa xét nghim",
-            "bbox": [
-                164.0,
-                1458.0,
-                592.0,
-                1506.0
+                35.0,
+                869.0,
+                129.0,
+                888.0
             ],
             "tag": "TEST_NAME"
         }
     ],
     "used_gpu": true,
     "timings": {
-        "paddle_end_to_end": 165.84442567825317,
-        "extraction": 0.3831014633178711
+        "paddle_end_to_end": 29.727476119995117,
+        "extraction": 0.37473130226135254
     }
 }

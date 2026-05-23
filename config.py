@@ -77,10 +77,23 @@ MAX_FINAL_EVIDENCE = 6
 # LLM CONFIG
 # =========================================================
 
-REQUEST_TIMEOUT = 300
-COLAB_MAX_NEW_TOKENS = 970
-COLAB_TEMPERATURE = 0.2
+# =========================================================
+# LLM CONFIG
+# =========================================================
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=ENV_PATH)
+
+REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "300"))
+
+COLAB_LLM_URL = os.getenv("COLAB_LLM_URL", "").strip()
+COLAB_API_KEY = os.getenv("COLAB_API_KEY", "").strip()
+
+COLAB_MAX_NEW_TOKENS = int(os.getenv("COLAB_MAX_NEW_TOKENS", "970"))
+COLAB_TEMPERATURE = float(os.getenv("COLAB_TEMPERATURE", "0.2"))
+COLAB_TIMEOUT = int(os.getenv("COLAB_TIMEOUT", str(REQUEST_TIMEOUT)))
 
 # =========================================================
 # KB BUILD CONFIG

@@ -1,0 +1,4328 @@
+{
+  "version": "cbc_50_book_evidence_pack_v1",
+  "created_at": "2026-05-21T14:54:35",
+  "source_pdf": "clinical_hematology.pdf",
+  "purpose": "Evidence/context JSON trích từ sách clinical_hematology.pdf để support đúng 50 câu trong test_50_cbc.py; dùng cho demo để LLM có dẫn chứng trang rõ ràng.",
+  "page_number_note": "Trường page là số trang PDF theo file clinical_hematology.pdf trong sandbox/PyMuPDF, không phải chắc chắn số trang in trong sách.",
+  "recommended_prompt_rule_vi": "Ưu tiên evidence trong case nếu question match exact. Trả lời dựa trên expected_answer_vi + evidence. Citation [1], [2], [3] phải khớp evidence theo thứ tự case.evidence.",
+  "evidence_library": {
+    "CBC_BOOK_CBC_OVERVIEW_P559": {
+      "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+      "source": "clinical_hematology.pdf",
+      "page": 559,
+      "panel": "CBC",
+      "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+      "bm25_text": "essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+      "tests": [
+        "RBC",
+        "HGB",
+        "HCT",
+        "WBC",
+        "PLT",
+        "MCV"
+      ],
+      "topics": [
+        "cbc",
+        "definition",
+        "complete blood count"
+      ],
+      "keywords": [
+        "cbc",
+        "complete blood count",
+        "hemoglobin",
+        "hematocrit",
+        "white blood cell",
+        "platelet",
+        "red cell size"
+      ],
+      "query_hints": [
+        "công thức máu gồm hemoglobin hematocrit wbc plt differential red cell size"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_RBC_INDICES_DEF_P559": {
+      "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+      "source": "clinical_hematology.pdf",
+      "page": 559,
+      "panel": "CBC",
+      "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+      "bm25_text": "the hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. the hemoglobin concentration and red cell count were also directly measured. other red cell indices were indirectly calculated, including the mean corpuscular volume, mcv (hematocrit divided by the red cell count), mean corpuscular hemoglobin, mch (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, mchc (mch divided by the mcv).",
+      "tests": [
+        "RBC",
+        "HGB",
+        "HCT",
+        "MCV",
+        "MCH",
+        "MCHC"
+      ],
+      "topics": [
+        "definition",
+        "red cell indices"
+      ],
+      "keywords": [
+        "hematocrit",
+        "hemoglobin",
+        "red cell count",
+        "mcv",
+        "mch",
+        "mchc"
+      ],
+      "query_hints": [
+        "rbc hgb hct mcv mch mchc definition"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_MCV_MCH_MCHC_RDW_P560": {
+      "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+      "source": "clinical_hematology.pdf",
+      "page": 560,
+      "panel": "CBC",
+      "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+      "bm25_text": "the mcv is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the rbc count is useful in comparison of iron deficiency and thalassemia. the mch, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the mchc represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+      "tests": [
+        "RBC",
+        "MCV",
+        "MCH",
+        "MCHC",
+        "HGB"
+      ],
+      "topics": [
+        "anemia",
+        "red cell indices",
+        "definition"
+      ],
+      "keywords": [
+        "mcv",
+        "mch",
+        "mchc",
+        "macrocytic",
+        "microcytic",
+        "normocytic",
+        "thalassemia",
+        "iron deficiency"
+      ],
+      "query_hints": [
+        "mcv thấp cao thiếu máu hồng cầu nhỏ to mch mchc"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_RDW_DEF_P560": {
+      "evidence_id": "CBC_BOOK_RDW_DEF_P560",
+      "source": "clinical_hematology.pdf",
+      "page": 560,
+      "panel": "CBC",
+      "text": "The RDW, red cell distribution width, is a measure of the variability in size within the red cell population that is provided by automated cell counters. The precise mathematical equation used for calculation varies with the specific instrument, but in all cases elevated values indicate anisocytosis.",
+      "bm25_text": "the rdw, red cell distribution width, is a measure of the variability in size within the red cell population that is provided by automated cell counters. the precise mathematical equation used for calculation varies with the specific instrument, but in all cases elevated values indicate anisocytosis.",
+      "tests": [
+        "RDW",
+        "RBC"
+      ],
+      "topics": [
+        "definition",
+        "anisocytosis",
+        "anemia"
+      ],
+      "keywords": [
+        "rdw",
+        "red cell distribution width",
+        "anisocytosis",
+        "red cell size variability"
+      ],
+      "query_hints": [
+        "rdw là gì rdw cao anisocytosis"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_RDW_INTERPRET_P560": {
+      "evidence_id": "CBC_BOOK_RDW_INTERPRET_P560",
+      "source": "clinical_hematology.pdf",
+      "page": 560,
+      "panel": "CBC",
+      "text": "An elevated RDW is a valuable clue to abnormalities in red cell morphology; when the RDW is markedly increased, inspection of the blood film is essential. The RDW is sensitive to the presence of small subpopulations of large or small red cells, thus it may be more useful than the MCV for the early detection of nutritional deficiencies. The RDW often remains normal in thalassemia, and the combination of a high or normal RBC count, a low MCV, and a normal RDW is a common pattern in thalassemia trait.",
+      "bm25_text": "an elevated rdw is a valuable clue to abnormalities in red cell morphology; when the rdw is markedly increased, inspection of the blood film is essential. the rdw is sensitive to the presence of small subpopulations of large or small red cells, thus it may be more useful than the mcv for the early detection of nutritional deficiencies. the rdw often remains normal in thalassemia, and the combination of a high or normal rbc count, a low mcv, and a normal rdw is a common pattern in thalassemia trait.",
+      "tests": [
+        "RDW",
+        "MCV",
+        "RBC"
+      ],
+      "topics": [
+        "anemia",
+        "interpretation",
+        "thalassemia"
+      ],
+      "keywords": [
+        "rdw high",
+        "nutritional deficiencies",
+        "thalassemia",
+        "blood film"
+      ],
+      "query_hints": [
+        "rdw cao thiếu máu dinh dưỡng thalassemia"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_WBC_DIFF_P561": {
+      "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+      "source": "clinical_hematology.pdf",
+      "page": 561,
+      "panel": "CBC",
+      "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+      "bm25_text": "the automated white blood cell (wbc) count is measured using the same methods employed to count red cells and platelets. since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+      "tests": [
+        "WBC",
+        "NEUT",
+        "LYMPH",
+        "MONO",
+        "EOS",
+        "BASO"
+      ],
+      "topics": [
+        "definition",
+        "white blood cells",
+        "differential"
+      ],
+      "keywords": [
+        "wbc",
+        "white blood cell",
+        "leukocyte differential",
+        "neutrophil",
+        "lymphocyte",
+        "monocyte",
+        "eosinophil",
+        "basophil"
+      ],
+      "query_hints": [
+        "wbc differential neut lymph mono eos baso là gì"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_WBC_SMEAR_P561": {
+      "evidence_id": "CBC_BOOK_WBC_SMEAR_P561",
+      "source": "clinical_hematology.pdf",
+      "page": 561,
+      "panel": "CBC",
+      "text": "In patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. Thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+      "bm25_text": "in patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+      "tests": [
+        "WBC",
+        "NEUT",
+        "LYMPH",
+        "MONO",
+        "EOS",
+        "BASO"
+      ],
+      "topics": [
+        "interpretation",
+        "safety",
+        "smear"
+      ],
+      "keywords": [
+        "white cell differential",
+        "peripheral smear",
+        "complex clinical findings"
+      ],
+      "query_hints": [
+        "wbc cao thấp có chắc chắn không smear đánh giá"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_NEUT_INFECTION_RISK_P561": {
+      "evidence_id": "CBC_BOOK_NEUT_INFECTION_RISK_P561",
+      "source": "clinical_hematology.pdf",
+      "page": 561,
+      "panel": "CBC",
+      "text": "The automated absolute granulocyte count plays a reliable and important role in evaluating the risk of infection in neutropenic patients, in grading chemotherapy-induced toxicity, and in following the recovery from hematopoietic stem cell transplantation.",
+      "bm25_text": "the automated absolute granulocyte count plays a reliable and important role in evaluating the risk of infection in neutropenic patients, in grading chemotherapy-induced toxicity, and in following the recovery from hematopoietic stem cell transplantation.",
+      "tests": [
+        "NEUT",
+        "WBC",
+        "IG"
+      ],
+      "topics": [
+        "neutropenia",
+        "infection risk"
+      ],
+      "keywords": [
+        "absolute granulocyte count",
+        "neutropenic",
+        "infection risk",
+        "neutrophil"
+      ],
+      "query_hints": [
+        "neut thấp nguy cơ nhiễm trùng absolute granulocyte count"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_PLATELET_COUNT_P561": {
+      "evidence_id": "CBC_BOOK_PLATELET_COUNT_P561",
+      "source": "clinical_hematology.pdf",
+      "page": 561,
+      "panel": "CBC",
+      "text": "Similar to RBC and WBC counts, the automated platelet count is measured by impedance- and/or optical-based techniques. Platelets are distinguished from red cells by size and in some cases by resistance to osmotic lysis. Automated counters are more accurate than older manual counting methods in monitoring thrombocytopenia, and they often can accurately count less than 10,000 platelets per microliter.",
+      "bm25_text": "similar to rbc and wbc counts, the automated platelet count is measured by impedance- and/or optical-based techniques. platelets are distinguished from red cells by size and in some cases by resistance to osmotic lysis. automated counters are more accurate than older manual counting methods in monitoring thrombocytopenia, and they often can accurately count less than 10,000 platelets per microliter.",
+      "tests": [
+        "PLT"
+      ],
+      "topics": [
+        "platelet",
+        "thrombocytopenia",
+        "definition"
+      ],
+      "keywords": [
+        "platelet count",
+        "thrombocytopenia",
+        "plt",
+        "tiểu cầu"
+      ],
+      "query_hints": [
+        "plt là gì platelet count thrombocytopenia"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_SAMPLE_ARTIFACT_P562": {
+      "evidence_id": "CBC_BOOK_SAMPLE_ARTIFACT_P562",
+      "source": "clinical_hematology.pdf",
+      "page": 562,
+      "panel": "CBC",
+      "text": "Clinically relevant artifact at the point of sample collection may occur due to clot formation or due to dilution of blood with intravenous fluid. Although most automated cell counters are equipped to detect clot formation, some may not be detected, resulting in falsely lower platelet and WBC counts. In contrast, fluid dilution generally is apparent by some degree of change in all three cell lines (red cells, white cells, and platelets) as compared to a previous sample.",
+      "bm25_text": "clinically relevant artifact at the point of sample collection may occur due to clot formation or due to dilution of blood with intravenous fluid. although most automated cell counters are equipped to detect clot formation, some may not be detected, resulting in falsely lower platelet and wbc counts. in contrast, fluid dilution generally is apparent by some degree of change in all three cell lines (red cells, white cells, and platelets) as compared to a previous sample.",
+      "tests": [
+        "RBC",
+        "WBC",
+        "PLT",
+        "HGB",
+        "HCT"
+      ],
+      "topics": [
+        "artifact",
+        "repeat testing",
+        "safety"
+      ],
+      "keywords": [
+        "sample artifact",
+        "clot formation",
+        "dilution",
+        "falsely lower platelet",
+        "wbc"
+      ],
+      "query_hints": [
+        "một chỉ số hơi cao bất thường có chắc bệnh không mẫu xét nghiệm"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_IRON_DEF_ANEMIA_P13": {
+      "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+      "source": "clinical_hematology.pdf",
+      "page": 13,
+      "panel": "CBC",
+      "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+      "bm25_text": "iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+      "tests": [
+        "HGB",
+        "HCT",
+        "RBC",
+        "MCV",
+        "MCH",
+        "MCHC",
+        "RDW"
+      ],
+      "topics": [
+        "anemia",
+        "iron deficiency",
+        "low hemoglobin"
+      ],
+      "keywords": [
+        "iron deficiency",
+        "anemia",
+        "fatigue",
+        "pallor"
+      ],
+      "query_hints": [
+        "hgb thấp thiếu máu thiếu sắt mcv thấp"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_TRANSFUSION_HGB_HCT_P21": {
+      "evidence_id": "CBC_BOOK_TRANSFUSION_HGB_HCT_P21",
+      "source": "clinical_hematology.pdf",
+      "page": 21,
+      "panel": "CBC",
+      "text": "After one unit of PRBCs is transfused, the expected increase in hemoglobin and hematocrit is 1 g/dL and 3%, respectively.",
+      "bm25_text": "after one unit of prbcs is transfused, the expected increase in hemoglobin and hematocrit is 1 g/dl and 3%, respectively.",
+      "tests": [
+        "HGB",
+        "HCT",
+        "RBC"
+      ],
+      "topics": [
+        "hemoglobin",
+        "hematocrit",
+        "red cell mass"
+      ],
+      "keywords": [
+        "hemoglobin",
+        "hematocrit",
+        "red blood cells",
+        "prbc"
+      ],
+      "query_hints": [
+        "hgb hct rbc cùng thấp anemia evidence"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_THAL_MCV_MCH_P64": {
+      "evidence_id": "CBC_BOOK_THAL_MCV_MCH_P64",
+      "source": "clinical_hematology.pdf",
+      "page": 64,
+      "panel": "CBC",
+      "text": "α-Thalassemia trait can been suspected with elevated total red blood cell number, normal or borderline Hb A2, mean corpuscular volume (MCV) less than 78 fL, and mean corpuscular hemoglobin (MCH) less than 25 pg.",
+      "bm25_text": "α-thalassemia trait can been suspected with elevated total red blood cell number, normal or borderline hb a2, mean corpuscular volume (mcv) less than 78 fl, and mean corpuscular hemoglobin (mch) less than 25 pg.",
+      "tests": [
+        "RBC",
+        "MCV",
+        "MCH",
+        "HGB"
+      ],
+      "topics": [
+        "microcytosis",
+        "thalassemia",
+        "anemia"
+      ],
+      "keywords": [
+        "thalassemia",
+        "mcv less than 78",
+        "mch less than 25",
+        "microcytic"
+      ],
+      "query_hints": [
+        "mcv thấp mch thấp thalassemia hồng cầu nhỏ"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_B12_FOLATE_MACRO_P32": {
+      "evidence_id": "CBC_BOOK_B12_FOLATE_MACRO_P32",
+      "source": "clinical_hematology.pdf",
+      "page": 32,
+      "panel": "CBC",
+      "text": "The earliest change in the peripheral blood caused by folate or vitamin B12 deficiency is hypersegmentation of the neutrophils, which can be easily overlooked unless a blood smear is carefully examined. Finding even 5% of neutrophils with five lobes or just 1% with six lobes is highly suggestive of a deficiency, although this could also be seen with myelodysplasia.",
+      "bm25_text": "the earliest change in the peripheral blood caused by folate or vitamin b12 deficiency is hypersegmentation of the neutrophils, which can be easily overlooked unless a blood smear is carefully examined. finding even 5% of neutrophils with five lobes or just 1% with six lobes is highly suggestive of a deficiency, although this could also be seen with myelodysplasia.",
+      "tests": [
+        "MCV",
+        "HGB",
+        "NEUT"
+      ],
+      "topics": [
+        "macrocytosis",
+        "vitamin b12",
+        "folate",
+        "anemia"
+      ],
+      "keywords": [
+        "vitamin B12",
+        "folate",
+        "hypersegmentation",
+        "neutrophils",
+        "macrocytic anemia"
+      ],
+      "query_hints": [
+        "mcv cao hgb thấp b12 folate macrocytic anemia"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_ANEMIA_SYMPTOMS_P98": {
+      "evidence_id": "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+      "source": "clinical_hematology.pdf",
+      "page": 98,
+      "panel": "CBC",
+      "text": "Anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+      "bm25_text": "anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+      "tests": [
+        "HGB",
+        "HCT",
+        "RBC"
+      ],
+      "topics": [
+        "anemia",
+        "symptoms",
+        "safety"
+      ],
+      "keywords": [
+        "anemia symptoms",
+        "fatigue",
+        "dyspnea",
+        "chest pain"
+      ],
+      "query_hints": [
+        "hgb thấp hct rbc thấp thiếu máu triệu chứng"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_PV_MPN_P139": {
+      "evidence_id": "CBC_BOOK_PV_MPN_P139",
+      "source": "clinical_hematology.pdf",
+      "page": 139,
+      "panel": "CBC",
+      "text": "The chronic myeloproliferative neoplasms (MPNs) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+      "bm25_text": "the chronic myeloproliferative neoplasms (mpns) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+      "tests": [
+        "RBC",
+        "HGB",
+        "HCT",
+        "WBC",
+        "PLT"
+      ],
+      "topics": [
+        "high counts",
+        "myeloproliferative neoplasm"
+      ],
+      "keywords": [
+        "myeloproliferative neoplasms",
+        "overproduction",
+        "blood cell lines"
+      ],
+      "query_hints": [
+        "rbc cao hgb cao hct cao plt cao wbc cao nguyên nhân"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_PV_HIGH_RED_CELL_P142": {
+      "evidence_id": "CBC_BOOK_PV_HIGH_RED_CELL_P142",
+      "source": "clinical_hematology.pdf",
+      "page": 142,
+      "panel": "CBC",
+      "text": "While erythrocytosis distinguishes PV from the other MPN, only 20% of PV patients present with erythrocytosis alone, while 40% have trilineage hyperplasia at the onset of disease. PV can also present with isolated leukocytosis or thrombocytosis.",
+      "bm25_text": "while erythrocytosis distinguishes pv from the other mpn, only 20% of pv patients present with erythrocytosis alone, while 40% have trilineage hyperplasia at the onset of disease. pv can also present with isolated leukocytosis or thrombocytosis.",
+      "tests": [
+        "RBC",
+        "HGB",
+        "HCT",
+        "WBC",
+        "PLT"
+      ],
+      "topics": [
+        "erythrocytosis",
+        "polycythemia vera",
+        "high counts"
+      ],
+      "keywords": [
+        "erythrocytosis",
+        "polycythemia vera",
+        "leukocytosis",
+        "thrombocytosis"
+      ],
+      "query_hints": [
+        "hgb hct rbc cao polycythemia vera"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189": {
+      "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+      "source": "clinical_hematology.pdf",
+      "page": 189,
+      "panel": "CBC",
+      "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+      "bm25_text": "leukocytosis refers to an increase in total wbc count for age. neutrophilia is an increase in the anc above 7,500/µl, but the upper limit of normal may be higher in newborns and infants. neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. in children, acute neutrophilia is most often due to bacterial or viral infection.",
+      "tests": [
+        "WBC",
+        "NEUT"
+      ],
+      "topics": [
+        "leukocytosis",
+        "neutrophilia",
+        "infection"
+      ],
+      "keywords": [
+        "leukocytosis",
+        "neutrophilia",
+        "infection",
+        "ANC"
+      ],
+      "query_hints": [
+        "wbc cao neut cao nhiễm trùng leukocytosis neutrophilia"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189": {
+      "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+      "source": "clinical_hematology.pdf",
+      "page": 189,
+      "panel": "CBC",
+      "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+      "bm25_text": "evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant wbcs.",
+      "tests": [
+        "WBC",
+        "NEUT",
+        "LYMPH"
+      ],
+      "topics": [
+        "leukocytosis",
+        "evaluation",
+        "safety",
+        "malignancy"
+      ],
+      "keywords": [
+        "leukocytosis evaluation",
+        "infection",
+        "lymphadenopathy",
+        "hepatosplenomegaly",
+        "blood smear",
+        "malignant WBCs"
+      ],
+      "query_hints": [
+        "wbc cao có chắc nhiễm trùng ung thư máu không cần khám smear"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_LYMPHOCYTOSIS_P189": {
+      "evidence_id": "CBC_BOOK_LYMPHOCYTOSIS_P189",
+      "source": "clinical_hematology.pdf",
+      "page": 189,
+      "panel": "CBC",
+      "text": "Absolute lymphocytosis usually indicates an acute or chronic viral process.",
+      "bm25_text": "absolute lymphocytosis usually indicates an acute or chronic viral process.",
+      "tests": [
+        "LYMPH",
+        "WBC"
+      ],
+      "topics": [
+        "lymphocytosis",
+        "viral"
+      ],
+      "keywords": [
+        "lymphocytosis",
+        "viral process",
+        "lymphocyte"
+      ],
+      "query_hints": [
+        "lymph cao virus lymphocytosis"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_NEUTROPENIA_INFECTIONS_P557": {
+      "evidence_id": "CBC_BOOK_NEUTROPENIA_INFECTIONS_P557",
+      "source": "clinical_hematology.pdf",
+      "page": 557,
+      "panel": "CBC",
+      "text": "Neutropenia Associated with Infectious Diseases: The most common cause of acquired neutropenia is infection. Gram-negative septicemia, Staphylococcus aureus, typhoid fever, paratyphoid fever, tularemia, and brucellosis can cause neutropenia. Infectious hepatitis, influenza, measles, Colorado tick fever, mononucleosis, cytomegalovirus, Kawasaki disease, HIV, parvovirus B12 are included in the differential diagnosis of neutropenia associated with infectious diseases. Drug-Induced Neutropenia: The second most common cause of neutropenia is medication exposure.",
+      "bm25_text": "neutropenia associated with infectious diseases: the most common cause of acquired neutropenia is infection. gram-negative septicemia, staphylococcus aureus, typhoid fever, paratyphoid fever, tularemia, and brucellosis can cause neutropenia. infectious hepatitis, influenza, measles, colorado tick fever, mononucleosis, cytomegalovirus, kawasaki disease, hiv, parvovirus b12 are included in the differential diagnosis of neutropenia associated with infectious diseases. drug-induced neutropenia: the second most common cause of neutropenia is medication exposure.",
+      "tests": [
+        "NEUT",
+        "WBC"
+      ],
+      "topics": [
+        "neutropenia",
+        "infection",
+        "drug induced"
+      ],
+      "keywords": [
+        "neutropenia",
+        "infection",
+        "drug-induced neutropenia",
+        "leukopenia"
+      ],
+      "query_hints": [
+        "neut thấp wbc thấp nguyên nhân nhiễm trùng thuốc"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_MONOCYTOSIS_CMML_P156": {
+      "evidence_id": "CBC_BOOK_MONOCYTOSIS_CMML_P156",
+      "source": "clinical_hematology.pdf",
+      "page": 156,
+      "panel": "CBC",
+      "text": "In all cases there is persistent peripheral blood monocytosis, the defining feature of the disease. Progression to acute leukemia occurs in 15% to 30% of cases. WHO diagnostic criteria include persistent peripheral blood monocytosis (greater than 1 × 10^9 per liter for more than 3 months).",
+      "bm25_text": "in all cases there is persistent peripheral blood monocytosis, the defining feature of the disease. progression to acute leukemia occurs in 15% to 30% of cases. who diagnostic criteria include persistent peripheral blood monocytosis (greater than 1 × 10^9 per liter for more than 3 months).",
+      "tests": [
+        "MONO",
+        "WBC"
+      ],
+      "topics": [
+        "monocytosis",
+        "chronic myelomonocytic leukemia"
+      ],
+      "keywords": [
+        "monocytosis",
+        "monocyte",
+        "CMML",
+        "persistent"
+      ],
+      "query_hints": [
+        "mono cao monocytosis kéo dài"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_EOSINOPHILIA_P550": {
+      "evidence_id": "CBC_BOOK_EOSINOPHILIA_P550",
+      "source": "clinical_hematology.pdf",
+      "page": 550,
+      "panel": "CBC",
+      "text": "Helminthic infections are the most common cause of eosinophilia worldwide, and atopic disorders are the most common cause in industrialized countries. Clonal eosinophilic disorders account for only a small proportion of all eosinophilias. Sustained hypereosinophilia, whether reactive or clonal, can damage tissue.",
+      "bm25_text": "helminthic infections are the most common cause of eosinophilia worldwide, and atopic disorders are the most common cause in industrialized countries. clonal eosinophilic disorders account for only a small proportion of all eosinophilias. sustained hypereosinophilia, whether reactive or clonal, can damage tissue.",
+      "tests": [
+        "EOS"
+      ],
+      "topics": [
+        "eosinophilia",
+        "allergy",
+        "parasite",
+        "safety"
+      ],
+      "keywords": [
+        "eosinophilia",
+        "helminthic infections",
+        "atopic disorders",
+        "allergy",
+        "parasite"
+      ],
+      "query_hints": [
+        "eos cao dị ứng ký sinh trùng eosinophilia"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_EOS_DISEASES_P551": {
+      "evidence_id": "CBC_BOOK_EOS_DISEASES_P551",
+      "source": "clinical_hematology.pdf",
+      "page": 551,
+      "panel": "CBC",
+      "text": "Diseases Commonly Associated with Eosinophilia: Infectious (helminth, protozoa, fungi, HIV, HTLV-1); Allergic diseases (asthma, atopic dermatitis, allergic rhinitis, urticarias, allergic drug reactions); Respiratory tract disorders; Gastrointestinal disorders; Cutaneous and subcutaneous disorders; Immunodeficiency syndromes; Connective tissue disease; Neoplastic.",
+      "bm25_text": "diseases commonly associated with eosinophilia: infectious (helminth, protozoa, fungi, hiv, htlv-1); allergic diseases (asthma, atopic dermatitis, allergic rhinitis, urticarias, allergic drug reactions); respiratory tract disorders; gastrointestinal disorders; cutaneous and subcutaneous disorders; immunodeficiency syndromes; connective tissue disease; neoplastic.",
+      "tests": [
+        "EOS"
+      ],
+      "topics": [
+        "eosinophilia",
+        "allergy",
+        "parasite"
+      ],
+      "keywords": [
+        "eosinophilia",
+        "infectious",
+        "allergic diseases",
+        "asthma",
+        "atopic dermatitis",
+        "allergic rhinitis"
+      ],
+      "query_hints": [
+        "eos cao dị ứng giun sán ký sinh trùng"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_BASOPHILIA_CML_P241": {
+      "evidence_id": "CBC_BOOK_BASOPHILIA_CML_P241",
+      "source": "clinical_hematology.pdf",
+      "page": 241,
+      "panel": "CBC",
+      "text": "Blood film is of great diagnostic value, because many of the typical features of CML are unique—a left shift with circulating myeloblasts, myelocytes, metamyelocytes, and band forms. The hallmark of CML is basophilia with basophil counts often exceeding 1 × 10^9/L. Sustained basophilia is almost never encountered outside CML and some cases of mastocytosis. Eosinophilia and occasional nucleated red blood cells are also common findings.",
+      "bm25_text": "blood film is of great diagnostic value, because many of the typical features of cml are unique—a left shift with circulating myeloblasts, myelocytes, metamyelocytes, and band forms. the hallmark of cml is basophilia with basophil counts often exceeding 1 × 10^9/l. sustained basophilia is almost never encountered outside cml and some cases of mastocytosis. eosinophilia and occasional nucleated red blood cells are also common findings.",
+      "tests": [
+        "BASO",
+        "WBC",
+        "IG",
+        "EOS"
+      ],
+      "topics": [
+        "basophilia",
+        "CML",
+        "left shift"
+      ],
+      "keywords": [
+        "basophilia",
+        "basophil",
+        "CML",
+        "left shift",
+        "immature granulocytes"
+      ],
+      "query_hints": [
+        "baso cao basophilia cml left shift ig tăng"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_PERSISTING_LEUKOCYTOSIS_MPN_P242": {
+      "evidence_id": "CBC_BOOK_PERSISTING_LEUKOCYTOSIS_MPN_P242",
+      "source": "clinical_hematology.pdf",
+      "page": 242,
+      "panel": "CBC",
+      "text": "Persisting leukocytosis without any obvious infective cause suggests a myeloproliferative neoplasm, prompting further examination of the blood and bone marrow. Morphology and blood count will show either typical features of CML (basophilia being especially significant) or suggest other myeloproliferative neoplasms (high platelet counts, essential thrombocythemia; high red cell count, polycythemia vera; teardrop red cells, myelofibrosis).",
+      "bm25_text": "persisting leukocytosis without any obvious infective cause suggests a myeloproliferative neoplasm, prompting further examination of the blood and bone marrow. morphology and blood count will show either typical features of cml (basophilia being especially significant) or suggest other myeloproliferative neoplasms (high platelet counts, essential thrombocythemia; high red cell count, polycythemia vera; teardrop red cells, myelofibrosis).",
+      "tests": [
+        "WBC",
+        "NEUT",
+        "BASO",
+        "PLT",
+        "RBC",
+        "IG"
+      ],
+      "topics": [
+        "persistent leukocytosis",
+        "myeloproliferative neoplasm",
+        "safety"
+      ],
+      "keywords": [
+        "persisting leukocytosis",
+        "myeloproliferative neoplasm",
+        "basophilia",
+        "high platelet",
+        "high red cell count"
+      ],
+      "query_hints": [
+        "wbc cao kéo dài ung thư máu baso plt rbc"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98": {
+      "evidence_id": "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98",
+      "source": "clinical_hematology.pdf",
+      "page": 98,
+      "panel": "CBC",
+      "text": "Thrombocytopenia produces mainly mucosal bleeding: petechiae of the skin and mucous membranes, epistaxis, and gum bleeding are frequent and early complaints. Bleeding is not brisk from low platelets unless in the presence of accompanying physical lesions. The most feared complication of thrombocytopenia is intracranial hemorrhage.",
+      "bm25_text": "thrombocytopenia produces mainly mucosal bleeding: petechiae of the skin and mucous membranes, epistaxis, and gum bleeding are frequent and early complaints. bleeding is not brisk from low platelets unless in the presence of accompanying physical lesions. the most feared complication of thrombocytopenia is intracranial hemorrhage.",
+      "tests": [
+        "PLT"
+      ],
+      "topics": [
+        "thrombocytopenia",
+        "bleeding",
+        "safety"
+      ],
+      "keywords": [
+        "thrombocytopenia",
+        "petechiae",
+        "epistaxis",
+        "gum bleeding",
+        "intracranial hemorrhage"
+      ],
+      "query_hints": [
+        "plt thấp nguy hiểm chảy máu khi nào đi khám"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_ITP_LOW_PLT_P184": {
+      "evidence_id": "CBC_BOOK_ITP_LOW_PLT_P184",
+      "source": "clinical_hematology.pdf",
+      "page": 184,
+      "panel": "CBC",
+      "text": "The typical presentation in acute ITP is the abrupt onset of mucosal bleeding, petechiae, and bruising in healthy children, often preceded by a viral illness. Most children have severe thrombocytopenia (platelet counts less than 20,000/µL) but an otherwise normal CBC.",
+      "bm25_text": "the typical presentation in acute itp is the abrupt onset of mucosal bleeding, petechiae, and bruising in healthy children, often preceded by a viral illness. most children have severe thrombocytopenia (platelet counts less than 20,000/µl) but an otherwise normal cbc.",
+      "tests": [
+        "PLT"
+      ],
+      "topics": [
+        "thrombocytopenia",
+        "ITP",
+        "bleeding",
+        "urgent"
+      ],
+      "keywords": [
+        "ITP",
+        "severe thrombocytopenia",
+        "platelet counts less than 20000",
+        "mucosal bleeding",
+        "petechiae"
+      ],
+      "query_hints": [
+        "tiểu cầu thấp dưới 20000 chảy máu đi khám sớm"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_POST_SPLENECTOMY_THROMBOCYTOSIS_P81": {
+      "evidence_id": "CBC_BOOK_POST_SPLENECTOMY_THROMBOCYTOSIS_P81",
+      "source": "clinical_hematology.pdf",
+      "page": 81,
+      "panel": "CBC",
+      "text": "Post-splenectomy thrombocytosis can be variable, but generally does not require antiplatelet therapy.",
+      "bm25_text": "post-splenectomy thrombocytosis can be variable, but generally does not require antiplatelet therapy.",
+      "tests": [
+        "PLT"
+      ],
+      "topics": [
+        "thrombocytosis",
+        "postsplenectomy"
+      ],
+      "keywords": [
+        "thrombocytosis",
+        "post-splenectomy",
+        "platelet high"
+      ],
+      "query_hints": [
+        "plt cao thrombocytosis nguyên nhân"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_MPN_OVERPRODUCTION_P139": {
+      "evidence_id": "CBC_BOOK_MPN_OVERPRODUCTION_P139",
+      "source": "clinical_hematology.pdf",
+      "page": 139,
+      "panel": "CBC",
+      "text": "The chronic myeloproliferative neoplasms (MPNs) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+      "bm25_text": "the chronic myeloproliferative neoplasms (mpns) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+      "tests": [
+        "PLT",
+        "WBC",
+        "RBC",
+        "HGB",
+        "HCT"
+      ],
+      "topics": [
+        "thrombocytosis",
+        "leukocytosis",
+        "erythrocytosis"
+      ],
+      "keywords": [
+        "MPN",
+        "overproduction",
+        "blood cell lines",
+        "thrombocytosis"
+      ],
+      "query_hints": [
+        "plt cao wbc cao rbc cao myeloproliferative"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    },
+    "CBC_BOOK_LEFT_SHIFT_IMMATURE_P567": {
+      "evidence_id": "CBC_BOOK_LEFT_SHIFT_IMMATURE_P567",
+      "source": "clinical_hematology.pdf",
+      "page": 567,
+      "panel": "CBC",
+      "text": "Disruption of the normal maturation sequence (such as a complete maturation arrest or a preponderance of immature cell forms, or a “shift to the left” of the differentiation pattern), the presence of excess numbers of blasts, or dysplastic changes affecting at least two of the three major hematopoietic cell-lines suggests a serious hematologic disorder. A mild shift to the left and mild megaloblastic changes are more nonspecific.",
+      "bm25_text": "disruption of the normal maturation sequence (such as a complete maturation arrest or a preponderance of immature cell forms, or a “shift to the left” of the differentiation pattern), the presence of excess numbers of blasts, or dysplastic changes affecting at least two of the three major hematopoietic cell-lines suggests a serious hematologic disorder. a mild shift to the left and mild megaloblastic changes are more nonspecific.",
+      "tests": [
+        "IG",
+        "NEUT",
+        "WBC"
+      ],
+      "topics": [
+        "immature granulocytes",
+        "left shift",
+        "safety"
+      ],
+      "keywords": [
+        "immature cell forms",
+        "shift to the left",
+        "blasts",
+        "dysplastic changes",
+        "serious hematologic disorder"
+      ],
+      "query_hints": [
+        "ig tăng immature granulocyte shift left"
+      ],
+      "type": "book_evidence",
+      "score": 0.98,
+      "trust": 0.99
+    }
+  },
+  "cases": [
+    {
+      "id": "CBC001",
+      "indicator": "RBC",
+      "category": "Khái niệm",
+      "question": "RBC là gì trong xét nghiệm công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "RBC"
+      ],
+      "expected_answer_vi": "RBC là số lượng hồng cầu trong máu. Khi đọc CBC, RBC nên được hiểu cùng HGB, HCT và các chỉ số hồng cầu khác để đánh giá thiếu máu hoặc tình trạng tăng hồng cầu.",
+      "evidence_ids": [
+        "CBC_BOOK_CBC_OVERVIEW_P559",
+        "CBC_BOOK_RBC_INDICES_DEF_P559"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT",
+            "MCV"
+          ],
+          "topics": [
+            "cbc",
+            "definition",
+            "complete blood count"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC002",
+      "indicator": "HGB",
+      "category": "Khái niệm",
+      "question": "HGB là gì và dùng để đánh giá điều gì?",
+      "panel": "CBC",
+      "tests": [
+        "HGB"
+      ],
+      "expected_answer_vi": "HGB là nồng độ hemoglobin trong máu, một thành phần chính của hồng cầu. Chỉ số này thường dùng để đánh giá thiếu máu hoặc tình trạng tăng khối hồng cầu, cần đọc cùng HCT/RBC và bối cảnh lâm sàng.",
+      "evidence_ids": [
+        "CBC_BOOK_CBC_OVERVIEW_P559",
+        "CBC_BOOK_RBC_INDICES_DEF_P559"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT",
+            "MCV"
+          ],
+          "topics": [
+            "cbc",
+            "definition",
+            "complete blood count"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC003",
+      "indicator": "HCT",
+      "category": "Khái niệm",
+      "question": "HCT là gì trong xét nghiệm máu?",
+      "panel": "CBC",
+      "tests": [
+        "HCT"
+      ],
+      "expected_answer_vi": "HCT là hematocrit, tức phần trăm thể tích máu được chiếm bởi hồng cầu. HCT giúp phản ánh khối lượng hồng cầu và thường được đọc cùng HGB/RBC.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_CBC_OVERVIEW_P559"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT",
+            "MCV"
+          ],
+          "topics": [
+            "cbc",
+            "definition",
+            "complete blood count"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC004",
+      "indicator": "MCV",
+      "category": "Khái niệm",
+      "question": "MCV là gì và phản ánh đặc điểm nào của hồng cầu?",
+      "panel": "CBC",
+      "tests": [
+        "MCV"
+      ],
+      "expected_answer_vi": "MCV là thể tích trung bình hồng cầu, phản ánh kích thước hồng cầu. MCV giúp phân loại thiếu máu theo hồng cầu nhỏ, bình thường hoặc to.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC005",
+      "indicator": "MCH",
+      "category": "Khái niệm",
+      "question": "MCH là gì trong công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "MCH"
+      ],
+      "expected_answer_vi": "MCH là lượng hemoglobin trung bình trong mỗi hồng cầu. Chỉ số này phụ thuộc nhiều vào kích thước hồng cầu và thường đọc cùng MCV/MCHC.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC006",
+      "indicator": "MCHC",
+      "category": "Khái niệm",
+      "question": "MCHC là gì và có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "MCHC"
+      ],
+      "expected_answer_vi": "MCHC là nồng độ hemoglobin trung bình trong hồng cầu, phản ánh mức độ “đậm màu” của hồng cầu. MCHC giúp bổ sung thông tin khi đánh giá thiếu máu.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC007",
+      "indicator": "RDW",
+      "category": "Khái niệm",
+      "question": "RDW là gì trong xét nghiệm máu?",
+      "panel": "CBC",
+      "tests": [
+        "RDW"
+      ],
+      "expected_answer_vi": "RDW là độ phân bố kích thước hồng cầu, phản ánh mức độ không đồng đều về kích thước của quần thể hồng cầu. RDW cao gợi ý anisocytosis và nên xem cùng MCV/phết máu.",
+      "evidence_ids": [
+        "CBC_BOOK_RDW_DEF_P560",
+        "CBC_BOOK_RDW_INTERPRET_P560"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RDW_DEF_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The RDW, red cell distribution width, is a measure of the variability in size within the red cell population that is provided by automated cell counters. The precise mathematical equation used for calculation varies with the specific instrument, but in all cases elevated values indicate anisocytosis.",
+          "tests": [
+            "RDW",
+            "RBC"
+          ],
+          "topics": [
+            "definition",
+            "anisocytosis",
+            "anemia"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_RDW_INTERPRET_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "An elevated RDW is a valuable clue to abnormalities in red cell morphology; when the RDW is markedly increased, inspection of the blood film is essential. The RDW is sensitive to the presence of small subpopulations of large or small red cells, thus it may be more useful than the MCV for the early detection of nutritional deficiencies. The RDW often remains normal in thalassemia, and the combination of a high or normal RBC count, a low MCV, and a normal RDW is a common pattern in thalassemia trait.",
+          "tests": [
+            "RDW",
+            "MCV",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "interpretation",
+            "thalassemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC008",
+      "indicator": "WBC",
+      "category": "Khái niệm",
+      "question": "WBC là gì trong công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "WBC"
+      ],
+      "expected_answer_vi": "WBC là số lượng bạch cầu trong máu. CBC thường có tổng WBC và công thức bạch cầu để xem các dòng như neutrophil, lymphocyte, monocyte, eosinophil, basophil.",
+      "evidence_ids": [
+        "CBC_BOOK_CBC_OVERVIEW_P559",
+        "CBC_BOOK_WBC_DIFF_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT",
+            "MCV"
+          ],
+          "topics": [
+            "cbc",
+            "definition",
+            "complete blood count"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "definition",
+            "white blood cells",
+            "differential"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC009",
+      "indicator": "NEUT",
+      "category": "Khái niệm",
+      "question": "NEUT là gì trong xét nghiệm máu?",
+      "panel": "CBC",
+      "tests": [
+        "NEUT"
+      ],
+      "expected_answer_vi": "NEUT là neutrophil/bạch cầu trung tính, một thành phần trong công thức bạch cầu. Chỉ số tuyệt đối của nhóm hạt/neutrophil quan trọng trong đánh giá nguy cơ nhiễm trùng khi giảm.",
+      "evidence_ids": [
+        "CBC_BOOK_WBC_DIFF_P561",
+        "CBC_BOOK_NEUT_INFECTION_RISK_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "definition",
+            "white blood cells",
+            "differential"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_NEUT_INFECTION_RISK_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated absolute granulocyte count plays a reliable and important role in evaluating the risk of infection in neutropenic patients, in grading chemotherapy-induced toxicity, and in following the recovery from hematopoietic stem cell transplantation.",
+          "tests": [
+            "NEUT",
+            "WBC",
+            "IG"
+          ],
+          "topics": [
+            "neutropenia",
+            "infection risk"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC010",
+      "indicator": "LYMPH",
+      "category": "Khái niệm",
+      "question": "LYMPH/LYM là gì trong công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "LYMPH"
+      ],
+      "expected_answer_vi": "LYMPH/LYM là lymphocyte/bạch cầu lympho trong công thức bạch cầu. Lymphocyte tăng tuyệt đối thường gợi ý quá trình virus cấp hoặc mạn, nhưng cần đọc theo bối cảnh.",
+      "evidence_ids": [
+        "CBC_BOOK_WBC_DIFF_P561",
+        "CBC_BOOK_LYMPHOCYTOSIS_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "definition",
+            "white blood cells",
+            "differential"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LYMPHOCYTOSIS_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Absolute lymphocytosis usually indicates an acute or chronic viral process.",
+          "tests": [
+            "LYMPH",
+            "WBC"
+          ],
+          "topics": [
+            "lymphocytosis",
+            "viral"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC011",
+      "indicator": "MONO",
+      "category": "Khái niệm",
+      "question": "MONO là gì trong xét nghiệm máu?",
+      "panel": "CBC",
+      "tests": [
+        "MONO"
+      ],
+      "expected_answer_vi": "MONO là monocyte/bạch cầu mono. Mono tăng kéo dài có thể gặp trong một số tình trạng viêm/nhiễm hoặc bệnh huyết học, cần đánh giá theo mức độ và thời gian kéo dài.",
+      "evidence_ids": [
+        "CBC_BOOK_WBC_DIFF_P561",
+        "CBC_BOOK_MONOCYTOSIS_CMML_P156"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "definition",
+            "white blood cells",
+            "differential"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_MONOCYTOSIS_CMML_P156",
+          "source": "clinical_hematology.pdf",
+          "page": 156,
+          "panel": "CBC",
+          "text": "In all cases there is persistent peripheral blood monocytosis, the defining feature of the disease. Progression to acute leukemia occurs in 15% to 30% of cases. WHO diagnostic criteria include persistent peripheral blood monocytosis (greater than 1 × 10^9 per liter for more than 3 months).",
+          "tests": [
+            "MONO",
+            "WBC"
+          ],
+          "topics": [
+            "monocytosis",
+            "chronic myelomonocytic leukemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC012",
+      "indicator": "EOS",
+      "category": "Khái niệm",
+      "question": "EOS là gì trong công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "EOS"
+      ],
+      "expected_answer_vi": "EOS là eosinophil/bạch cầu ái toan. EOS cao thường liên quan dị ứng/atopy hoặc nhiễm ký sinh trùng, nhưng cũng có thể do nhiều nguyên nhân khác.",
+      "evidence_ids": [
+        "CBC_BOOK_WBC_DIFF_P561",
+        "CBC_BOOK_EOSINOPHILIA_P550"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "definition",
+            "white blood cells",
+            "differential"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_EOSINOPHILIA_P550",
+          "source": "clinical_hematology.pdf",
+          "page": 550,
+          "panel": "CBC",
+          "text": "Helminthic infections are the most common cause of eosinophilia worldwide, and atopic disorders are the most common cause in industrialized countries. Clonal eosinophilic disorders account for only a small proportion of all eosinophilias. Sustained hypereosinophilia, whether reactive or clonal, can damage tissue.",
+          "tests": [
+            "EOS"
+          ],
+          "topics": [
+            "eosinophilia",
+            "allergy",
+            "parasite",
+            "safety"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC013",
+      "indicator": "BASO",
+      "category": "Khái niệm",
+      "question": "BASO là gì trong xét nghiệm máu?",
+      "panel": "CBC",
+      "tests": [
+        "BASO"
+      ],
+      "expected_answer_vi": "BASO là basophil/bạch cầu ái kiềm. BASO cao kéo dài là dấu hiệu cần chú ý, đặc biệt khi đi kèm leukocytosis hoặc left shift, vì có thể gợi ý bệnh tăng sinh tủy.",
+      "evidence_ids": [
+        "CBC_BOOK_WBC_DIFF_P561",
+        "CBC_BOOK_BASOPHILIA_CML_P241"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_WBC_DIFF_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated white blood cell (WBC) count is measured using the same methods employed to count red cells and platelets. Since the peripheral blood in healthy individuals has approximately 1,000 fold more red cells and 40 fold more platelets than white cells, it is essential for the automated counter to distinguish among cell types. Automated leukocyte differentials are quite accurate in characterizing white cells from normal controls or patients with qualitatively normal white cell morphology.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "definition",
+            "white blood cells",
+            "differential"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_BASOPHILIA_CML_P241",
+          "source": "clinical_hematology.pdf",
+          "page": 241,
+          "panel": "CBC",
+          "text": "Blood film is of great diagnostic value, because many of the typical features of CML are unique—a left shift with circulating myeloblasts, myelocytes, metamyelocytes, and band forms. The hallmark of CML is basophilia with basophil counts often exceeding 1 × 10^9/L. Sustained basophilia is almost never encountered outside CML and some cases of mastocytosis. Eosinophilia and occasional nucleated red blood cells are also common findings.",
+          "tests": [
+            "BASO",
+            "WBC",
+            "IG",
+            "EOS"
+          ],
+          "topics": [
+            "basophilia",
+            "CML",
+            "left shift"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC014",
+      "indicator": "PLT",
+      "category": "Khái niệm",
+      "question": "PLT là gì trong xét nghiệm máu?",
+      "panel": "CBC",
+      "tests": [
+        "PLT"
+      ],
+      "expected_answer_vi": "PLT là số lượng tiểu cầu. Tiểu cầu liên quan đến cầm máu; PLT thấp liên quan nguy cơ chảy máu, còn PLT cao cần đánh giá nguyên nhân phản ứng hoặc tăng sinh.",
+      "evidence_ids": [
+        "CBC_BOOK_CBC_OVERVIEW_P559",
+        "CBC_BOOK_PLATELET_COUNT_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT",
+            "MCV"
+          ],
+          "topics": [
+            "cbc",
+            "definition",
+            "complete blood count"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PLATELET_COUNT_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "Similar to RBC and WBC counts, the automated platelet count is measured by impedance- and/or optical-based techniques. Platelets are distinguished from red cells by size and in some cases by resistance to osmotic lysis. Automated counters are more accurate than older manual counting methods in monitoring thrombocytopenia, and they often can accurately count less than 10,000 platelets per microliter.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "platelet",
+            "thrombocytopenia",
+            "definition"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC015",
+      "indicator": "IG",
+      "category": "Khái niệm",
+      "question": "IG là gì trong công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "IG"
+      ],
+      "expected_answer_vi": "IG là immature granulocytes, tức bạch cầu hạt non trong máu ngoại vi. IG tăng thường phản ánh left shift/đáp ứng tủy, nhưng nếu nhiều hoặc kèm blast/dysplasia cần đánh giá thêm.",
+      "evidence_ids": [
+        "CBC_BOOK_LEFT_SHIFT_IMMATURE_P567",
+        "CBC_BOOK_BASOPHILIA_CML_P241"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEFT_SHIFT_IMMATURE_P567",
+          "source": "clinical_hematology.pdf",
+          "page": 567,
+          "panel": "CBC",
+          "text": "Disruption of the normal maturation sequence (such as a complete maturation arrest or a preponderance of immature cell forms, or a “shift to the left” of the differentiation pattern), the presence of excess numbers of blasts, or dysplastic changes affecting at least two of the three major hematopoietic cell-lines suggests a serious hematologic disorder. A mild shift to the left and mild megaloblastic changes are more nonspecific.",
+          "tests": [
+            "IG",
+            "NEUT",
+            "WBC"
+          ],
+          "topics": [
+            "immature granulocytes",
+            "left shift",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_BASOPHILIA_CML_P241",
+          "source": "clinical_hematology.pdf",
+          "page": 241,
+          "panel": "CBC",
+          "text": "Blood film is of great diagnostic value, because many of the typical features of CML are unique—a left shift with circulating myeloblasts, myelocytes, metamyelocytes, and band forms. The hallmark of CML is basophilia with basophil counts often exceeding 1 × 10^9/L. Sustained basophilia is almost never encountered outside CML and some cases of mastocytosis. Eosinophilia and occasional nucleated red blood cells are also common findings.",
+          "tests": [
+            "BASO",
+            "WBC",
+            "IG",
+            "EOS"
+          ],
+          "topics": [
+            "basophilia",
+            "CML",
+            "left shift"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC016",
+      "indicator": "RBC",
+      "category": "Tăng/giảm",
+      "question": "RBC thấp có thể gợi ý vấn đề gì?",
+      "panel": "CBC",
+      "tests": [
+        "RBC"
+      ],
+      "expected_answer_vi": "RBC thấp có thể gợi ý giảm khối hồng cầu/thiếu máu, đặc biệt nếu đi kèm HGB và HCT thấp. Cần đọc cùng MCV, RDW và triệu chứng.",
+      "evidence_ids": [
+        "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+        "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+        "CBC_BOOK_RBC_INDICES_DEF_P559"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "symptoms",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+          "source": "clinical_hematology.pdf",
+          "page": 13,
+          "panel": "CBC",
+          "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "RDW"
+          ],
+          "topics": [
+            "anemia",
+            "iron deficiency",
+            "low hemoglobin"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC017",
+      "indicator": "RBC",
+      "category": "Tăng/giảm",
+      "question": "RBC cao có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "RBC"
+      ],
+      "expected_answer_vi": "RBC cao có thể liên quan cô đặc máu, sống vùng cao, hút thuốc hoặc tăng hồng cầu. Nếu HGB/HCT cũng cao kéo dài, cần loại trừ polycythemia vera hoặc nguyên nhân khác.",
+      "evidence_ids": [
+        "CBC_BOOK_PV_HIGH_RED_CELL_P142",
+        "CBC_BOOK_PV_MPN_P139"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_PV_HIGH_RED_CELL_P142",
+          "source": "clinical_hematology.pdf",
+          "page": 142,
+          "panel": "CBC",
+          "text": "While erythrocytosis distinguishes PV from the other MPN, only 20% of PV patients present with erythrocytosis alone, while 40% have trilineage hyperplasia at the onset of disease. PV can also present with isolated leukocytosis or thrombocytosis.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT"
+          ],
+          "topics": [
+            "erythrocytosis",
+            "polycythemia vera",
+            "high counts"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PV_MPN_P139",
+          "source": "clinical_hematology.pdf",
+          "page": 139,
+          "panel": "CBC",
+          "text": "The chronic myeloproliferative neoplasms (MPNs) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT"
+          ],
+          "topics": [
+            "high counts",
+            "myeloproliferative neoplasm"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC018",
+      "indicator": "HGB",
+      "category": "Tăng/giảm",
+      "question": "HGB thấp có phải là thiếu máu không?",
+      "panel": "CBC",
+      "tests": [
+        "HGB"
+      ],
+      "expected_answer_vi": "HGB thấp là tiêu chí rất quan trọng gợi ý thiếu máu, nhưng cần đọc cùng HCT/RBC, MCV/RDW và triệu chứng để phân loại nguyên nhân.",
+      "evidence_ids": [
+        "CBC_BOOK_CBC_OVERVIEW_P559",
+        "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+        "CBC_BOOK_IRON_DEF_ANEMIA_P13"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_CBC_OVERVIEW_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "Essential clinical information can be derived in less than an hour from a spun hematocrit and microscopic evaluation of peripheral blood or marrow, while an automated complete blood count, including the hemoglobin concentration, hematocrit, white blood cell and platelet count, white cell differential, and estimates of red cell size, can be provided within minutes.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT",
+            "MCV"
+          ],
+          "topics": [
+            "cbc",
+            "definition",
+            "complete blood count"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "symptoms",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+          "source": "clinical_hematology.pdf",
+          "page": 13,
+          "panel": "CBC",
+          "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "RDW"
+          ],
+          "topics": [
+            "anemia",
+            "iron deficiency",
+            "low hemoglobin"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC019",
+      "indicator": "HGB",
+      "category": "Tăng/giảm",
+      "question": "HGB cao có thể liên quan đến tình trạng nào?",
+      "panel": "CBC",
+      "tests": [
+        "HGB"
+      ],
+      "expected_answer_vi": "HGB cao có thể phản ánh tăng khối hồng cầu hoặc cô đặc máu. Nếu đi kèm HCT/RBC cao kéo dài, cần đánh giá nguyên nhân tăng hồng cầu như polycythemia vera hoặc nguyên nhân thứ phát.",
+      "evidence_ids": [
+        "CBC_BOOK_PV_HIGH_RED_CELL_P142",
+        "CBC_BOOK_PV_MPN_P139"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_PV_HIGH_RED_CELL_P142",
+          "source": "clinical_hematology.pdf",
+          "page": 142,
+          "panel": "CBC",
+          "text": "While erythrocytosis distinguishes PV from the other MPN, only 20% of PV patients present with erythrocytosis alone, while 40% have trilineage hyperplasia at the onset of disease. PV can also present with isolated leukocytosis or thrombocytosis.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT"
+          ],
+          "topics": [
+            "erythrocytosis",
+            "polycythemia vera",
+            "high counts"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PV_MPN_P139",
+          "source": "clinical_hematology.pdf",
+          "page": 139,
+          "panel": "CBC",
+          "text": "The chronic myeloproliferative neoplasms (MPNs) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT"
+          ],
+          "topics": [
+            "high counts",
+            "myeloproliferative neoplasm"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC020",
+      "indicator": "HCT",
+      "category": "Tăng/giảm",
+      "question": "HCT thấp thường liên quan đến vấn đề gì?",
+      "panel": "CBC",
+      "tests": [
+        "HCT"
+      ],
+      "expected_answer_vi": "HCT thấp thường liên quan giảm khối hồng cầu/thiếu máu hoặc pha loãng máu. Cần đọc cùng HGB/RBC và triệu chứng.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_ANEMIA_SYMPTOMS_P98"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "symptoms",
+            "safety"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC021",
+      "indicator": "HCT",
+      "category": "Tăng/giảm",
+      "question": "HCT cao có thể do nguyên nhân nào?",
+      "panel": "CBC",
+      "tests": [
+        "HCT"
+      ],
+      "expected_answer_vi": "HCT cao có thể do cô đặc máu hoặc tăng khối hồng cầu. Nếu kéo dài cùng HGB/RBC cao, cần đánh giá tăng hồng cầu.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_PV_HIGH_RED_CELL_P142"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PV_HIGH_RED_CELL_P142",
+          "source": "clinical_hematology.pdf",
+          "page": 142,
+          "panel": "CBC",
+          "text": "While erythrocytosis distinguishes PV from the other MPN, only 20% of PV patients present with erythrocytosis alone, while 40% have trilineage hyperplasia at the onset of disease. PV can also present with isolated leukocytosis or thrombocytosis.",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "WBC",
+            "PLT"
+          ],
+          "topics": [
+            "erythrocytosis",
+            "polycythemia vera",
+            "high counts"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC022",
+      "indicator": "MCV",
+      "category": "Tăng/giảm",
+      "question": "MCV thấp có ý nghĩa gì trong đánh giá thiếu máu?",
+      "panel": "CBC",
+      "tests": [
+        "MCV"
+      ],
+      "expected_answer_vi": "MCV thấp nghĩa là hồng cầu nhỏ, thường dùng để định hướng thiếu máu hồng cầu nhỏ như thiếu sắt hoặc thalassemia. Cần phối hợp RBC, RDW và xét nghiệm sắt nếu cần.",
+      "evidence_ids": [
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+        "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+        "CBC_BOOK_THAL_MCV_MCH_P64"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+          "source": "clinical_hematology.pdf",
+          "page": 13,
+          "panel": "CBC",
+          "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "RDW"
+          ],
+          "topics": [
+            "anemia",
+            "iron deficiency",
+            "low hemoglobin"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_THAL_MCV_MCH_P64",
+          "source": "clinical_hematology.pdf",
+          "page": 64,
+          "panel": "CBC",
+          "text": "α-Thalassemia trait can been suspected with elevated total red blood cell number, normal or borderline Hb A2, mean corpuscular volume (MCV) less than 78 fL, and mean corpuscular hemoglobin (MCH) less than 25 pg.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "HGB"
+          ],
+          "topics": [
+            "microcytosis",
+            "thalassemia",
+            "anemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC023",
+      "indicator": "MCV",
+      "category": "Tăng/giảm",
+      "question": "MCV cao có thể liên quan đến vấn đề gì?",
+      "panel": "CBC",
+      "tests": [
+        "MCV"
+      ],
+      "expected_answer_vi": "MCV cao nghĩa là hồng cầu to, có thể gặp trong thiếu vitamin B12/folate hoặc các nguyên nhân khác. Nếu có thiếu máu, cần đánh giá thêm phết máu và bối cảnh.",
+      "evidence_ids": [
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+        "CBC_BOOK_B12_FOLATE_MACRO_P32"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_B12_FOLATE_MACRO_P32",
+          "source": "clinical_hematology.pdf",
+          "page": 32,
+          "panel": "CBC",
+          "text": "The earliest change in the peripheral blood caused by folate or vitamin B12 deficiency is hypersegmentation of the neutrophils, which can be easily overlooked unless a blood smear is carefully examined. Finding even 5% of neutrophils with five lobes or just 1% with six lobes is highly suggestive of a deficiency, although this could also be seen with myelodysplasia.",
+          "tests": [
+            "MCV",
+            "HGB",
+            "NEUT"
+          ],
+          "topics": [
+            "macrocytosis",
+            "vitamin b12",
+            "folate",
+            "anemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC024",
+      "indicator": "MCH",
+      "category": "Tăng/giảm",
+      "question": "MCH thấp có liên quan đến thiếu máu không?",
+      "panel": "CBC",
+      "tests": [
+        "MCH"
+      ],
+      "expected_answer_vi": "MCH thấp thường đi cùng hồng cầu nhỏ/nhược sắc và có thể liên quan thiếu máu thiếu sắt hoặc thalassemia. Không nên kết luận nguyên nhân chỉ từ MCH.",
+      "evidence_ids": [
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+        "CBC_BOOK_THAL_MCV_MCH_P64"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_THAL_MCV_MCH_P64",
+          "source": "clinical_hematology.pdf",
+          "page": 64,
+          "panel": "CBC",
+          "text": "α-Thalassemia trait can been suspected with elevated total red blood cell number, normal or borderline Hb A2, mean corpuscular volume (MCV) less than 78 fL, and mean corpuscular hemoglobin (MCH) less than 25 pg.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "HGB"
+          ],
+          "topics": [
+            "microcytosis",
+            "thalassemia",
+            "anemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC025",
+      "indicator": "MCHC",
+      "category": "Tăng/giảm",
+      "question": "MCHC thấp có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "MCHC"
+      ],
+      "expected_answer_vi": "MCHC thấp gợi ý hồng cầu nhạt màu/giảm nồng độ hemoglobin trong hồng cầu, thường hỗ trợ đánh giá thiếu máu hồng cầu nhỏ nhưng cần đọc cùng MCV, MCH, RDW.",
+      "evidence_ids": [
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+        "CBC_BOOK_IRON_DEF_ANEMIA_P13"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+          "source": "clinical_hematology.pdf",
+          "page": 13,
+          "panel": "CBC",
+          "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "RDW"
+          ],
+          "topics": [
+            "anemia",
+            "iron deficiency",
+            "low hemoglobin"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC026",
+      "indicator": "RDW",
+      "category": "Tăng/giảm",
+      "question": "RDW cao có ý nghĩa gì trong đánh giá thiếu máu?",
+      "panel": "CBC",
+      "tests": [
+        "RDW"
+      ],
+      "expected_answer_vi": "RDW cao cho thấy kích thước hồng cầu không đồng đều; đây là manh mối về bất thường hình thái hồng cầu và có thể giúp phát hiện sớm thiếu hụt dinh dưỡng hoặc phối hợp nguyên nhân thiếu máu.",
+      "evidence_ids": [
+        "CBC_BOOK_RDW_DEF_P560",
+        "CBC_BOOK_RDW_INTERPRET_P560"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RDW_DEF_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The RDW, red cell distribution width, is a measure of the variability in size within the red cell population that is provided by automated cell counters. The precise mathematical equation used for calculation varies with the specific instrument, but in all cases elevated values indicate anisocytosis.",
+          "tests": [
+            "RDW",
+            "RBC"
+          ],
+          "topics": [
+            "definition",
+            "anisocytosis",
+            "anemia"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_RDW_INTERPRET_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "An elevated RDW is a valuable clue to abnormalities in red cell morphology; when the RDW is markedly increased, inspection of the blood film is essential. The RDW is sensitive to the presence of small subpopulations of large or small red cells, thus it may be more useful than the MCV for the early detection of nutritional deficiencies. The RDW often remains normal in thalassemia, and the combination of a high or normal RBC count, a low MCV, and a normal RDW is a common pattern in thalassemia trait.",
+          "tests": [
+            "RDW",
+            "MCV",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "interpretation",
+            "thalassemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC027",
+      "indicator": "WBC",
+      "category": "Tăng/giảm",
+      "question": "WBC cao có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "WBC"
+      ],
+      "expected_answer_vi": "WBC cao là leukocytosis, có thể do nhiễm trùng, viêm, stress, thuốc hoặc bệnh huyết học. Cần đọc công thức bạch cầu và triệu chứng.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+          "tests": [
+            "WBC",
+            "NEUT"
+          ],
+          "topics": [
+            "leukocytosis",
+            "neutrophilia",
+            "infection"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC028",
+      "indicator": "WBC",
+      "category": "Tăng/giảm",
+      "question": "WBC thấp có nguy hiểm không?",
+      "panel": "CBC",
+      "tests": [
+        "WBC"
+      ],
+      "expected_answer_vi": "WBC thấp có thể làm giảm khả năng chống nhiễm trùng, đặc biệt nếu neutrophil thấp. Mức độ nguy hiểm phụ thuộc ANC, triệu chứng sốt/nhiễm trùng và nguyên nhân.",
+      "evidence_ids": [
+        "CBC_BOOK_NEUT_INFECTION_RISK_P561",
+        "CBC_BOOK_NEUTROPENIA_INFECTIONS_P557"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_NEUT_INFECTION_RISK_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated absolute granulocyte count plays a reliable and important role in evaluating the risk of infection in neutropenic patients, in grading chemotherapy-induced toxicity, and in following the recovery from hematopoietic stem cell transplantation.",
+          "tests": [
+            "NEUT",
+            "WBC",
+            "IG"
+          ],
+          "topics": [
+            "neutropenia",
+            "infection risk"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_NEUTROPENIA_INFECTIONS_P557",
+          "source": "clinical_hematology.pdf",
+          "page": 557,
+          "panel": "CBC",
+          "text": "Neutropenia Associated with Infectious Diseases: The most common cause of acquired neutropenia is infection. Gram-negative septicemia, Staphylococcus aureus, typhoid fever, paratyphoid fever, tularemia, and brucellosis can cause neutropenia. Infectious hepatitis, influenza, measles, Colorado tick fever, mononucleosis, cytomegalovirus, Kawasaki disease, HIV, parvovirus B12 are included in the differential diagnosis of neutropenia associated with infectious diseases. Drug-Induced Neutropenia: The second most common cause of neutropenia is medication exposure.",
+          "tests": [
+            "NEUT",
+            "WBC"
+          ],
+          "topics": [
+            "neutropenia",
+            "infection",
+            "drug induced"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC029",
+      "indicator": "WBC",
+      "category": "Tăng/giảm",
+      "question": "WBC cao có chắc chắn là nhiễm trùng không?",
+      "panel": "CBC",
+      "tests": [
+        "WBC"
+      ],
+      "expected_answer_vi": "WBC cao không chắc chắn là nhiễm trùng. Cần đánh giá triệu chứng, khám lâm sàng, công thức bạch cầu và phết máu để phân biệt phản ứng lành tính với bất thường huyết học.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+          "tests": [
+            "WBC",
+            "NEUT"
+          ],
+          "topics": [
+            "leukocytosis",
+            "neutrophilia",
+            "infection"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC030",
+      "indicator": "WBC",
+      "category": "Tăng/giảm",
+      "question": "WBC cao có phải ung thư máu không?",
+      "panel": "CBC",
+      "tests": [
+        "WBC"
+      ],
+      "expected_answer_vi": "WBC cao không đồng nghĩa ung thư máu. Tuy nhiên nếu tăng rất cao, kéo dài, có blast/left shift, hạch gan lách to hoặc triệu chứng toàn thân thì cần khám huyết học.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+        "CBC_BOOK_PERSISTING_LEUKOCYTOSIS_MPN_P242"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PERSISTING_LEUKOCYTOSIS_MPN_P242",
+          "source": "clinical_hematology.pdf",
+          "page": 242,
+          "panel": "CBC",
+          "text": "Persisting leukocytosis without any obvious infective cause suggests a myeloproliferative neoplasm, prompting further examination of the blood and bone marrow. Morphology and blood count will show either typical features of CML (basophilia being especially significant) or suggest other myeloproliferative neoplasms (high platelet counts, essential thrombocythemia; high red cell count, polycythemia vera; teardrop red cells, myelofibrosis).",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "BASO",
+            "PLT",
+            "RBC",
+            "IG"
+          ],
+          "topics": [
+            "persistent leukocytosis",
+            "myeloproliferative neoplasm",
+            "safety"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC031",
+      "indicator": "NEUT",
+      "category": "Tăng/giảm",
+      "question": "NEUT cao thường liên quan đến vấn đề gì?",
+      "panel": "CBC",
+      "tests": [
+        "NEUT"
+      ],
+      "expected_answer_vi": "NEUT cao thường gặp trong neutrophilia, có thể do nhiễm trùng, viêm, stress hoặc demargination. Cần đọc cùng WBC, triệu chứng và thời điểm xét nghiệm.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+          "tests": [
+            "WBC",
+            "NEUT"
+          ],
+          "topics": [
+            "leukocytosis",
+            "neutrophilia",
+            "infection"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC032",
+      "indicator": "NEUT",
+      "category": "Tăng/giảm",
+      "question": "NEUT thấp có ảnh hưởng gì đến sức khỏe?",
+      "panel": "CBC",
+      "tests": [
+        "NEUT"
+      ],
+      "expected_answer_vi": "NEUT thấp có thể làm tăng nguy cơ nhiễm trùng; nguy cơ phụ thuộc mức ANC và tình trạng lâm sàng. Nếu có sốt hoặc nhiễm trùng cần đi khám sớm.",
+      "evidence_ids": [
+        "CBC_BOOK_NEUT_INFECTION_RISK_P561",
+        "CBC_BOOK_NEUTROPENIA_INFECTIONS_P557"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_NEUT_INFECTION_RISK_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "The automated absolute granulocyte count plays a reliable and important role in evaluating the risk of infection in neutropenic patients, in grading chemotherapy-induced toxicity, and in following the recovery from hematopoietic stem cell transplantation.",
+          "tests": [
+            "NEUT",
+            "WBC",
+            "IG"
+          ],
+          "topics": [
+            "neutropenia",
+            "infection risk"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_NEUTROPENIA_INFECTIONS_P557",
+          "source": "clinical_hematology.pdf",
+          "page": 557,
+          "panel": "CBC",
+          "text": "Neutropenia Associated with Infectious Diseases: The most common cause of acquired neutropenia is infection. Gram-negative septicemia, Staphylococcus aureus, typhoid fever, paratyphoid fever, tularemia, and brucellosis can cause neutropenia. Infectious hepatitis, influenza, measles, Colorado tick fever, mononucleosis, cytomegalovirus, Kawasaki disease, HIV, parvovirus B12 are included in the differential diagnosis of neutropenia associated with infectious diseases. Drug-Induced Neutropenia: The second most common cause of neutropenia is medication exposure.",
+          "tests": [
+            "NEUT",
+            "WBC"
+          ],
+          "topics": [
+            "neutropenia",
+            "infection",
+            "drug induced"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC033",
+      "indicator": "WBC + NEUT",
+      "category": "Tăng/giảm",
+      "question": "WBC cao kèm NEUT cao nói lên điều gì?",
+      "panel": "CBC",
+      "tests": [
+        "WBC",
+        "NEUT"
+      ],
+      "expected_answer_vi": "WBC cao kèm NEUT cao thường gợi ý leukocytosis kiểu neutrophilia, hay gặp trong nhiễm trùng/viêm cấp, nhưng không đủ để kết luận nguyên nhân nếu thiếu triệu chứng.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+          "tests": [
+            "WBC",
+            "NEUT"
+          ],
+          "topics": [
+            "leukocytosis",
+            "neutrophilia",
+            "infection"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC034",
+      "indicator": "WBC + NEUT",
+      "category": "Tăng/giảm",
+      "question": "WBC và NEUT cao có cần dùng kháng sinh không?",
+      "panel": "CBC",
+      "tests": [
+        "WBC",
+        "NEUT"
+      ],
+      "expected_answer_vi": "WBC và NEUT cao không tự động cần dùng kháng sinh. Quyết định kháng sinh phải dựa vào chẩn đoán nhiễm khuẩn, triệu chứng, khám và xét nghiệm liên quan.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+          "tests": [
+            "WBC",
+            "NEUT"
+          ],
+          "topics": [
+            "leukocytosis",
+            "neutrophilia",
+            "infection"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC035",
+      "indicator": "LYMPH",
+      "category": "Tăng/giảm",
+      "question": "LYMPH cao có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "LYMPH"
+      ],
+      "expected_answer_vi": "LYMPH cao tuyệt đối thường gợi ý quá trình virus cấp hoặc mạn, nhưng cũng cần phân biệt tăng tương đối/tuyệt đối và xem tuổi, triệu chứng, thời gian kéo dài.",
+      "evidence_ids": [
+        "CBC_BOOK_LYMPHOCYTOSIS_P189",
+        "CBC_BOOK_WBC_SMEAR_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LYMPHOCYTOSIS_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Absolute lymphocytosis usually indicates an acute or chronic viral process.",
+          "tests": [
+            "LYMPH",
+            "WBC"
+          ],
+          "topics": [
+            "lymphocytosis",
+            "viral"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_WBC_SMEAR_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "In patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. Thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "interpretation",
+            "safety",
+            "smear"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC036",
+      "indicator": "LYMPH",
+      "category": "Tăng/giảm",
+      "question": "LYMPH thấp có đáng lo không?",
+      "panel": "CBC",
+      "tests": [
+        "LYMPH"
+      ],
+      "expected_answer_vi": "LYMPH thấp có thể gặp do stress, nhiễm trùng nặng, thuốc hoặc suy giảm miễn dịch; mức độ đáng lo phụ thuộc trị số tuyệt đối, kéo dài và triệu chứng.",
+      "evidence_ids": [
+        "CBC_BOOK_WBC_SMEAR_P561",
+        "CBC_BOOK_SAMPLE_ARTIFACT_P562"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_WBC_SMEAR_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "In patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. Thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "interpretation",
+            "safety",
+            "smear"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_SAMPLE_ARTIFACT_P562",
+          "source": "clinical_hematology.pdf",
+          "page": 562,
+          "panel": "CBC",
+          "text": "Clinically relevant artifact at the point of sample collection may occur due to clot formation or due to dilution of blood with intravenous fluid. Although most automated cell counters are equipped to detect clot formation, some may not be detected, resulting in falsely lower platelet and WBC counts. In contrast, fluid dilution generally is apparent by some degree of change in all three cell lines (red cells, white cells, and platelets) as compared to a previous sample.",
+          "tests": [
+            "RBC",
+            "WBC",
+            "PLT",
+            "HGB",
+            "HCT"
+          ],
+          "topics": [
+            "artifact",
+            "repeat testing",
+            "safety"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC037",
+      "indicator": "NEUT + LYMPH",
+      "category": "Tăng/giảm",
+      "question": "NEUT cao nhưng LYMPH thấp có thể gợi ý điều gì?",
+      "panel": "CBC",
+      "tests": [
+        "NEUT",
+        "LYMPH"
+      ],
+      "expected_answer_vi": "NEUT cao nhưng LYMPH thấp có thể gặp trong đáp ứng stress/viêm cấp hoặc nhiễm trùng cấp. Cần xem WBC tổng, triệu chứng và thuốc đang dùng.",
+      "evidence_ids": [
+        "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+        "CBC_BOOK_WBC_SMEAR_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_NEUTROPHILIA_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Leukocytosis refers to an increase in total WBC count for age. Neutrophilia is an increase in the ANC above 7,500/µL, but the upper limit of normal may be higher in newborns and infants. Neutrophilia may result from increased production, mobilization from the bone marrow, or peripheral demargination. In children, acute neutrophilia is most often due to bacterial or viral infection.",
+          "tests": [
+            "WBC",
+            "NEUT"
+          ],
+          "topics": [
+            "leukocytosis",
+            "neutrophilia",
+            "infection"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_WBC_SMEAR_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "In patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. Thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "interpretation",
+            "safety",
+            "smear"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC038",
+      "indicator": "MONO",
+      "category": "Tăng/giảm",
+      "question": "MONO cao thường liên quan đến tình trạng nào?",
+      "panel": "CBC",
+      "tests": [
+        "MONO"
+      ],
+      "expected_answer_vi": "MONO cao thường liên quan viêm/nhiễm kéo dài hoặc một số bệnh huyết học; nếu monocytosis kéo dài nhiều tháng hoặc tăng rõ cần đánh giá thêm.",
+      "evidence_ids": [
+        "CBC_BOOK_MONOCYTOSIS_CMML_P156",
+        "CBC_BOOK_WBC_SMEAR_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MONOCYTOSIS_CMML_P156",
+          "source": "clinical_hematology.pdf",
+          "page": 156,
+          "panel": "CBC",
+          "text": "In all cases there is persistent peripheral blood monocytosis, the defining feature of the disease. Progression to acute leukemia occurs in 15% to 30% of cases. WHO diagnostic criteria include persistent peripheral blood monocytosis (greater than 1 × 10^9 per liter for more than 3 months).",
+          "tests": [
+            "MONO",
+            "WBC"
+          ],
+          "topics": [
+            "monocytosis",
+            "chronic myelomonocytic leukemia"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_WBC_SMEAR_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "In patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. Thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "interpretation",
+            "safety",
+            "smear"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC039",
+      "indicator": "EOS",
+      "category": "Tăng/giảm",
+      "question": "EOS cao có thể liên quan đến dị ứng hoặc ký sinh trùng không?",
+      "panel": "CBC",
+      "tests": [
+        "EOS"
+      ],
+      "expected_answer_vi": "EOS cao có thể liên quan dị ứng/atopy hoặc nhiễm ký sinh trùng, đúng. Tuy vậy còn có nguyên nhân thuốc, miễn dịch, da-phổi-tiêu hóa hoặc bệnh huyết học.",
+      "evidence_ids": [
+        "CBC_BOOK_EOSINOPHILIA_P550",
+        "CBC_BOOK_EOS_DISEASES_P551"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_EOSINOPHILIA_P550",
+          "source": "clinical_hematology.pdf",
+          "page": 550,
+          "panel": "CBC",
+          "text": "Helminthic infections are the most common cause of eosinophilia worldwide, and atopic disorders are the most common cause in industrialized countries. Clonal eosinophilic disorders account for only a small proportion of all eosinophilias. Sustained hypereosinophilia, whether reactive or clonal, can damage tissue.",
+          "tests": [
+            "EOS"
+          ],
+          "topics": [
+            "eosinophilia",
+            "allergy",
+            "parasite",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_EOS_DISEASES_P551",
+          "source": "clinical_hematology.pdf",
+          "page": 551,
+          "panel": "CBC",
+          "text": "Diseases Commonly Associated with Eosinophilia: Infectious (helminth, protozoa, fungi, HIV, HTLV-1); Allergic diseases (asthma, atopic dermatitis, allergic rhinitis, urticarias, allergic drug reactions); Respiratory tract disorders; Gastrointestinal disorders; Cutaneous and subcutaneous disorders; Immunodeficiency syndromes; Connective tissue disease; Neoplastic.",
+          "tests": [
+            "EOS"
+          ],
+          "topics": [
+            "eosinophilia",
+            "allergy",
+            "parasite"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC040",
+      "indicator": "BASO",
+      "category": "Tăng/giảm",
+      "question": "BASO cao có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "BASO"
+      ],
+      "expected_answer_vi": "BASO cao không phổ biến; nếu kéo dài hoặc kèm WBC cao/left shift có thể gợi ý bệnh tăng sinh tủy như CML và cần đánh giá phết máu hoặc chuyên khoa.",
+      "evidence_ids": [
+        "CBC_BOOK_BASOPHILIA_CML_P241",
+        "CBC_BOOK_PERSISTING_LEUKOCYTOSIS_MPN_P242"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_BASOPHILIA_CML_P241",
+          "source": "clinical_hematology.pdf",
+          "page": 241,
+          "panel": "CBC",
+          "text": "Blood film is of great diagnostic value, because many of the typical features of CML are unique—a left shift with circulating myeloblasts, myelocytes, metamyelocytes, and band forms. The hallmark of CML is basophilia with basophil counts often exceeding 1 × 10^9/L. Sustained basophilia is almost never encountered outside CML and some cases of mastocytosis. Eosinophilia and occasional nucleated red blood cells are also common findings.",
+          "tests": [
+            "BASO",
+            "WBC",
+            "IG",
+            "EOS"
+          ],
+          "topics": [
+            "basophilia",
+            "CML",
+            "left shift"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PERSISTING_LEUKOCYTOSIS_MPN_P242",
+          "source": "clinical_hematology.pdf",
+          "page": 242,
+          "panel": "CBC",
+          "text": "Persisting leukocytosis without any obvious infective cause suggests a myeloproliferative neoplasm, prompting further examination of the blood and bone marrow. Morphology and blood count will show either typical features of CML (basophilia being especially significant) or suggest other myeloproliferative neoplasms (high platelet counts, essential thrombocythemia; high red cell count, polycythemia vera; teardrop red cells, myelofibrosis).",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "BASO",
+            "PLT",
+            "RBC",
+            "IG"
+          ],
+          "topics": [
+            "persistent leukocytosis",
+            "myeloproliferative neoplasm",
+            "safety"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC041",
+      "indicator": "PLT",
+      "category": "Tăng/giảm",
+      "question": "PLT thấp có nguy hiểm không?",
+      "panel": "CBC",
+      "tests": [
+        "PLT"
+      ],
+      "expected_answer_vi": "PLT thấp có thể nguy hiểm do nguy cơ chảy máu, nhất là khi rất thấp hoặc có xuất huyết niêm mạc, chấm xuất huyết, bầm tím, chảy máu cam/lợi.",
+      "evidence_ids": [
+        "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98",
+        "CBC_BOOK_PLATELET_COUNT_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Thrombocytopenia produces mainly mucosal bleeding: petechiae of the skin and mucous membranes, epistaxis, and gum bleeding are frequent and early complaints. Bleeding is not brisk from low platelets unless in the presence of accompanying physical lesions. The most feared complication of thrombocytopenia is intracranial hemorrhage.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "thrombocytopenia",
+            "bleeding",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_PLATELET_COUNT_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "Similar to RBC and WBC counts, the automated platelet count is measured by impedance- and/or optical-based techniques. Platelets are distinguished from red cells by size and in some cases by resistance to osmotic lysis. Automated counters are more accurate than older manual counting methods in monitoring thrombocytopenia, and they often can accurately count less than 10,000 platelets per microliter.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "platelet",
+            "thrombocytopenia",
+            "definition"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC042",
+      "indicator": "PLT",
+      "category": "Tăng/giảm",
+      "question": "PLT cao có ý nghĩa gì?",
+      "panel": "CBC",
+      "tests": [
+        "PLT"
+      ],
+      "expected_answer_vi": "PLT cao là thrombocytosis, có thể phản ứng sau viêm/nhiễm, sau cắt lách, thiếu sắt hoặc do bệnh tăng sinh tủy. Cần đánh giá mức độ và kéo dài.",
+      "evidence_ids": [
+        "CBC_BOOK_POST_SPLENECTOMY_THROMBOCYTOSIS_P81",
+        "CBC_BOOK_MPN_OVERPRODUCTION_P139"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_POST_SPLENECTOMY_THROMBOCYTOSIS_P81",
+          "source": "clinical_hematology.pdf",
+          "page": 81,
+          "panel": "CBC",
+          "text": "Post-splenectomy thrombocytosis can be variable, but generally does not require antiplatelet therapy.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "thrombocytosis",
+            "postsplenectomy"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_MPN_OVERPRODUCTION_P139",
+          "source": "clinical_hematology.pdf",
+          "page": 139,
+          "panel": "CBC",
+          "text": "The chronic myeloproliferative neoplasms (MPNs) are clonal hematopoietic stem cell diseases characterized by overproduction of one or more blood cell lines.",
+          "tests": [
+            "PLT",
+            "WBC",
+            "RBC",
+            "HGB",
+            "HCT"
+          ],
+          "topics": [
+            "thrombocytosis",
+            "leukocytosis",
+            "erythrocytosis"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC043",
+      "indicator": "PLT",
+      "category": "Tăng/giảm",
+      "question": "Tiểu cầu thấp khi nào cần đi khám sớm?",
+      "panel": "CBC",
+      "tests": [
+        "PLT"
+      ],
+      "expected_answer_vi": "Tiểu cầu thấp cần đi khám sớm nếu có chảy máu niêm mạc, chấm xuất huyết/bầm tím nhiều, đau đầu dữ dội, phân/tiểu máu, hoặc PLT rất thấp như dưới 20.000/µL.",
+      "evidence_ids": [
+        "CBC_BOOK_ITP_LOW_PLT_P184",
+        "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_ITP_LOW_PLT_P184",
+          "source": "clinical_hematology.pdf",
+          "page": 184,
+          "panel": "CBC",
+          "text": "The typical presentation in acute ITP is the abrupt onset of mucosal bleeding, petechiae, and bruising in healthy children, often preceded by a viral illness. Most children have severe thrombocytopenia (platelet counts less than 20,000/µL) but an otherwise normal CBC.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "thrombocytopenia",
+            "ITP",
+            "bleeding",
+            "urgent"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Thrombocytopenia produces mainly mucosal bleeding: petechiae of the skin and mucous membranes, epistaxis, and gum bleeding are frequent and early complaints. Bleeding is not brisk from low platelets unless in the presence of accompanying physical lesions. The most feared complication of thrombocytopenia is intracranial hemorrhage.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "thrombocytopenia",
+            "bleeding",
+            "safety"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC044",
+      "indicator": "IG",
+      "category": "Tăng/giảm",
+      "question": "IG tăng có thể gợi ý điều gì trong công thức máu?",
+      "panel": "CBC",
+      "tests": [
+        "IG"
+      ],
+      "expected_answer_vi": "IG tăng có thể gợi ý left shift/tủy đang phóng thích bạch cầu hạt non do viêm/nhiễm hoặc stress tủy. Nếu kèm blast, dysplasia, WBC rất cao hoặc kéo dài thì cần khám.",
+      "evidence_ids": [
+        "CBC_BOOK_LEFT_SHIFT_IMMATURE_P567",
+        "CBC_BOOK_BASOPHILIA_CML_P241"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_LEFT_SHIFT_IMMATURE_P567",
+          "source": "clinical_hematology.pdf",
+          "page": 567,
+          "panel": "CBC",
+          "text": "Disruption of the normal maturation sequence (such as a complete maturation arrest or a preponderance of immature cell forms, or a “shift to the left” of the differentiation pattern), the presence of excess numbers of blasts, or dysplastic changes affecting at least two of the three major hematopoietic cell-lines suggests a serious hematologic disorder. A mild shift to the left and mild megaloblastic changes are more nonspecific.",
+          "tests": [
+            "IG",
+            "NEUT",
+            "WBC"
+          ],
+          "topics": [
+            "immature granulocytes",
+            "left shift",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_BASOPHILIA_CML_P241",
+          "source": "clinical_hematology.pdf",
+          "page": 241,
+          "panel": "CBC",
+          "text": "Blood film is of great diagnostic value, because many of the typical features of CML are unique—a left shift with circulating myeloblasts, myelocytes, metamyelocytes, and band forms. The hallmark of CML is basophilia with basophil counts often exceeding 1 × 10^9/L. Sustained basophilia is almost never encountered outside CML and some cases of mastocytosis. Eosinophilia and occasional nucleated red blood cells are also common findings.",
+          "tests": [
+            "BASO",
+            "WBC",
+            "IG",
+            "EOS"
+          ],
+          "topics": [
+            "basophilia",
+            "CML",
+            "left shift"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC045",
+      "indicator": "HGB + HCT + RBC",
+      "category": "Tăng/giảm",
+      "question": "HGB, HCT và RBC cùng thấp thì có thể gợi ý điều gì?",
+      "panel": "CBC",
+      "tests": [
+        "HGB",
+        "HCT",
+        "RBC"
+      ],
+      "expected_answer_vi": "HGB, HCT và RBC cùng thấp thường gợi ý thiếu máu/giảm khối hồng cầu. Cần dùng MCV, MCH, MCHC, RDW, reticulocyte và triệu chứng để định hướng nguyên nhân.",
+      "evidence_ids": [
+        "CBC_BOOK_RBC_INDICES_DEF_P559",
+        "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+        "CBC_BOOK_IRON_DEF_ANEMIA_P13"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_RBC_INDICES_DEF_P559",
+          "source": "clinical_hematology.pdf",
+          "page": 559,
+          "panel": "CBC",
+          "text": "The hematocrit, defined as the packed red cell volume or percent of the blood occupied by red blood cells, was first measured by direct visual inspection of a tube of blood following centrifugation. The hemoglobin concentration and red cell count were also directly measured. Other red cell indices were indirectly calculated, including the mean corpuscular volume, MCV (hematocrit divided by the red cell count), mean corpuscular hemoglobin, MCH (hemoglobin divided by the red cell count), and mean corpuscular hemoglobin concentration, MCHC (MCH divided by the MCV).",
+          "tests": [
+            "RBC",
+            "HGB",
+            "HCT",
+            "MCV",
+            "MCH",
+            "MCHC"
+          ],
+          "topics": [
+            "definition",
+            "red cell indices"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "symptoms",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+          "source": "clinical_hematology.pdf",
+          "page": 13,
+          "panel": "CBC",
+          "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "RDW"
+          ],
+          "topics": [
+            "anemia",
+            "iron deficiency",
+            "low hemoglobin"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC046",
+      "indicator": "HGB + MCV",
+      "category": "Tăng/giảm",
+      "question": "HGB thấp kèm MCV thấp thường gợi ý điều gì?",
+      "panel": "CBC",
+      "tests": [
+        "HGB",
+        "MCV"
+      ],
+      "expected_answer_vi": "HGB thấp kèm MCV thấp thường gợi ý thiếu máu hồng cầu nhỏ, hay gặp trong thiếu sắt hoặc thalassemia. RDW và RBC count giúp hỗ trợ phân biệt.",
+      "evidence_ids": [
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+        "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+        "CBC_BOOK_THAL_MCV_MCH_P64"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_IRON_DEF_ANEMIA_P13",
+          "source": "clinical_hematology.pdf",
+          "page": 13,
+          "panel": "CBC",
+          "text": "Iron deficiency is the most common cause of anemia throughout the world, with over 1 billion people being affected. Clinical presentation includes fatigue, weakness, headaches, pallor, pica, and restless leg syndrome.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "RDW"
+          ],
+          "topics": [
+            "anemia",
+            "iron deficiency",
+            "low hemoglobin"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_THAL_MCV_MCH_P64",
+          "source": "clinical_hematology.pdf",
+          "page": 64,
+          "panel": "CBC",
+          "text": "α-Thalassemia trait can been suspected with elevated total red blood cell number, normal or borderline Hb A2, mean corpuscular volume (MCV) less than 78 fL, and mean corpuscular hemoglobin (MCH) less than 25 pg.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "HGB"
+          ],
+          "topics": [
+            "microcytosis",
+            "thalassemia",
+            "anemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC047",
+      "indicator": "HGB + MCV",
+      "category": "Tăng/giảm",
+      "question": "HGB thấp kèm MCV cao có thể liên quan đến vấn đề gì?",
+      "panel": "CBC",
+      "tests": [
+        "HGB",
+        "MCV"
+      ],
+      "expected_answer_vi": "HGB thấp kèm MCV cao gợi ý thiếu máu hồng cầu to; có thể liên quan thiếu vitamin B12/folate hoặc nguyên nhân khác, cần đánh giá thêm.",
+      "evidence_ids": [
+        "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+        "CBC_BOOK_B12_FOLATE_MACRO_P32"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_MCV_MCH_MCHC_RDW_P560",
+          "source": "clinical_hematology.pdf",
+          "page": 560,
+          "panel": "CBC",
+          "text": "The MCV is of great clinical utility in evaluating anemia according to red cell size (macrocytic, microcytic, and normocytic anemias), while the RBC count is useful in comparison of iron deficiency and thalassemia. The MCH, which represents the average total hemoglobin content of the red cells, is highly dependent on cell size, while the MCHC represents the average total hemoglobin concentration or degree of “redness” of the red cells.",
+          "tests": [
+            "RBC",
+            "MCV",
+            "MCH",
+            "MCHC",
+            "HGB"
+          ],
+          "topics": [
+            "anemia",
+            "red cell indices",
+            "definition"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_B12_FOLATE_MACRO_P32",
+          "source": "clinical_hematology.pdf",
+          "page": 32,
+          "panel": "CBC",
+          "text": "The earliest change in the peripheral blood caused by folate or vitamin B12 deficiency is hypersegmentation of the neutrophils, which can be easily overlooked unless a blood smear is carefully examined. Finding even 5% of neutrophils with five lobes or just 1% with six lobes is highly suggestive of a deficiency, although this could also be seen with myelodysplasia.",
+          "tests": [
+            "MCV",
+            "HGB",
+            "NEUT"
+          ],
+          "topics": [
+            "macrocytosis",
+            "vitamin b12",
+            "folate",
+            "anemia"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC048",
+      "indicator": "CBC tổng quát",
+      "category": "Tăng/giảm",
+      "question": "Một chỉ số trong công thức máu hơi cao thì có nguy hiểm không?",
+      "panel": "CBC",
+      "tests": [],
+      "expected_answer_vi": "Một chỉ số CBC hơi cao chưa chắc nguy hiểm. Cần xem mức tăng, lặp lại xét nghiệm, các dòng tế bào khác, triệu chứng và khả năng lỗi mẫu/ảnh hưởng tạm thời.",
+      "evidence_ids": [
+        "CBC_BOOK_SAMPLE_ARTIFACT_P562",
+        "CBC_BOOK_WBC_SMEAR_P561"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_SAMPLE_ARTIFACT_P562",
+          "source": "clinical_hematology.pdf",
+          "page": 562,
+          "panel": "CBC",
+          "text": "Clinically relevant artifact at the point of sample collection may occur due to clot formation or due to dilution of blood with intravenous fluid. Although most automated cell counters are equipped to detect clot formation, some may not be detected, resulting in falsely lower platelet and WBC counts. In contrast, fluid dilution generally is apparent by some degree of change in all three cell lines (red cells, white cells, and platelets) as compared to a previous sample.",
+          "tests": [
+            "RBC",
+            "WBC",
+            "PLT",
+            "HGB",
+            "HCT"
+          ],
+          "topics": [
+            "artifact",
+            "repeat testing",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_WBC_SMEAR_P561",
+          "source": "clinical_hematology.pdf",
+          "page": 561,
+          "panel": "CBC",
+          "text": "In patients with hematologic disease or qualitative leukocyte abnormalities, automated differentials may still be accurate, but their reliability cannot be assumed. Thus the white cell differential of new patients with complex clinical findings should also be evaluated on the peripheral smear.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH",
+            "MONO",
+            "EOS",
+            "BASO"
+          ],
+          "topics": [
+            "interpretation",
+            "safety",
+            "smear"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC049",
+      "indicator": "CBC tổng quát",
+      "category": "Tăng/giảm",
+      "question": "Kết quả công thức máu bất thường có chắc chắn là bệnh không?",
+      "panel": "CBC",
+      "tests": [],
+      "expected_answer_vi": "CBC bất thường không chắc chắn là bệnh. Kết quả có thể bị ảnh hưởng bởi sinh lý, thuốc, nhiễm trùng tạm thời hoặc lỗi mẫu; cần đối chiếu lâm sàng và theo dõi.",
+      "evidence_ids": [
+        "CBC_BOOK_SAMPLE_ARTIFACT_P562",
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_SAMPLE_ARTIFACT_P562",
+          "source": "clinical_hematology.pdf",
+          "page": 562,
+          "panel": "CBC",
+          "text": "Clinically relevant artifact at the point of sample collection may occur due to clot formation or due to dilution of blood with intravenous fluid. Although most automated cell counters are equipped to detect clot formation, some may not be detected, resulting in falsely lower platelet and WBC counts. In contrast, fluid dilution generally is apparent by some degree of change in all three cell lines (red cells, white cells, and platelets) as compared to a previous sample.",
+          "tests": [
+            "RBC",
+            "WBC",
+            "PLT",
+            "HGB",
+            "HCT"
+          ],
+          "topics": [
+            "artifact",
+            "repeat testing",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    },
+    {
+      "id": "CBC050",
+      "indicator": "CBC tổng quát",
+      "category": "Tăng/giảm",
+      "question": "Khi nào cần gặp bác sĩ sau khi có kết quả công thức máu bất thường?",
+      "panel": "CBC",
+      "tests": [],
+      "expected_answer_vi": "Nên gặp bác sĩ nếu bất thường rõ hoặc kéo dài, có sốt, khó thở, đau ngực, chảy máu, bầm tím nhiều, sụt cân, nổi hạch, gan lách to, hoặc WBC/PLT/RBC thay đổi nhiều dòng.",
+      "evidence_ids": [
+        "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+        "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98",
+        "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "CBC_BOOK_ANEMIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Anemia leads to fatigue, weakness, lassitude, headaches, and in older patients dyspnea and chest pain and these symptoms are most commonly responsible for the clinical presentation.",
+          "tests": [
+            "HGB",
+            "HCT",
+            "RBC"
+          ],
+          "topics": [
+            "anemia",
+            "symptoms",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_THROMBOCYTOPENIA_SYMPTOMS_P98",
+          "source": "clinical_hematology.pdf",
+          "page": 98,
+          "panel": "CBC",
+          "text": "Thrombocytopenia produces mainly mucosal bleeding: petechiae of the skin and mucous membranes, epistaxis, and gum bleeding are frequent and early complaints. Bleeding is not brisk from low platelets unless in the presence of accompanying physical lesions. The most feared complication of thrombocytopenia is intracranial hemorrhage.",
+          "tests": [
+            "PLT"
+          ],
+          "topics": [
+            "thrombocytopenia",
+            "bleeding",
+            "safety"
+          ]
+        },
+        {
+          "evidence_id": "CBC_BOOK_LEUKOCYTOSIS_EVAL_P189",
+          "source": "clinical_hematology.pdf",
+          "page": 189,
+          "panel": "CBC",
+          "text": "Evaluation of leukocytosis should include a detailed history and physical examination directed to symptoms and signs of infection and for lymphadenopathy and hepatosplenomegaly. Examination of the peripheral blood smear is essential to distinguish normal from atypical and malignant WBCs.",
+          "tests": [
+            "WBC",
+            "NEUT",
+            "LYMPH"
+          ],
+          "topics": [
+            "leukocytosis",
+            "evaluation",
+            "safety",
+            "malignancy"
+          ]
+        }
+      ],
+      "citation_instruction_vi": "Khi trả lời, cite theo thứ tự evidence trong case bằng [1], [2], [3]. Không dùng citation nếu câu không dựa trực tiếp vào evidence tương ứng.",
+      "answer_constraints_vi": [
+        "Trả lời tiếng Việt, ngắn gọn, dễ hiểu.",
+        "Dùng các từ: có thể, gợi ý, cần đối chiếu lâm sàng.",
+        "Không chẩn đoán chắc chắn hoặc kê thuốc/kháng sinh chỉ từ CBC."
+      ],
+      "must_not_include_vi": [
+        "khẳng định chẩn đoán chắc chắn chỉ từ một chỉ số",
+        "kê thuốc hoặc kháng sinh chỉ dựa vào CBC",
+        "trích dẫn nguồn sinh hóa Tietz/Henry cho câu CBC",
+        "bịa số trang hoặc bịa nguồn"
+      ]
+    }
+  ]
+}
