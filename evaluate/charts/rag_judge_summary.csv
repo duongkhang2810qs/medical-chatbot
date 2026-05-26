@@ -1,0 +1,17 @@
+﻿metric,value
+case_count,100
+avg_total_rag_4,3.645
+min_total_rag_4,0.0
+max_total_rag_4,4.0
+avg_context_relevance_score,0.955
+context_relevance_score_perfect_count,92
+context_relevance_score_zero_count,1
+avg_source_attribution_score,0.865
+source_attribution_score_perfect_count,74
+source_attribution_score_zero_count,1
+avg_faithfulness_score,0.875
+faithfulness_score_perfect_count,76
+faithfulness_score_zero_count,1
+avg_medical_safety_score,0.95
+medical_safety_score_perfect_count,91
+medical_safety_score_zero_count,1
