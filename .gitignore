@@ -231,5 +231,8 @@ lab_unified_rag/data/outputs/runtime_profile/
 lab_unified_rag/data/outputs/retrieval_eval/
 lab_unified_rag/data/outputs/response_quality_eval/
 
+evaluate/context/
+evaluate/*_internal_backup.jsonl
+
 *.png
 *.pdf

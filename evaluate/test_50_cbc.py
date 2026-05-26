@@ -8,10 +8,11 @@ from datetime import datetime
 
 API_URL = "http://127.0.0.1:8002/api/v1/chat"
 SESSION_ID = "eval_cbc_001"
+EVALUATE_DIR = Path(__file__).resolve().parent
 
-CHECKPOINT_FILE = Path("cbc_50_eval_checkpoint.jsonl")
-CSV_FILE = Path("cbc_50_eval_results.csv")
-FAILED_CSV_FILE = Path("cbc_50_eval_failed.csv")
+CHECKPOINT_FILE = EVALUATE_DIR / "cbc_50_eval_checkpoint.jsonl"
+CSV_FILE = EVALUATE_DIR / "cbc_50_eval_results.csv"
+FAILED_CSV_FILE = EVALUATE_DIR / "cbc_50_eval_failed.csv"
 
 MAX_RETRIES = 3
 RETRY_SLEEP_SECONDS = 3
