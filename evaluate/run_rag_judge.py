@@ -47,7 +47,7 @@ MAX_NEW_TOKENS = int(os.getenv("JUDGE_MAX_NEW_TOKENS", "1000"))
 TEMPERATURE = float(os.getenv("JUDGE_TEMPERATURE", "0.0"))
 PROVIDER_ORDER = [
     item.strip().lower()
-    for item in os.getenv("EVAL_PROVIDER_ORDER", "gemini,openrouter,colab").split(",")
+    for item in os.getenv("EVAL_PROVIDER_ORDER", "groq,gemini,openrouter,colab").split(",")
     if item.strip()
 ]
 
@@ -246,7 +246,18 @@ def extract_json_object(text: str) -> dict[str, Any]:
     raise ValueError(f"Cannot parse JSON object from judge output: {text[:500]}")
 
 
+def pick_first(obj: dict[str, Any], keys: list[str], default: Any = None) -> Any:
+    for key in keys:
+        value = obj.get(key)
+        if value is not None:
+            return value
+    return default
+
+
 def normalize_score(value: Any) -> float:
+    if value is None or value == "":
+        raise ValueError("Missing score in judge output")
+
     score = float(value)
     if score not in {0.0, 0.5, 1.0}:
         raise ValueError(f"Score must be 0, 0.5, or 1. Got: {value}")
@@ -254,20 +265,20 @@ def normalize_score(value: Any) -> float:
 
 
 def normalize_judge(obj: dict[str, Any]) -> dict[str, Any]:
-    cr = normalize_score(obj.get("context_relevance_score"))
-    sa = normalize_score(obj.get("source_attribution_score"))
-    fa = normalize_score(obj.get("faithfulness_score"))
-    ms = normalize_score(obj.get("medical_safety_score"))
+    cr = normalize_score(pick_first(obj, ["context_relevance_score", "context_relevance", "evidence_relevance_score"]))
+    sa = normalize_score(pick_first(obj, ["source_attribution_score", "source_attribution", "provenance_score", "citation_validity_score"]))
+    fa = normalize_score(pick_first(obj, ["faithfulness_score", "faithfulness", "groundedness_score"]))
+    ms = normalize_score(pick_first(obj, ["medical_safety_score", "medical_safety", "safety_score"]))
 
     return {
         "context_relevance_score": cr,
-        "context_relevance_reason": str(obj.get("context_relevance_reason") or "").strip(),
+        "context_relevance_reason": str(pick_first(obj, ["context_relevance_reason", "evidence_relevance_reason"], "Judge output missing context relevance reason.") or "").strip(),
         "source_attribution_score": sa,
-        "source_attribution_reason": str(obj.get("source_attribution_reason") or "").strip(),
+        "source_attribution_reason": str(pick_first(obj, ["source_attribution_reason", "provenance_reason", "citation_validity_reason"], "Judge output missing source attribution reason.") or "").strip(),
         "faithfulness_score": fa,
-        "faithfulness_reason": str(obj.get("faithfulness_reason") or "").strip(),
+        "faithfulness_reason": str(pick_first(obj, ["faithfulness_reason", "groundedness_reason"], "Judge output missing faithfulness reason.") or "").strip(),
         "medical_safety_score": ms,
-        "medical_safety_reason": str(obj.get("medical_safety_reason") or "").strip(),
+        "medical_safety_reason": str(pick_first(obj, ["medical_safety_reason", "safety_reason"], "Judge output missing medical safety reason.") or "").strip(),
         "total_rag_4": round(cr + sa + fa + ms, 2),
         "judge_summary": str(obj.get("judge_summary") or "").strip(),
     }
@@ -276,6 +287,7 @@ def normalize_judge(obj: dict[str, Any]) -> dict[str, Any]:
 def call_llm(prompt: str) -> tuple[str, str]:
     errors = []
     providers = {
+        "groq": (f"groq/{os.getenv('GROQ_MODEL', 'llama-3.3-70b-versatile').strip()}", call_groq),
         "gemini": (os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip(), call_gemini),
         "openrouter": (f"openrouter/{os.getenv('OPENROUTER_MODEL', 'deepseek/deepseek-chat').strip()}", call_openrouter),
         "colab": ("colab_llm", call_colab),
@@ -307,6 +319,27 @@ def call_gemini(prompt: str) -> str:
     if not text.strip():
         raise ValueError("Gemini returned empty response")
     return text.strip()
+
+
+def call_groq(prompt: str) -> str:
+    api_key = os.getenv("GROQ_API_KEY", "").strip()
+    if not api_key:
+        raise ValueError("Missing GROQ_API_KEY")
+
+    response = requests.post(
+        "https://api.groq.com/openai/v1/chat/completions",
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        json={
+            "model": os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile").strip(),
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": TEMPERATURE,
+            "max_tokens": MAX_NEW_TOKENS,
+            "response_format": {"type": "json_object"},
+        },
+        timeout=REQUEST_TIMEOUT,
+    )
+    response.raise_for_status()
+    return response.json()["choices"][0]["message"]["content"].strip()
 
 
 def call_openrouter(prompt: str) -> str:
@@ -358,8 +391,9 @@ def judge_with_retry(prompt: str) -> dict[str, Any]:
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             text, judge_model = call_llm(prompt)
+            obj = extract_json_object(text)
             return {
-                **normalize_judge(extract_json_object(text)),
+                **normalize_judge(obj),
                 "judge_model": judge_model,
                 "status": "OK",
                 "error": "",
