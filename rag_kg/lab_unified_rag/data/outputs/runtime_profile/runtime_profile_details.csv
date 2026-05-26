@@ -1,0 +1,6 @@
+﻿case_id,panel,model_used,context_seconds,rag_retrieval_seconds,kg_reasoning_seconds,prompt_build_seconds,llm_generation_seconds,total_seconds,num_evidence_retrieved,num_evidence_used,num_reasoning_paths,answer_chars
+1.jpg,CBC,colab_llm,0.001,6.6019,0.0002,0.0002,74.9147,81.5191,20,6,5,2336
+10.jpg,CBC,gemini-2.5-flash,0.0007,0.6557,0.0001,0.0002,15.1966,15.8549,20,6,3,2198
+11.jpg,CBC,colab_llm,0.0008,0.3611,0.0002,0.0002,42.6106,42.9744,20,6,5,1764
+12.jpg,CBC,gemini-2.5-flash,0.0008,0.3284,0.0001,0.0002,26.3215,26.6526,20,6,7,3478
+13.jpg,CBC,colab_llm,0.0011,0.3646,0.0002,0.0002,74.19,74.5572,20,6,8,2848

@@ -1,0 +1,16 @@
+{
+  "lab_case_count": 100,
+  "qa_eval_count": 100,
+  "total_records": 200,
+  "lab_context_path": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\case_context_100.jsonl",
+  "question_context_path": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\question_context_100.jsonl",
+  "kg_context_path": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\kg_context_200.jsonl",
+  "source_input": "C:\\Users\\ADMIN\\Downloads\\output.jsonl",
+  "records_without_book_evidence": [
+    "36.jpg",
+    "40.jpg",
+    "52.jpg",
+    "69.jpg"
+  ],
+  "note": "Rebuilt lab_case context from corrected C:/Users/ADMIN/Downloads/output.jsonl. Reasoning KG from book/rules does not need rebuild."
+}

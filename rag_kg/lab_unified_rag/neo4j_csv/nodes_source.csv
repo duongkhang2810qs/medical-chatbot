@@ -1,0 +1,5 @@
+﻿id,name,kind
+src_clinical_hematology_pdf,clinical_hematology.pdf,pdf_book
+src_harrison_pdf,harrison.pdf,pdf_book
+src_henry_pdf,henry.pdf,pdf_book
+src_tietz_pdf,tietz.pdf,pdf_book

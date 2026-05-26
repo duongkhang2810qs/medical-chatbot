@@ -218,3 +218,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+__pycache__/
+*.pyc
+.env
+
+lab_unified_rag/data/raw_sources/
+lab_unified_rag/data/outputs/final_output.jsonl
+lab_unified_rag/data/outputs/failed_cases.jsonl
+lab_unified_rag/data/outputs/ablation/
+lab_unified_rag/data/outputs/runtime_profile/
+lab_unified_rag/data/outputs/retrieval_eval/
+lab_unified_rag/data/outputs/response_quality_eval/
+
+*.png
+*.pdf

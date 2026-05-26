@@ -1,0 +1,62 @@
+{
+  "metric_definitions": {
+    "Rel@5": "Trung bình điểm liên quan của 5 chunk được truy xuất: (s1+s2+s3+s4+s5)/5",
+    "Hit@5": "1 nếu tồn tại ít nhất một chunk có điểm 2, ngược lại 0; báo cáo là trung bình theo case",
+    "Cite@5": "1 nếu tồn tại ít nhất một chunk đủ dùng làm nguồn trích dẫn, ngược lại 0; báo cáo là trung bình theo case"
+  },
+  "case_metrics": [
+    {
+      "case_id": "1.jpg",
+      "eval_panel": "CBC",
+      "Rel@5": 0.8,
+      "Hit@5": 0,
+      "Cite@5": 0
+    },
+    {
+      "case_id": "2.jpg",
+      "eval_panel": "CBC",
+      "Rel@5": 1.0,
+      "Hit@5": 0,
+      "Cite@5": 0
+    },
+    {
+      "case_id": "25.jpg",
+      "eval_panel": "BIOCHEM",
+      "Rel@5": 0.6,
+      "Hit@5": 0,
+      "Cite@5": 0
+    }
+  ],
+  "summary": [
+    {
+      "Panel": "CBC",
+      "panel_key": "CBC",
+      "Số case": 2,
+      "Rel@5": 0.9,
+      "Hit@5": 0.0,
+      "Cite@5": 0.0
+    },
+    {
+      "Panel": "Sinh hóa",
+      "panel_key": "BIOCHEM",
+      "Số case": 1,
+      "Rel@5": 0.6,
+      "Hit@5": 0.0,
+      "Cite@5": 0.0
+    },
+    {
+      "Panel": "Trung bình",
+      "panel_key": "ALL",
+      "Số case": 3,
+      "Rel@5": 0.8,
+      "Hit@5": 0.0,
+      "Cite@5": 0.0
+    }
+  ],
+  "outputs": {
+    "details_csv": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\retrieval_eval\\retrieval_eval_details.csv",
+    "details_jsonl": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\retrieval_eval\\retrieval_eval_details.jsonl",
+    "summary_csv": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\retrieval_eval\\retrieval_eval_summary.csv",
+    "summary_json": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\retrieval_eval\\retrieval_eval_summary.json"
+  }
+}

@@ -1,0 +1,703 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "description": "Biochemistry pattern knowledge base - static fallback for RAG chatbot",
+    "tests_covered": ["UREA","CREATININE","AST","ALT","GLUCOSE","HBA1C","CHOLESTEROL","TRIGLYCERIDE","HDL_C","LDL_C","NA","K","CL","CALCIUM_ION","PTH","ALBUMIN","FERRITIN","URIC_ACID","CK_MB","TROPONIN_T","PRO_BNP"],
+    "language": "vi",
+    "sources": ["Henry's Clinical Diagnosis and Management by Laboratory Methods", "Tietz Fundamentals of Clinical Chemistry and Molecular Diagnostics"]
+  },
+
+  "single_test_patterns": {
+
+    "UREA": {
+      "display_name": "Urê máu (Blood Urea Nitrogen)",
+      "unit": "mmol/L",
+      "ref_range": "1.7 – 8.3 mmol/L",
+      "high": {
+        "label": "Tăng urê máu (Azotemia)",
+        "severity_thresholds": {
+          "mild": [8.4, 14.0],
+          "moderate": [14.1, 25.0],
+          "severe": [25.1, null]
+        },
+        "clinical_meaning": "Urê là sản phẩm thoái hóa protein, được thận lọc và bài tiết. Tăng urê phản ánh giảm chức năng lọc cầu thận hoặc tăng sản xuất từ dị hóa protein.",
+        "causes": {
+          "prerenal": ["Mất nước, giảm thể tích tuần hoàn", "Suy tim sung huyết", "Sốc, nhiễm trùng huyết", "Xuất huyết tiêu hóa cao (dị hóa máu)"],
+          "renal": ["Suy thận cấp (AKI)", "Bệnh thận mạn (CKD)", "Viêm cầu thận, viêm thận-bể thận"],
+          "postrenal": ["Tắc nghẽn đường niệu (sỏi, u tiền liệt tuyến)"],
+          "other": ["Chế độ ăn nhiều protein", "Tăng dị hóa cơ (sốt, nhiễm trùng nặng, chấn thương)"]
+        },
+        "associated_tests": ["CREATININE", "K", "NA", "CALCIUM_ION"],
+        "key_ratio": "Tỉ lệ UREA/CREATININE (mmol:mmol) > 100 gợi ý prerenal; < 60 gợi ý renal.",
+        "clinical_flags": ["Nếu UREA > 25 mmol/L + CREATININE cao: cần xem xét lọc máu", "Nếu K > 6.0: nguy cơ rối loạn nhịp tim"]
+      },
+      "low": {
+        "label": "Giảm urê máu",
+        "clinical_meaning": "Ít gặp về mặt lâm sàng.",
+        "causes": ["Suy gan nặng (giảm tổng hợp urê)", "Chế độ ăn thiếu protein", "Pha loãng (truyền dịch nhiều)", "Hội chứng tăng bài tiết ADH không thích hợp (SIADH)"]
+      }
+    },
+
+    "CREATININE": {
+      "display_name": "Creatinine máu",
+      "unit": "µmol/L",
+      "ref_range": "62 – 106 µmol/L (nam); 44 – 80 µmol/L (nữ) — thường dùng chung 62–106",
+      "high": {
+        "label": "Tăng creatinine máu",
+        "severity_thresholds": {
+          "mild": [107, 177],
+          "moderate": [178, 354],
+          "severe": [355, null]
+        },
+        "clinical_meaning": "Creatinine là marker tin cậy hơn urê để đánh giá GFR. Tăng creatinine gợi ý giảm lọc cầu thận thực sự, ít bị ảnh hưởng bởi chế độ ăn hơn urê.",
+        "causes": {
+          "prerenal": ["Mất nước nặng, shock", "Suy tim"],
+          "renal": ["AKI mọi nguyên nhân", "CKD", "Viêm cầu thận, bệnh mạch máu thận", "Nephrotoxin (NSAID, aminoglycoside, contrast)"],
+          "postrenal": ["Tắc nghẽn đường tiểu hai bên hoặc một bên thận còn lại"],
+          "other": ["Tiêu cơ vân (Rhabdomyolysis) — CK thường rất cao đi kèm"]
+        },
+        "associated_tests": ["UREA", "K", "ALBUMIN"],
+        "ckd_staging_note": "Ước tính eGFR cần thêm tuổi, giới, chủng tộc (CKD-EPI hoặc MDRD). Creatinine đơn thuần không đủ để phân loại CKD.",
+        "clinical_flags": ["Creatinine > 354 µmol/L (CKD stage ≥ 4): cân nhắc hội chẩn thận học", "Tăng nhanh > 26 µmol/L trong 48h = tiêu chuẩn AKI KDIGO"]
+      },
+      "low": {
+        "label": "Giảm creatinine",
+        "causes": ["Giảm khối cơ (suy dinh dưỡng, tuổi già, nằm lâu)", "Thai kỳ (tăng GFR sinh lý)", "Bệnh gan nặng (giảm sản xuất creatine)"]
+      }
+    },
+
+    "AST": {
+      "display_name": "AST (Aspartate aminotransferase / GOT)",
+      "unit": "U/L",
+      "ref_range": "≤ 37 U/L",
+      "high": {
+        "label": "Tăng AST",
+        "severity_thresholds": {
+          "mild_1_3x": [38, 111],
+          "moderate_3_10x": [112, 370],
+          "severe_10x_plus": [371, null]
+        },
+        "clinical_meaning": "AST có trong nhiều mô: gan, cơ tim, cơ xương, thận. Tăng AST đơn độc có thể do nguồn ngoài gan; cần kết hợp với ALT và bối cảnh lâm sàng.",
+        "causes": {
+          "hepatic": ["Viêm gan virus cấp (A, B, C)", "Viêm gan do thuốc/độc chất (paracetamol, isoniazid)", "Viêm gan do rượu — AST/ALT > 2 gợi ý alcoholic hepatitis", "Xơ gan, bệnh gan mạn"],
+          "cardiac": ["Nhồi máu cơ tim (tăng muộn hơn Troponin)", "Viêm cơ tim"],
+          "muscle": ["Tiêu cơ vân (rhabdomyolysis)", "Chấn thương cơ, phẫu thuật", "Viêm đa cơ/dermatomyositis"],
+          "other": ["Thiếu máu tan huyết", "Tắc mật nặng", "Thuyên tắc phổi nặng"]
+        },
+        "ast_alt_ratio_interpretation": {
+          "ratio_above_2": "Gợi ý viêm gan do rượu hoặc xơ gan",
+          "ratio_above_3": "Rất gợi ý bệnh gan do rượu",
+          "ratio_below_1": "Gợi ý bệnh gan do virus hoặc thoái hóa mỡ không do rượu"
+        },
+        "associated_tests": ["ALT", "CK_MB", "TROPONIN_T", "BILIRUBIN"],
+        "clinical_flags": ["AST > 10x ULN (>370 U/L): cần loại trừ ngay viêm gan cấp do virus hoặc toxic hepatitis", "AST tăng + CK_MB cao: xem xét nguồn tim hoặc cơ"]
+      }
+    },
+
+    "ALT": {
+      "display_name": "ALT (Alanine aminotransferase / GPT)",
+      "unit": "U/L",
+      "ref_range": "≤ 41 U/L (nam); ≤ 31 U/L (nữ) — thường dùng ≤ 41",
+      "high": {
+        "label": "Tăng ALT",
+        "severity_thresholds": {
+          "mild_1_3x": [42, 123],
+          "moderate_3_10x": [124, 410],
+          "severe_10x_plus": [411, null]
+        },
+        "clinical_meaning": "ALT là enzyme đặc hiệu gan hơn AST. Tăng ALT chủ yếu gợi ý tổn thương tế bào gan (hepatocellular). ALT có thể tăng rất cao trong viêm gan cấp do virus.",
+        "causes": ["Viêm gan virus (A, B, C, E)", "Viêm gan do thuốc/độc chất", "Gan nhiễm mỡ (NAFLD/NASH)", "Viêm gan do rượu (thường AST > ALT)", "Bệnh gan tự miễn", "Tắc mật kéo dài", "Thiếu máu gan (shock liver)"],
+        "ast_alt_ratio_note": "Xem chi tiết tỉ lệ AST/ALT ở mục AST.",
+        "associated_tests": ["AST", "GGT", "BILIRUBIN", "ALBUMIN"],
+        "clinical_flags": ["ALT > 10x ULN: cần nhập viện và loại trừ viêm gan cấp nặng", "ALT tăng mạn tính > 6 tháng: nghi ngờ bệnh gan mạn, cần sinh thiết hoặc elastography"]
+      }
+    },
+
+    "GLUCOSE": {
+      "display_name": "Glucose máu đói (FPG)",
+      "unit": "mmol/L",
+      "ref_range": "3.9 – 6.4 mmol/L (lúc đói)",
+      "high": {
+        "label": "Tăng đường huyết",
+        "severity_thresholds": {
+          "impaired_fasting": [6.1, 6.9],
+          "diabetes_diagnosis": [7.0, 13.9],
+          "hyperglycemic_crisis_risk": [14.0, null]
+        },
+        "clinical_meaning": "Tăng glucose máu đói phản ánh suy giảm tiết insulin hoặc kháng insulin. Kết hợp HbA1c để đánh giá kiểm soát đường huyết dài hạn.",
+        "causes": {
+          "diabetic": ["Đái tháo đường type 1 (thiếu insulin tuyệt đối)", "Đái tháo đường type 2 (kháng insulin + suy giảm tiết insulin)", "Đái tháo đường thai kỳ"],
+          "secondary": ["Viêm tụy mạn, ung thư tụy", "Hội chứng Cushing (tăng cortisol)", "Bệnh to đầu chi (acromegaly)", "Pheochromocytoma"],
+          "stress_induced": ["Nhồi máu cơ tim, đột quỵ, chấn thương, nhiễm trùng nặng — glucose có thể tăng thoáng qua"],
+          "drug_induced": ["Corticosteroid, thiazide, antipsychotic thế hệ 2"]
+        },
+        "associated_tests": ["HBA1C", "TRIGLYCERIDE", "UREA", "CREATININE"],
+        "clinical_flags": ["Glucose > 14 mmol/L + HbA1c > 9%: kiểm soát kém, nguy cơ biến chứng cao", "Glucose > 14 + buồn nôn, nôn, thở nhanh: loại trừ DKA (type 1) hoặc HHS (type 2)"]
+      },
+      "low": {
+        "label": "Hạ đường huyết",
+        "threshold": "< 3.9 mmol/L (lâm sàng < 3.0 mmol/L là cấp cứu)",
+        "causes": ["Quá liều insulin hoặc thuốc hạ đường huyết uống", "Bỏ bữa sau tiêm insulin", "U tế bào beta tụy (insulinoma)", "Suy thượng thận, suy gan nặng", "Hạ đường huyết phản ứng sau ăn"],
+        "clinical_flags": ["Glucose < 3.0 mmol/L: có thể gây rối loạn ý thức, co giật — cần xử trí ngay"]
+      }
+    },
+
+    "HBA1C": {
+      "display_name": "HbA1c (Hemoglobin A1c)",
+      "unit": "%",
+      "ref_range": "4.8 – 6.8%",
+      "high": {
+        "label": "HbA1c tăng",
+        "severity_thresholds": {
+          "prediabetes_who": [5.7, 6.4],
+          "diabetes_diagnosis": [6.5, 8.9],
+          "poor_control": [9.0, 11.9],
+          "very_poor_control": [12.0, null]
+        },
+        "clinical_meaning": "HbA1c phản ánh mức đường huyết trung bình trong 2–3 tháng trước. Là tiêu chuẩn vàng theo dõi kiểm soát ĐTĐ dài hạn. Mỗi 1% HbA1c tương đương ~1.6 mmol/L glucose trung bình.",
+        "causes": ["Đái tháo đường không được điều trị hoặc kiểm soát kém", "Tiền đái tháo đường nếu 5.7–6.4%"],
+        "interpretation_guide": {
+          "target_general": "< 7.0% (ADA) hoặc < 6.5% (IDF)",
+          "target_elderly_high_risk": "< 8.0%",
+          "eag_formula": "eAG (mmol/L) = (HbA1c × 1.6) - 2.6"
+        },
+        "false_high_causes": ["Thiếu máu thiếu sắt", "Tăng urê máu (carbamylation)", "Nghiện rượu"],
+        "false_low_causes": ["Tan huyết", "Mất máu cấp", "Hemoglobin bất thường (sickle cell)", "Thai kỳ"],
+        "associated_tests": ["GLUCOSE", "TRIGLYCERIDE", "CREATININE", "CHOLESTEROL"],
+        "clinical_flags": ["HbA1c ≥ 9%: kiểm soát kém, cần đánh giá lại phác đồ", "HbA1c ≥ 12%: nguy cơ biến chứng cấp tính (DKA, nhiễm trùng nặng, tổn thương cơ quan đích)"]
+      }
+    },
+
+    "CHOLESTEROL": {
+      "display_name": "Cholesterol toàn phần",
+      "unit": "mmol/L",
+      "ref_range": "3.9 – 5.5 mmol/L (desirable < 5.2)",
+      "high": {
+        "label": "Tăng cholesterol máu (Hypercholesterolemia)",
+        "severity_thresholds": {
+          "borderline": [5.2, 6.2],
+          "high": [6.2, 7.7],
+          "very_high": [7.8, null]
+        },
+        "clinical_meaning": "Cholesterol toàn phần bao gồm HDL-C, LDL-C và VLDL-C. Tăng cholesterol là yếu tố nguy cơ tim mạch chính, đặc biệt khi LDL-C tăng và HDL-C thấp.",
+        "causes": ["Rối loạn lipid máu nguyên phát (familial hypercholesterolemia)", "Suy giáp (hypothyroidism)", "Hội chứng thận hư (nephrotic syndrome)", "Đái tháo đường kiểm soát kém", "Gan ứ mật (cholestasis)", "Béo phì", "Chế độ ăn giàu chất béo bão hòa"],
+        "associated_tests": ["LDL_C", "HDL_C", "TRIGLYCERIDE", "GLUCOSE", "TSH"],
+        "clinical_flags": ["Cholesterol > 7.8 mmol/L + LDL-C cao: cân nhắc familial hypercholesterolemia", "Kết hợp với triglyceride cao + HDL-C thấp: hội chứng chuyển hóa"]
+      },
+      "low": {
+        "label": "Giảm cholesterol",
+        "causes": ["Suy dinh dưỡng nặng, kém hấp thu", "Bệnh gan nặng, xơ gan giai đoạn cuối", "Cường giáp (hyperthyroidism)", "Nhiễm trùng huyết nặng"]
+      }
+    },
+
+    "TRIGLYCERIDE": {
+      "display_name": "Triglyceride (TG)",
+      "unit": "mmol/L",
+      "ref_range": "0.5 – 1.9 mmol/L (optimal < 1.7)",
+      "high": {
+        "label": "Tăng triglyceride máu (Hypertriglyceridemia)",
+        "severity_thresholds": {
+          "borderline": [1.7, 2.25],
+          "high": [2.26, 5.65],
+          "very_high": [5.65, 11.29],
+          "severe_pancreatitis_risk": [11.3, null]
+        },
+        "clinical_meaning": "Triglyceride cao là yếu tố nguy cơ tim mạch và ở mức rất cao (>11.3 mmol/L) là nguy cơ viêm tụy cấp.",
+        "causes": {
+          "primary": ["Tăng triglyceride máu gia đình (familial hypertriglyceridemia)", "Tăng chylomicron máu gia đình"],
+          "secondary": ["Đái tháo đường kiểm soát kém", "Béo phì, hội chứng chuyển hóa", "Suy giáp", "Hội chứng thận hư", "Rượu", "Bệnh thận mạn"],
+          "drug_induced": ["Corticosteroid, estrogen, isotretinoin, beta-blocker, thiazide, antipsychotic thế hệ 2"]
+        },
+        "associated_tests": ["CHOLESTEROL", "HDL_C", "LDL_C", "GLUCOSE", "HBA1C"],
+        "clinical_flags": ["TG > 5.6 mmol/L: nguy cơ viêm tụy, không tính được LDL-C bằng Friedewald", "TG > 11.3 mmol/L: nguy cơ viêm tụy cấp rất cao — cần nhập viện"]
+      },
+      "low": {
+        "label": "Giảm triglyceride",
+        "causes": ["Suy dinh dưỡng, kém hấp thu mỡ", "Cường giáp", "Thiếu lipoprotein bẩm sinh"]
+      }
+    },
+
+    "HDL_C": {
+      "display_name": "HDL-C (High Density Lipoprotein Cholesterol)",
+      "unit": "mmol/L",
+      "ref_range": "≥ 1.0 mmol/L (nam); ≥ 1.3 mmol/L (nữ) — thường dùng ≥ 0.9",
+      "low": {
+        "label": "Giảm HDL-C (HDL thấp — yếu tố nguy cơ tim mạch ĐỘC LẬP)",
+        "thresholds": {
+          "low_risk_male": 1.0,
+          "low_risk_female": 1.3,
+          "very_low": 0.7
+        },
+        "clinical_meaning": "HDL-C thấp làm giảm khả năng vận chuyển cholesterol ngược về gan (reverse cholesterol transport), tăng nguy cơ xơ vữa động mạch.",
+        "causes": ["Hút thuốc lá", "Béo phì, ít vận động", "Tăng triglyceride (mối quan hệ nghịch)", "Đái tháo đường type 2", "Beta-blocker, progestin, steroid đồng hóa", "Di truyền (Tangier disease, hypoalphalipoproteinemia)"],
+        "cardiovascular_risk_note": "HDL < 1.0 mmol/L ở nam, < 1.3 mmol/L ở nữ: yếu tố nguy cơ tim mạch theo ACC/AHA.",
+        "associated_tests": ["TRIGLYCERIDE", "LDL_C", "CHOLESTEROL", "GLUCOSE"]
+      },
+      "high": {
+        "label": "Tăng HDL-C",
+        "note": "HDL cao thường được coi là bảo vệ tim mạch. Hiếm khi cần lo ngại trừ trường hợp rất cao (> 2.6 mmol/L) do đột biến CETP.",
+        "causes_protective": ["Vận động thể lực thường xuyên", "Uống rượu điều độ (không khuyến khích)", "Di truyền"]
+      }
+    },
+
+    "LDL_C": {
+      "display_name": "LDL-C (Low Density Lipoprotein Cholesterol)",
+      "unit": "mmol/L",
+      "ref_range": "≤ 3.4 mmol/L (optimal < 2.6 cho nguy cơ trung bình; < 1.8 cho bệnh tim mạch có sẵn)",
+      "high": {
+        "label": "Tăng LDL-C",
+        "severity_thresholds": {
+          "borderline": [3.4, 4.1],
+          "high": [4.1, 4.9],
+          "very_high": [4.9, null]
+        },
+        "clinical_meaning": "LDL-C là lipoprotein chính vận chuyển cholesterol đến mô, là yếu tố nguy cơ xơ vữa động mạch quan trọng nhất có thể điều chỉnh được.",
+        "friedewald_formula": "LDL-C = Cholesterol − HDL-C − (TG/2.2). Không áp dụng khi TG > 4.5 mmol/L.",
+        "causes": ["Di truyền (familial hypercholesterolemia — LDL ≥ 4.9)", "Chế độ ăn giàu chất béo bão hòa và trans fat", "Suy giáp", "Hội chứng thận hư", "Đái tháo đường"],
+        "treatment_targets": {
+          "very_high_risk": "< 1.4 mmol/L (ESC 2019)",
+          "high_risk": "< 1.8 mmol/L",
+          "moderate_risk": "< 2.6 mmol/L",
+          "low_risk": "< 3.0 mmol/L"
+        },
+        "associated_tests": ["CHOLESTEROL", "HDL_C", "TRIGLYCERIDE"],
+        "clinical_flags": ["LDL > 4.9 mmol/L + trẻ tuổi: loại trừ familial hypercholesterolemia"]
+      }
+    },
+
+    "NA": {
+      "display_name": "Natri máu (Sodium)",
+      "unit": "mmol/L",
+      "ref_range": "133 – 147 mmol/L",
+      "high": {
+        "label": "Tăng natri máu (Hypernatremia)",
+        "threshold": "> 147 mmol/L",
+        "severity": {"mild": [148,155], "severe": [156, null]},
+        "clinical_meaning": "Hypernatremia hầu hết do mất nước tự do hoặc không uống đủ nước, phản ánh thiếu nước tương đối so với natri.",
+        "causes": ["Mất nước qua da (sốt cao, bỏng), phổi (thở nhanh)", "Đái tháo nhạt trung ương hoặc thận (thiếu ADH hoặc kháng ADH)", "Tiêu chảy thẩm thấu (dùng lactulose, mannitol)", "Truyền dung dịch ưu trương"],
+        "clinical_flags": ["Na > 155 mmol/L hoặc tăng nhanh: co rút tế bào não, co giật, hôn mê"]
+      },
+      "low": {
+        "label": "Hạ natri máu (Hyponatremia)",
+        "threshold": "< 133 mmol/L",
+        "severity": {"mild": [130,132], "moderate": [125,129], "severe_symptomatic": [null, 124]},
+        "clinical_meaning": "Hyponatremia là rối loạn điện giải thường gặp nhất. Cần phân loại theo osmolality và thể tích.",
+        "causes": {
+          "hypovolemic": ["Mất qua thận: dùng lợi tiểu, suy thượng thận", "Mất ngoài thận: nôn, tiêu chảy, bỏng"],
+          "euvolemic": ["SIADH (do thuốc, u phổi, bệnh TKTW, nhiễm trùng)", "Suy giáp, suy thượng thận"],
+          "hypervolemic": ["Suy tim sung huyết", "Xơ gan cổ trướng", "Hội chứng thận hư"]
+        },
+        "associated_tests": ["K", "UREA", "CREATININE"],
+        "clinical_flags": ["Na < 125 mmol/L hoặc có triệu chứng TKTW: cần xử trí thận trọng, tránh tăng Na quá nhanh (< 10 mmol/L/ngày) để tránh osmotic demyelination"]
+      }
+    },
+
+    "K": {
+      "display_name": "Kali máu (Potassium)",
+      "unit": "mmol/L",
+      "ref_range": "3.4 – 4.5 mmol/L",
+      "high": {
+        "label": "Tăng kali máu (Hyperkalemia)",
+        "severity_thresholds": {
+          "mild": [4.6, 5.5],
+          "moderate": [5.6, 6.4],
+          "severe": [6.5, null]
+        },
+        "clinical_meaning": "Hyperkalemia ảnh hưởng điện thế màng tế bào cơ tim, gây rối loạn nhịp nghiêm trọng. Cần loại trừ giả tăng (tan máu mẫu, tăng tiểu cầu) trước khi xử trí.",
+        "causes": ["Suy thận (AKI, CKD stage 4-5 — nguyên nhân phổ biến nhất)", "Suy thượng thận (thiếu aldosterone)", "Toan chuyển hóa (dịch chuyển K ra ngoài tế bào)", "Thuốc: ACE inhibitor, ARB, spironolactone, heparin, NSAID", "Tiêu cơ vân, tan huyết, hoại tử mô lớn"],
+        "ecg_changes": "K > 5.5: T nhọn cao; K > 6.5: PR kéo dài, QRS rộng; K > 7: hình sine wave — cấp cứu tim mạch",
+        "associated_tests": ["UREA", "CREATININE", "NA", "HCO3"],
+        "clinical_flags": ["K > 6.0 mmol/L: nguy cơ rối loạn nhịp cao, cần ECG ngay", "K > 6.5 + thay đổi ECG: cấp cứu nội khoa"]
+      },
+      "low": {
+        "label": "Hạ kali máu (Hypokalemia)",
+        "severity_thresholds": {
+          "mild": [3.0, 3.4],
+          "moderate": [2.5, 2.9],
+          "severe": [null, 2.4]
+        },
+        "clinical_meaning": "Hypokalemia gây yếu cơ, táo bón, rối loạn nhịp tim.",
+        "causes": ["Lợi tiểu (thiazide, furosemide)", "Nôn mửa, tiêu chảy kéo dài", "Kiềm chuyển hóa (dịch chuyển K vào tế bào)", "Cường aldosterone nguyên phát (Conn syndrome)", "Hội chứng Cushing", "Hypomagnesemia đồng mắc"],
+        "clinical_flags": ["K < 3.0: nguy cơ rối loạn nhịp, yếu cơ", "K < 2.5: có thể gây liệt cơ, suy hô hấp"]
+      }
+    },
+
+    "CL": {
+      "display_name": "Clo máu (Chloride)",
+      "unit": "mmol/L",
+      "ref_range": "94 – 111 mmol/L",
+      "high": {
+        "label": "Tăng clo máu (Hyperchloremia)",
+        "causes": ["Toan chuyển hóa tăng clo (tiêu chảy, toan ống thận, truyền NaCl 0.9% quá nhiều)", "Mất HCO3 qua thận hoặc tiêu hóa", "Tăng natri máu đi kèm"],
+        "note": "Thường diễn giải cùng với Anion Gap và HCO3."
+      },
+      "low": {
+        "label": "Giảm clo máu (Hypochloremia)",
+        "causes": ["Nôn mửa (mất HCl)", "Kiềm chuyển hóa", "Lợi tiểu quai (furosemide)", "Hội chứng Bartter/Gitelman", "Tăng ADH (SIADH)"]
+      }
+    },
+
+    "CALCIUM_ION": {
+      "display_name": "Canxi ion hóa (Ionized Calcium / Ca²⁺)",
+      "unit": "mmol/L",
+      "ref_range": "1.10 – 1.40 mmol/L",
+      "high": {
+        "label": "Tăng canxi ion hóa (Hypercalcemia)",
+        "severity_thresholds": {
+          "mild": [1.41, 1.60],
+          "moderate_severe": [1.61, null]
+        },
+        "clinical_meaning": "Canxi ion hóa là dạng hoạt động sinh học, chính xác hơn canxi toàn phần (bị ảnh hưởng bởi albumin).",
+        "causes": {
+          "pth_related": ["Cường cận giáp nguyên phát (PTH cao — adenoma tuyến cận giáp)", "Cường cận giáp thứ phát sau suy thận (PTH cao do giảm Ca trong CKD)"],
+          "malignancy": ["Ung thư di căn xương (ung thư vú, phổi, prostate)", "U tủy (myeloma)", "Ung thư giải phóng PTHrP"],
+          "other": ["Sarcoidosis, lao (tăng calcitriol)", "Cường giáp", "Ngộ độc vitamin D hoặc A", "Thiazide diuretic", "Bất động kéo dài"]
+        },
+        "associated_tests": ["PTH", "ALBUMIN", "CREATININE"],
+        "clinical_flags": ["Ca ion > 1.75 mmol/L hoặc Ca toàn phần > 3.5 mmol/L: hypercalcemic crisis — nôn, mất ý thức, cần xử trí cấp"]
+      },
+      "low": {
+        "label": "Giảm canxi ion hóa (Hypocalcemia)",
+        "causes": ["Suy cận giáp (sau phẫu thuật tuyến giáp/cận giáp)", "Thiếu vitamin D", "CKD (giảm hydroxylation vitamin D)", "Hypomagnesemia", "Viêm tụy cấp (xà phòng hóa mỡ)", "Kiềm hô hấp cấp (tăng gắn Ca với albumin)", "Truyền máu quá nhiều (citrate)"],
+        "associated_tests": ["PTH", "ALBUMIN", "MAGNESIUM"],
+        "clinical_flags": ["Ca ion < 0.8 mmol/L: Trousseau, Chvostek, co giật, loạn nhịp tim"]
+      }
+    },
+
+    "PTH": {
+      "display_name": "PTH (Parathyroid Hormone — Hormon cận giáp)",
+      "unit": "pg/mL hoặc pmol/L",
+      "ref_range": "Phụ thuộc phòng xét nghiệm — thường 10–65 pg/mL hoặc 1.1–6.8 pmol/L",
+      "interpretation_note": "PTH phải luôn diễn giải kết hợp với canxi ion hóa.",
+      "combined_interpretation": {
+        "high_PTH_high_Ca": "Cường cận giáp nguyên phát (adenoma hoặc hyperplasia) — nguyên nhân phổ biến nhất gây tăng Ca có triệu chứng",
+        "high_PTH_low_Ca": "Cường cận giáp thứ phát: suy thận mạn, thiếu vitamin D — phản ứng bù của tuyến cận giáp",
+        "low_PTH_high_Ca": "Tăng Ca không do PTH: ung thư (PTHrP), vitamin D toxicity, granulomatous disease",
+        "low_PTH_low_Ca": "Suy cận giáp: sau phẫu thuật, tự miễn, di truyền"
+      },
+      "clinical_flags": ["PTH rất cao + Ca ion cao: cần imaging (siêu âm, sestamibi) tìm adenoma", "PTH rất cao + Ca thấp ở CKD: cần điều trị cường cận giáp thứ phát để bảo vệ xương"]
+    },
+
+    "ALBUMIN": {
+      "display_name": "Albumin máu",
+      "unit": "g/L",
+      "ref_range": "34 – 48 g/L",
+      "low": {
+        "label": "Giảm albumin máu (Hypoalbuminemia)",
+        "severity_thresholds": {
+          "mild": [30, 34],
+          "moderate": [25, 29],
+          "severe": [null, 24]
+        },
+        "clinical_meaning": "Albumin là protein huyết tương chính, đánh dấu tình trạng dinh dưỡng, chức năng gan tổng hợp và mất protein. Albumin thấp làm giảm áp lực keo, gây phù.",
+        "causes": {
+          "decreased_synthesis": ["Bệnh gan mạn, xơ gan (giảm tổng hợp gan)", "Suy dinh dưỡng nặng, kém hấp thu"],
+          "increased_loss": ["Hội chứng thận hư (mất qua nước tiểu — protein niệu > 3.5g/ngày)", "Bệnh lý ruột mất protein (protein-losing enteropathy)", "Bỏng nặng"],
+          "increased_catabolism_or_dilution": ["Nhiễm trùng huyết, viêm cấp tính (acute phase protein — albumin giảm)", "Truyền dịch nhiều (hemodilution)", "Thai kỳ"]
+        },
+        "calcium_correction_note": "Canxi toàn phần cần hiệu chỉnh khi albumin thấp: Ca hiệu chỉnh = Ca đo + 0.02 × (40 − Albumin). Ưu tiên đo canxi ion hóa.",
+        "associated_tests": ["CREATININE", "UREA", "CALCIUM_ION", "LFT"],
+        "clinical_flags": ["Albumin < 25 g/L: dấu hiệu suy dinh dưỡng hoặc bệnh nặng, tiên lượng kém", "Albumin thấp + phù + protein niệu cao: hội chứng thận hư"]
+      },
+      "high": {
+        "label": "Tăng albumin",
+        "cause": "Chỉ gặp trong mất nước (dehydration) — do cô đặc máu. Không có ý nghĩa bệnh lý thực sự."
+      }
+    },
+
+    "FERRITIN": {
+      "display_name": "Ferritin máu",
+      "unit": "ng/mL (µg/L)",
+      "ref_range": "25 – 275 ng/mL (nam); 11 – 160 ng/mL (nữ) — thường dùng 25–275",
+      "high": {
+        "label": "Tăng ferritin máu",
+        "severity_note": "Ferritin > 1000 ng/mL: nghi ngờ quá tải sắt hoặc bệnh lý viêm/ác tính nặng",
+        "clinical_meaning": "Ferritin vừa là protein lưu trữ sắt vừa là reactant pha cấp (acute phase reactant). Tăng ferritin không đồng nghĩa với thừa sắt nếu có viêm đồng thời.",
+        "causes": {
+          "iron_overload": ["Hemochromatosis nguyên phát (HFE mutation)", "Truyền máu nhiều lần", "Hemolytic anemia mạn", "Thalassemia"],
+          "inflammatory_reactive": ["Nhiễm trùng cấp tính hoặc mạn", "Bệnh hệ thống (SLE, RA, Crohn)", "Bệnh Still người lớn (ferritin > 10,000 là đặc trưng)", "Ung thư (lymphoma, leukemia, ung thư gan)"],
+          "liver_disease": ["Viêm gan cấp, xơ gan, NAFLD — gan giải phóng ferritin khi tế bào gan bị tổn thương"],
+          "metabolic": ["Hội chứng chuyển hóa, béo phì, ĐTĐ type 2", "Nghiện rượu"]
+        },
+        "associated_tests": ["AST", "ALT", "URIC_ACID", "CREATININE", "CRP"],
+        "clinical_flags": ["Ferritin > 1000 + AST/ALT cao: bệnh gan có thể là nguồn", "Ferritin cực cao (>10,000) + sốt kéo dài: loại trừ Hemophagocytic lymphohistiocytosis (HLH)"]
+      },
+      "low": {
+        "label": "Giảm ferritin máu — chỉ số đặc hiệu nhất cho thiếu sắt",
+        "threshold": "< 12 ng/mL: chắc chắn thiếu sắt; < 30 ng/mL: có thể thiếu sắt (đặc biệt có viêm)",
+        "clinical_meaning": "Ferritin thấp là dấu hiệu duy nhất, đặc hiệu và sớm nhất của thiếu sắt dự trữ.",
+        "causes": ["Chảy máu mạn tính (kinh nguyệt nhiều, xuất huyết tiêu hóa)", "Chế độ ăn thiếu sắt", "Kém hấp thu sắt (Celiac, sau phẫu thuật dạ dày)", "Tăng nhu cầu sắt (thai kỳ, trẻ nhỏ)"],
+        "associated_tests": ["SERUM_IRON", "TIBC", "HGB", "MCV"]
+      }
+    },
+
+    "URIC_ACID": {
+      "display_name": "Acid Uric máu",
+      "unit": "µmol/L",
+      "ref_range": "202 – 416 µmol/L (nam); 137 – 363 µmol/L (nữ) — thường dùng 202–416",
+      "high": {
+        "label": "Tăng acid uric máu (Hyperuricemia)",
+        "severity_thresholds": {
+          "asymptomatic": [417, 535],
+          "gout_risk_high": [536, 714],
+          "severe": [715, null]
+        },
+        "clinical_meaning": "Uric acid là sản phẩm thoái hóa purine. Tăng uric acid mạn tính gây lắng đọng monosodium urate crystals ở khớp (gout) và mô mềm (tophi), có thể gây sỏi thận urate.",
+        "causes": {
+          "increased_production": ["Chế độ ăn nhiều purine (nội tạng, hải sản, thịt đỏ)", "Rượu bia (đặc biệt bia)", "Tăng dị hóa tế bào (hóa trị, tán huyết, vẩy nến nặng, nhịn ăn)", "Enzyme deficiency (Lesch-Nyhan, Kelly-Seegmiller)"],
+          "decreased_excretion": ["Suy thận mạn (giảm bài tiết qua thận — nguyên nhân phổ biến nhất)", "Thuốc lợi tiểu (thiazide, furosemide)", "Cyclosporine", "Ethambutol, pyrazinamide", "Cạnh tranh bài tiết hữu cơ: lactate (rượu), ketone (nhịn ăn, DKA)"],
+          "mixed": ["ĐTĐ, kháng insulin", "Hội chứng chuyển hóa"]
+        },
+        "associated_tests": ["CREATININE", "K", "TRIGLYCERIDE", "GLUCOSE"],
+        "clinical_flags": ["Uric acid > 535 µmol/L + đau khớp cấp: cơn gout cấp", "Uric acid rất cao (>714) + suy thận: có thể urate nephropathy"]
+      },
+      "low": {
+        "label": "Giảm acid uric",
+        "causes": ["Thuốc hạ uric (allopurinol, febuxostat)", "Cường thận bài tiết urate (hội chứng Fanconi)", "Bệnh Wilson", "Xanthine oxidase deficiency"]
+      }
+    },
+
+    "CK_MB": {
+      "display_name": "CK-MB (Creatine Kinase MB isoenzyme)",
+      "unit": "U/L",
+      "ref_range": "< 25 U/L",
+      "high": {
+        "label": "Tăng CK-MB",
+        "severity_note": "Ngưỡng chẩn đoán AMI thường CK-MB > 25 U/L hoặc > 5% CK tổng",
+        "clinical_meaning": "CK-MB là isoenzyme cơ tim của creatine kinase. Tăng trong AMI, nhưng ít đặc hiệu hơn Troponin T/I hiện đại.",
+        "kinetics_in_ami": "Tăng sau nhồi máu: 4–8 giờ. Đỉnh: 12–24 giờ. Bình thường: 48–72 giờ. (Nhanh hơn Troponin — hữu ích để phát hiện tái nhồi máu)",
+        "causes": {
+          "cardiac": ["Nhồi máu cơ tim cấp (AMI)", "Viêm cơ tim (myocarditis)", "Sau phẫu thuật tim hoặc cardioversion"],
+          "non_cardiac": ["Tiêu cơ vân (rhabdomyolysis — CK tổng rất cao)", "Bệnh cơ (myopathy, polymyositis, dystrophy)", "Sau tập luyện nặng", "Chấn thương cơ nặng", "Phẫu thuật cơ"]
+        },
+        "ck_mb_fraction_note": "Nếu CK-MB/CK tổng > 6%: gợi ý nguồn cơ tim. < 6%: có thể nguồn cơ xương.",
+        "associated_tests": ["TROPONIN_T", "AST", "LDH"],
+        "clinical_flags": ["CK-MB cao + đau ngực điển hình: loại trừ AMI bằng Troponin serial", "CK-MB cao + Troponin cao + ST elevation: STEMI — cấp cứu can thiệp"]
+      }
+    },
+
+    "TROPONIN_T": {
+      "display_name": "Troponin T tim (cTnT)",
+      "unit": "ng/L (hoặc pg/mL)",
+      "ref_range": "< 49 ng/L (99th percentile — phụ thuộc assay)",
+      "high": {
+        "label": "Tăng Troponin T",
+        "clinical_meaning": "Troponin T là biomarker tổn thương cơ tim đặc hiệu và nhạy nhất hiện nay. Bất kỳ tăng nào trên 99th percentile đều có ý nghĩa.",
+        "kinetics_in_ami": "Tăng: 3–6 giờ sau AMI. Đỉnh: 12–48 giờ. Tồn tại: 7–14 ngày. (Dài hơn CK-MB — hữu ích chẩn đoán muộn nhưng không phát hiện tái nhồi máu tốt)",
+        "causes": {
+          "type1_mi": ["Vỡ mảng xơ vữa, huyết khối ĐMV — tăng cao, mẫu rise & fall điển hình"],
+          "type2_mi_demand_supply_mismatch": ["Tăng nhu cầu: nhịp tim nhanh, tăng huyết áp nặng", "Giảm cung: thiếu máu nặng, hạ huyết áp, co thắt mạch"],
+          "non_ischemic_cardiac": ["Viêm cơ tim", "Nhồi máu phổi (PE nặng)", "Viêm màng ngoài tim", "Suy tim cấp mất bù", "Sốc các nguyên nhân", "Sau cardioversion hoặc ablation"],
+          "non_cardiac": ["Suy thận (giảm thải, false positive — kiểm tra eGFR)", "Bệnh phổi mạn nặng", "Đột quỵ, chấn thương sọ não", "Rhabdomyolysis nặng", "Nhiễm trùng huyết nặng"]
+        },
+        "ami_diagnosis_rule": "Chẩn đoán AMI: Troponin > 99th percentile + pattern rise/fall (tăng hoặc giảm ≥ 20% trong serial measurements) + triệu chứng lâm sàng/ECG.",
+        "associated_tests": ["CK_MB", "PRO_BNP", "ECG"],
+        "renal_note": "Troponin thường tăng mạn tính ở bệnh nhân CKD — cần so sánh với baseline và xem xét pattern thay đổi.",
+        "clinical_flags": ["Troponin cao + đau ngực + ST changes: STEMI/NSTEMI — kích hoạt protocol can thiệp cấp", "Troponin tăng nhẹ + suy thận: không loại trừ ACS, cần clinical judgment"]
+      }
+    },
+
+    "PRO_BNP": {
+      "display_name": "NT-proBNP (N-terminal pro-B-type Natriuretic Peptide)",
+      "unit": "pg/mL",
+      "ref_range_note": "Phụ thuộc tuổi: < 50 tuổi: < 125 pg/mL; 50–75 tuổi: < 900 pg/mL; > 75 tuổi: < 1800 pg/mL (ESC guidelines). Giá trị loại trừ suy tim: < 125 pg/mL (ngoại trú), < 300 pg/mL (cấp cứu).",
+      "high": {
+        "label": "Tăng NT-proBNP",
+        "clinical_meaning": "NT-proBNP được tiết ra khi cơ tim bị căng hoặc tổn thương (wall stress). Là biomarker chính để chẩn đoán, phân loại mức độ nặng và theo dõi điều trị suy tim.",
+        "causes": {
+          "cardiac": ["Suy tim mọi nguyên nhân (nguyên nhân phổ biến nhất)", "Hở van tim, hẹp van nặng", "Nhồi máu cơ tim cấp (có tổn thương cơ tim)", "Viêm cơ tim", "Bệnh cơ tim phì đại, hạn chế"],
+          "non_cardiac": ["Suy thận (giảm thải — thường tăng ở CKD)", "Nhồi máu phổi lớn (RV overload)", "COPD, tâm phế mãn", "Nhiễm trùng huyết", "Thiếu máu nặng", "Rung nhĩ, block nhánh", "Xơ gan cổ trướng"],
+          "physiological": ["Tuổi cao", "Béo phì thường làm giảm NT-proBNP"]
+        },
+        "esc_heart_failure_cutoffs": {
+          "acute_setting_exclude": "< 300 pg/mL: loại trừ suy tim",
+          "acute_setting_confirm_likelihood": {
+            "age_under_50": 450,
+            "age_50_to_75": 900,
+            "age_over_75": 1800
+          },
+          "outpatient_exclude": "< 125 pg/mL"
+        },
+        "associated_tests": ["TROPONIN_T", "CK_MB", "CREATININE", "ECG"],
+        "renal_note": "NT-proBNP tăng trong suy thận — giá trị ngưỡng cao hơn cần được áp dụng khi GFR < 60 mL/min.",
+        "clinical_flags": ["NT-proBNP > 5000 + khó thở cấp: suy tim cấp mất bù — cần điều trị khẩn", "NT-proBNP tăng + Troponin T tăng: tổn thương cơ tim nặng, tiên lượng xấu"]
+      },
+      "low": {
+        "label": "NT-proBNP bình thường/thấp",
+        "clinical_meaning": "Giá trị âm tính mạnh để loại trừ suy tim (<300 pg/mL trong cấp cứu; <125 pg/mL ngoại trú). Không hoàn toàn loại trừ suy tim giai đoạn sớm hoặc HFpEF nhẹ."
+      }
+    }
+  },
+
+  "pattern_combinations": [
+    {
+      "pattern_id": "renal_failure_pattern",
+      "name": "Hội chứng suy thận",
+      "required_tags": ["UREA_High", "CREATININE_High"],
+      "optional_tags": ["K_High", "NA_Low", "CALCIUM_ION_Low", "ALBUMIN_Low"],
+      "confidence_required": 2,
+      "interpretation": "Tăng đồng thời UREA và CREATININE gợi ý giảm chức năng lọc cầu thận (azotemia). Cần phân biệt AKI (tăng cấp) vs CKD (tăng mạn).",
+      "severity_escalators": {
+        "K_High": "Nguy cơ rối loạn nhịp — ưu tiên xử trí tăng kali",
+        "NA_Low": "Rối loạn điện giải đa phức tạp — cân nhắc lọc máu nếu có chỉ định",
+        "CALCIUM_ION_Low": "Gợi ý CKD mạn với rối loạn chuyển hóa canxi-phospho"
+      },
+      "next_steps": ["Kiểm tra eGFR (cần tuổi, giới)", "Phân tích nước tiểu (protein niệu, trụ niệu)", "Siêu âm thận (kích thước, tắc nghẽn)", "Theo dõi điện giải và cân bằng dịch"],
+      "sources": ["Henry's Ch.14 - Renal Function", "Tietz Ch.35 - Kidney Function"]
+    },
+    {
+      "pattern_id": "diabetic_metabolic_pattern",
+      "name": "Hội chứng đái tháo đường kiểm soát kém",
+      "required_tags": ["GLUCOSE_High", "HBA1C_High"],
+      "optional_tags": ["TRIGLYCERIDE_High", "HDL_C_Low", "CREATININE_High", "UREA_High"],
+      "confidence_required": 2,
+      "interpretation": "Glucose cao và HbA1c tăng xác nhận đái tháo đường kiểm soát kém trong 2–3 tháng qua. Kết hợp rối loạn lipid và suy thận gợi ý biến chứng chuyển hóa.",
+      "severity_escalators": {
+        "CREATININE_High": "Biến chứng thận do tiểu đường (diabetic nephropathy) cần theo dõi",
+        "TRIGLYCERIDE_High": "Rối loạn lipid máu trong bệnh cảnh ĐTĐ — tăng nguy cơ tim mạch",
+        "HDL_C_Low": "Dyslipidemia atherogenic — bộ ba: TG cao + HDL thấp + LDL nhỏ đặc"
+      },
+      "next_steps": ["HbA1c mục tiêu điều trị: < 7.0% (tùy bệnh nhân)", "Tầm soát protein niệu vi lượng (microalbuminuria)", "Tầm soát biến chứng võng mạc, thần kinh", "Điều chỉnh chế độ ăn, thuốc hạ đường huyết"],
+      "sources": ["ADA Standards of Care 2024", "Henry's Ch.17 - Carbohydrates"]
+    },
+    {
+      "pattern_id": "dyslipidemia_cardiovascular_pattern",
+      "name": "Rối loạn lipid máu — Nguy cơ tim mạch cao",
+      "required_tags": [],
+      "optional_tags": ["CHOLESTEROL_High", "TRIGLYCERIDE_High", "HDL_C_Low", "LDL_C_High"],
+      "confidence_required": 2,
+      "interpretation": "Kết hợp tăng cholesterol/triglyceride với giảm HDL-C và/hoặc tăng LDL-C tạo thành bộ hồ sơ lipid atherogenic, nguy cơ xơ vữa động mạch cao.",
+      "specific_patterns": {
+        "mixed_dyslipidemia": "CHOLESTEROL cao + TRIGLYCERIDE cao + HDL thấp: hội chứng chuyển hóa hoặc ĐTĐ",
+        "isolated_hypertriglyceridemia": "TRIGLYCERIDE > 5.6 mmol/L: nguy cơ viêm tụy cấp",
+        "high_ldl_normal_tg": "LDL cao đơn độc: gợi ý familial hypercholesterolemia"
+      },
+      "next_steps": ["Tính 10-year ASCVD risk (Framingham, PCE)", "Xét statin dựa trên nguy cơ tổng thể", "Tầm soát bệnh lý tuyến giáp (TSH)", "Loại trừ hội chứng thận hư, CKD", "Thay đổi lối sống: giảm chất béo bão hòa, tập thể dục"],
+      "sources": ["Henry's Ch.16 - Lipids", "Tietz Ch.27 - Lipoproteins and Cardiovascular Risk"]
+    },
+    {
+      "pattern_id": "acute_coronary_syndrome_pattern",
+      "name": "Hội chứng vành cấp (ACS) / Tổn thương cơ tim",
+      "required_tags": ["TROPONIN_T_High"],
+      "optional_tags": ["CK_MB_High", "PRO_BNP_High"],
+      "confidence_required": 1,
+      "interpretation": "Troponin T tăng gợi ý tổn thương tế bào cơ tim. Kết hợp với CK-MB tăng và bệnh cảnh lâm sàng đau ngực là nền tảng chẩn đoán ACS.",
+      "risk_stratification": {
+        "high_risk": "Troponin T cao + CK-MB cao + đau ngực điển hình + thay đổi ECG: STEMI/NSTEMI — cấp cứu can thiệp",
+        "intermediate": "Troponin T cao mà không có đau ngực: type 2 MI hoặc non-ischemic myocardial injury (cần đánh giá nguyên nhân)",
+        "renal_confound": "Troponin tăng mạn tính trong CKD — so sánh serial và xem xét bối cảnh lâm sàng"
+      },
+      "next_steps": ["ECG ngay", "Serial troponin (0h, 1h hoặc 3h)", "Siêu âm tim nếu có thể", "Hội chẩn tim mạch can thiệp nếu ACS"],
+      "sources": ["Henry's Ch.23 - Cardiac Biomarkers", "Tietz Ch.39 - Cardiac Function"]
+    },
+    {
+      "pattern_id": "heart_failure_pattern",
+      "name": "Suy tim / Tăng áp lực buồng tim",
+      "required_tags": ["PRO_BNP_High"],
+      "optional_tags": ["TROPONIN_T_High", "NA_Low", "CREATININE_High"],
+      "confidence_required": 1,
+      "interpretation": "NT-proBNP tăng gợi ý căng giãn buồng tim và tăng wall stress, là dấu hiệu suy tim hoặc quá tải thể tích/áp lực tim.",
+      "severity_markers": {
+        "NT_proBNP_very_high_plus_troponin": "Tổn thương cơ tim tiến triển — tiên lượng xấu",
+        "hyponatremia_with_HF": "Hạ natri trong suy tim: phản ánh mức độ nặng và kích hoạt hệ RAA, tiên lượng kém hơn",
+        "CKD_with_HF": "Cardiorenal syndrome — suy tim và suy thận thường đồng hành và làm trầm trọng lẫn nhau"
+      },
+      "sources": ["Henry's Ch.23", "ESC Heart Failure Guidelines 2021"]
+    },
+    {
+      "pattern_id": "liver_injury_pattern",
+      "name": "Tổn thương tế bào gan (Hepatocellular injury)",
+      "required_tags": ["AST_High", "ALT_High"],
+      "optional_tags": ["ALBUMIN_Low", "CHOLESTEROL_Low"],
+      "confidence_required": 2,
+      "interpretation": "Tăng đồng thời AST và ALT gợi ý tổn thương hepatocellular. Tỉ lệ AST/ALT giúp định hướng nguyên nhân.",
+      "ast_alt_ratio_guide": {
+        "ratio_above_2": "Viêm gan do rượu hoặc xơ gan",
+        "ratio_below_1": "Viêm gan virus, NAFLD",
+        "both_very_high_above_1000": "Viêm gan cấp tối cấp, toxic hepatitis, shock liver"
+      },
+      "next_steps": ["Bilirubin toàn phần và trực tiếp", "GGT (phân biệt tắc mật vs tổn thương gan)", "Siêu âm gan mật", "Xét nghiệm viêm gan virus A, B, C", "Cân nhắc sinh thiết gan nếu mạn tính"],
+      "sources": ["Henry's Ch.21 - Hepatic Function", "Tietz Ch.30 - Liver Disease"]
+    },
+    {
+      "pattern_id": "hyperuricemia_gout_metabolic",
+      "name": "Tăng acid uric — Gout / Hội chứng chuyển hóa",
+      "required_tags": ["URIC_ACID_High"],
+      "optional_tags": ["CREATININE_High", "TRIGLYCERIDE_High", "GLUCOSE_High", "K_High"],
+      "confidence_required": 1,
+      "interpretation": "Tăng acid uric thường đi kèm hội chứng chuyển hóa. Kết hợp suy thận làm giảm bài tiết urate, tạo vòng luẩn quẩn.",
+      "clinical_contexts": {
+        "gout_crisis": "Uric > 535 + đau khớp đột ngột (ngón chân cái, mắt cá, gối): cơn gout cấp",
+        "asymptomatic_hyperuricemia": "Uric cao mà không có triệu chứng: điều trị khi > 540 và có sỏi thận hoặc tiêu hủy khớp",
+        "tumor_lysis_syndrome": "Uric rất cao + creatinine cao + K cao + Ca thấp sau hóa trị: hội chứng tan khối u"
+      },
+      "sources": ["Henry's Ch.15 - Purine Metabolism", "Tietz Ch.36 - Gout and Hyperuricemia"]
+    },
+    {
+      "pattern_id": "calcium_pth_disorder",
+      "name": "Rối loạn chuyển hóa canxi-PTH",
+      "required_tags": [],
+      "optional_tags": ["CALCIUM_ION_High", "CALCIUM_ION_Low", "PTH_High"],
+      "confidence_required": 1,
+      "interpretation": "Rối loạn canxi-PTH cần diễn giải đồng thời cả hai chỉ số để xác định nguyên nhân (xem mục PTH).",
+      "see_also": "PTH combined_interpretation",
+      "sources": ["Henry's Ch.18 - Calcium and PTH", "Tietz Ch.42 - Mineral and Bone Metabolism"]
+    },
+    {
+      "pattern_id": "electrolyte_abnormality_multi",
+      "name": "Rối loạn điện giải đa phức tạp",
+      "required_tags": [],
+      "optional_tags": ["NA_Low", "NA_High", "K_High", "K_Low", "CL_High", "CL_Low"],
+      "confidence_required": 2,
+      "interpretation": "Rối loạn nhiều điện giải thường phản ánh bệnh lý nền nặng (suy thận, suy tuyến thượng thận, suy tim, xơ gan, rối loạn tiêu hóa). Cần đánh giá tổng thể.",
+      "sources": ["Henry's Ch.13 - Electrolytes", "Tietz Ch.28 - Water and Electrolyte Balance"]
+    },
+    {
+      "pattern_id": "metabolic_syndrome_pattern",
+      "name": "Hội chứng chuyển hóa",
+      "required_tags": [],
+      "optional_tags": ["GLUCOSE_High", "TRIGLYCERIDE_High", "HDL_C_Low", "URIC_ACID_High"],
+      "confidence_required": 3,
+      "interpretation": "Bộ xét nghiệm gợi ý hội chứng chuyển hóa: đề kháng insulin, rối loạn lipid máu atherogenic, và tăng acid uric. Nguy cơ tim mạch và ĐTĐ type 2 cao.",
+      "idf_criteria_note": "IDF 2006: cần béo phì trung tâm + ≥ 2 trong 4: TG ≥ 1.7, HDL thấp, HA ≥ 130/85, Glucose ≥ 5.6 mmol/L",
+      "sources": ["Henry's Ch.17", "AHA/NHLBI Metabolic Syndrome Criteria"]
+    },
+    {
+      "pattern_id": "iron_store_abnormality",
+      "name": "Rối loạn dự trữ sắt",
+      "required_tags": [],
+      "optional_tags": ["FERRITIN_High", "FERRITIN_Low"],
+      "confidence_required": 1,
+      "interpretation": "Ferritin cao gợi ý quá tải sắt hoặc phản ứng viêm. Ferritin thấp là dấu hiệu thiếu sắt dự trữ đặc hiệu.",
+      "see_also": "FERRITIN single test patterns",
+      "sources": ["Henry's Ch.30 - Iron Metabolism", "Tietz Ch.29 - Trace Metals"]
+    }
+  ],
+
+  "safety_flags": {
+    "critical_values": [
+      {"test": "K", "condition": "≥ 6.5 mmol/L", "action": "Nguy cơ rối loạn nhịp tim đe dọa tính mạng — cần ECG và xử trí cấp cứu ngay"},
+      {"test": "K", "condition": "≤ 2.5 mmol/L", "action": "Nguy cơ loạn nhịp, liệt cơ — cần bù kali thận trọng"},
+      {"test": "NA", "condition": "≤ 120 mmol/L", "action": "Hạ natri nặng — nguy cơ phù não, co giật — cần nhập viện"},
+      {"test": "NA", "condition": "≥ 160 mmol/L", "action": "Tăng natri nặng — co rút tế bào não, hôn mê"},
+      {"test": "GLUCOSE", "condition": "< 3.0 mmol/L", "action": "Hạ đường huyết nặng — cần xử trí ngay"},
+      {"test": "GLUCOSE", "condition": "≥ 20 mmol/L", "action": "Tăng đường huyết nặng — cân nhắc DKA/HHS — cần đánh giá cấp cứu"},
+      {"test": "CALCIUM_ION", "condition": "≥ 1.75 mmol/L", "action": "Tăng canxi nặng — crisis có thể gây nôn, mất ý thức"},
+      {"test": "CALCIUM_ION", "condition": "≤ 0.80 mmol/L", "action": "Giảm canxi nặng — co giật, loạn nhịp"},
+      {"test": "TRIGLYCERIDE", "condition": "≥ 11.3 mmol/L", "action": "Nguy cơ viêm tụy cấp rất cao — nhập viện"},
+      {"test": "TROPONIN_T", "condition": "Tăng > 5x ULN với bệnh cảnh đau ngực", "action": "Có thể STEMI/NSTEMI — kích hoạt protocol ACS"},
+      {"test": "CREATININE", "condition": "≥ 354 µmol/L", "action": "CKD stage ≥ 4 hoặc AKI nặng — hội chẩn thận học"},
+      {"test": "UREA", "condition": "≥ 25 mmol/L", "action": "Urê rất cao — cân nhắc lọc máu nếu kèm rối loạn điện giải hoặc triệu chứng"}
+    ]
+  },
+
+  "chatbot_response_templates": {
+    "single_abnormal": "Chỉ số **{test_name}** của bạn là **{value} {unit}**, {direction} hơn khoảng tham chiếu {ref_range}. {interpretation}",
+    "multiple_abnormal_intro": "Kết quả xét nghiệm cho thấy {count} chỉ số bất thường cần chú ý:",
+    "pattern_detected": "Các bất thường này gợi ý bệnh cảnh **{pattern_name}**: {interpretation}",
+    "no_pattern": "Chưa phát hiện mẫu hình bệnh lý rõ ràng. Mỗi chỉ số bất thường sẽ được giải thích riêng.",
+    "safety_warning": "⚠️ **LƯU Ý QUAN TRỌNG**: {test_name} = {value} {unit} là mức **{severity}**, có thể cần can thiệp y tế sớm.",
+    "follow_up_tests": "Để làm rõ hơn, bạn nên xem xét các xét nghiệm bổ sung: {tests}",
+    "disclaimer": "⚕️ Đây là diễn giải dựa trên dữ liệu xét nghiệm và tài liệu y khoa tham khảo. Kết quả cần được bác sĩ đánh giá kết hợp với triệu chứng lâm sàng và bệnh sử cụ thể."
+  }
+}

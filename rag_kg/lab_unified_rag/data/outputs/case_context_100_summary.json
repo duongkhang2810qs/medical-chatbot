@@ -1,0 +1,31 @@
+{
+  "cases": 100,
+  "source_input": "C:\\Users\\ADMIN\\Downloads\\output.jsonl",
+  "project_case_path": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\cases\\all_results_lab.jsonl",
+  "output": "D:\\FINAL_SEMESTER\\ĐATN\\CODE\\Medical_Project\\lab_unified_rag\\data\\outputs\\case_context_100.jsonl",
+  "avg_evidence_per_case": 7.68,
+  "min_evidence_per_case": 0,
+  "max_evidence_per_case": 8,
+  "cases_without_evidence": [
+    "36.jpg",
+    "40.jpg",
+    "52.jpg",
+    "69.jpg"
+  ],
+  "panel_counter": {
+    "CBC": 70,
+    "BIOCHEM": 31
+  },
+  "unsupported_abnormal_counter": {
+    "MPV": 28,
+    "BILIRUBIN_TP": 7,
+    "BILIRUBIN_TT": 7,
+    "PCT": 4,
+    "CRP": 4,
+    "NON_HDL_C": 3,
+    "NRBC%": 1,
+    "PDW": 1,
+    "GGT": 1,
+    "AFP": 1
+  }
+}

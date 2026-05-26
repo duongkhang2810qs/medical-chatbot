@@ -1,0 +1,37 @@
+﻿id,test_code,name,panel
+test_HCT,HCT,Hematocrit,CBC
+test_HGB,HGB,Hemoglobin,CBC
+test_RBC,RBC,Red Blood Cell,CBC
+test_MCV,MCV,Mean Corpuscular Volume,CBC
+test_RDW,RDW,Red Cell Distribution Width,CBC
+test_PLT,PLT,Platelet,CBC
+test_IG,IG,Immature Granulocyte,CBC
+test_MCH,MCH,Mean Corpuscular Hemoglobin,CBC
+test_WBC,WBC,White Blood Cell,CBC
+test_LYMPH,LYMPH,Lymphocyte,CBC
+test_NEUT,NEUT,Neutrophil,CBC
+test_MONO,MONO,Monocyte,CBC
+test_BASO,BASO,Basophil,CBC
+test_EOS,EOS,Eosinophil,CBC
+test_MCHC,MCHC,Mean Corpuscular Hemoglobin Concentration,CBC
+test_CREATININE,CREATININE,Creatinine,BIOCHEM
+test_GLUCOSE,GLUCOSE,Glucose,BIOCHEM
+test_AST,AST,Aspartate Aminotransferase,BIOCHEM
+test_K,K,Potassium,BIOCHEM
+test_NA,NA,Sodium,BIOCHEM
+test_ALT,ALT,Alanine Aminotransferase,BIOCHEM
+test_CHOLESTEROL,CHOLESTEROL,Total Cholesterol,BIOCHEM
+test_TRIGLYCERIDE,TRIGLYCERIDE,Triglyceride,BIOCHEM
+test_CALCIUM_ION,CALCIUM_ION,Ionized Calcium,BIOCHEM
+test_LDL_C,LDL_C,LDL Cholesterol,BIOCHEM
+test_UREA,UREA,Urea,BIOCHEM
+test_URIC_ACID,URIC_ACID,Uric Acid,BIOCHEM
+test_HDL_C,HDL_C,HDL Cholesterol,BIOCHEM
+test_ALBUMIN,ALBUMIN,Albumin,BIOCHEM
+test_PTH,PTH,Parathyroid Hormone,BIOCHEM
+test_FERRITIN,FERRITIN,Ferritin,BIOCHEM
+test_CL,CL,Chloride,BIOCHEM
+test_TROPONIN_T,TROPONIN_T,Troponin T,BIOCHEM
+test_CK_MB,CK_MB,CK-MB,BIOCHEM
+test_PRO_BNP,PRO_BNP,Pro-BNP,BIOCHEM
+test_HBA1C,HBA1C,Hemoglobin A1c,BIOCHEM

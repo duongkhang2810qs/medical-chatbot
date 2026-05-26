@@ -1,0 +1,7 @@
+﻿Module,Thời gian TB (giây/ca)
+Build context + pattern context,0.0009
+RAG retrieval,1.6623
+KG/context reasoning,0.0002
+Prompt building,0.0002
+LLM generation,46.6467
+Tổng,48.3116
