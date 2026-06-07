@@ -247,50 +247,59 @@ def analyze_indicators_with_llm(user_indicators: list, session_id: str = None) -
     if session_id:
         langfuse_context.update_current_trace(session_id=session_id, tags=["graphrag_analysis"])
         
-    print("\n[AI SERVICE] Bắt đầu phân tích GraphRAG...")
+    print("\n[AI SERVICE] Bat dau phan tich GraphRAG...")
 
-    # 1. Chuyển đổi Dữ liệu & Xây dựng Context Suy luận
+    # 1. Chuyen doi Du lieu & Xay dung Context Suy luan
     case_dict = format_ui_data_to_case(user_indicators, session_id)
     ctx = lab_core.build_reasoning_context(case_dict, 0)
     
-    # Nạp Static Patterns từ files
     cbc_demo = lab_core.load_jsonl(config.CBC_DEMO_PATTERN_PATH) if config.CBC_DEMO_PATTERN_PATH.exists() else []
     biochem_patt = lab_core.load_json(config.BIOCHEM_PATTERN_PATH) if config.BIOCHEM_PATTERN_PATH.exists() else {}
-    
-    # [FIX] Đã gọi trực tiếp từ lab_core
     ctx = lab_core.augment_reasoning_context_with_static_patterns(ctx, cbc_demo, biochem_patt)
 
     abnormal_tests = ctx.get("abnormal_tests", [])
     conditions = ctx.get("conditions", [])
 
     if not ctx.get("abnormal_items"):
-        return "Kết quả xét nghiệm của bạn nằm trong giới hạn tham chiếu. Không phát hiện chỉ số bất thường nào."
+        return "Ket qua xet nghiem cua ban nam trong gioi han tham chieu. Khong phat hien chi so bat thuong nao."
 
-    # 2. Truy xuất Kiến thức: Kết hợp Graph (Neo4j) + Vector (Qdrant trong lab_core)
-    print(f"[GraphRAG] Đang truy vấn Neo4j cho bệnh lý: {conditions}...")
+    # 2. Truy xuat Kien thuc: Ket hop Graph (Neo4j) + Vector (Qdrant)
+    print(f"[GraphRAG] Dang truy van Neo4j cho benh ly: {conditions}...")
     graph_evidence = fetch_evidence_from_neo4j(abnormal_tests, conditions)
-    
-    print("[GraphRAG] Đang truy vấn Vector Qdrant (Fallback bổ sung)...")
+
+    # Path D: INDICATES chain
+    try:
+        import sys
+        _rag_kg_path = str(Path(__file__).resolve().parent / "rag_kg" / "lab_unified_rag")
+        if _rag_kg_path not in sys.path:
+            sys.path.insert(0, _rag_kg_path)
+        from neo4j_retriever import retrieve_by_indicates
+        abnormal_items = [
+            {"test": item.get("test_name", ""), "status": item.get("status", "")}
+            for item in user_indicators
+            if (item.get("status") or "").lower() in ("high", "low")
+        ]
+        indicates_evidence = retrieve_by_indicates(abnormal_items, limit_per_test=3)
+        graph_evidence = graph_evidence + indicates_evidence
+        print(f"[GraphRAG] Path D -> {len(indicates_evidence)} evidence tu INDICATES chain")
+    except Exception as e:
+        print(f"[GraphRAG] Path D skip: {e}")
+
+    print("[GraphRAG] Dang truy van Vector Qdrant...")
     vector_evidence = lab_core.retrieve_evidence(ctx)
-    
-    # Gộp và lọc trùng lặp chứng cứ
+
     combined_evidence = lab_core.dedup_evidence(graph_evidence + vector_evidence)
     final_evidence = lab_core.rerank_evidence(combined_evidence, ctx)[:config.MAX_FINAL_EVIDENCE]
 
-    # 3. Tạo đường dẫn suy luận Graph (Reasoning Paths)
     graph_reasoning_paths = lab_core.enrich_reasoning_paths(ctx, final_evidence)
 
-    # 4. Sinh Prompt Siêu cấp từ lab_core
     prompt = lab_core.build_final_prompt(
         reasoning_context=ctx,
         evidence=final_evidence,
         reasoning_paths=graph_reasoning_paths
     )
 
-    # 5. Gọi LLM và Dọn dẹp Output
     raw_answer = call_llm(prompt)
-    
-    # [FIX] Đã gọi trực tiếp từ lab_core
     final_answer = lab_core.build_user_visible_answer(raw_answer, ctx, final_evidence)
 
     return final_answer

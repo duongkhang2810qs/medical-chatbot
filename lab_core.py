@@ -774,7 +774,26 @@ def build_source_intro(panels: list[str]) -> str:
     return "\n".join(lines)
 
 def build_user_visible_answer(answer: str, ctx: dict, evidence: list[dict]) -> str:
-    return f"{mechanical_cleanup_answer(answer)}\n\n{build_references_block(evidence)}\n\n{build_source_intro(ctx.get('panels', []))}".strip()
+    import re
+
+    # Parse số citation LLM đã dùng trong text: [1], [2], [3]...
+    cited_nums = set(int(n) for n in re.findall(r'\[(\d+)\]', answer))
+
+    # Chỉ giữ evidence được cite thật sự
+    if cited_nums:
+        cited_evidence = [
+            e for i, e in enumerate(evidence, start=1)
+            if i in cited_nums
+        ]
+    else:
+        # LLM không cite gì → giữ top 3
+        cited_evidence = evidence[:3]
+
+    cleaned = mechanical_cleanup_answer(answer)
+    refs    = build_references_block(cited_evidence)
+    sources = build_source_intro(ctx.get("panels", []))
+
+    return f"{cleaned}\n\n{refs}\n\n{sources}".strip()
 
 def build_final_prompt(reasoning_context: dict, evidence: list[dict], reasoning_paths: list[dict] | None = None) -> str:
     abnormal_list = []

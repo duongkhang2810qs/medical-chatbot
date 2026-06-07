@@ -459,6 +459,60 @@ def add_kb_to_graph(g: GraphBuilder, kb: list[dict]):
             g.add_edge("Evidence", evidence_id, "SUPPORTS", "Condition", condition_id, 0.75, "kb_pdf")
 
 
+
+
+# =========================================================
+# ADD INDICATES EDGES (Test → Condition)
+# =========================================================
+
+def add_indicates_to_graph(g: GraphBuilder):
+    """
+    Thêm quan hệ INDICATES từ Test đến Condition dựa trên
+    bảng mapping lâm sàng trong indicates_mapping.py.
+
+    Quan hệ này cho phép graph tự reasoning:
+    Test(WBC, direction=high) --[INDICATES]--> Condition(bacterial_infection)
+    thay vì phải đi qua Python pattern matching.
+    """
+    try:
+        from indicates_mapping import INDICATES_MAPPING
+    except ImportError:
+        print("WARNING: Không tìm thấy indicates_mapping.py — bỏ qua INDICATES edges.")
+        return
+
+    print(f"Adding INDICATES edges từ {len(INDICATES_MAPPING)} mapping rules...")
+
+    for test_code, direction, condition_name, confidence, panel, source_pattern in INDICATES_MAPPING:
+        test_id      = node_id_test(test_code)
+        condition_id = node_id_condition(condition_name)
+        panel_id     = node_id_panel(panel)
+
+        # Đảm bảo các node đã tồn tại
+        g.add_node(
+            "Test", test_id,
+            test_code=test_code,
+            name=TEST_LABELS.get(test_code, test_code),
+            panel=panel,
+        )
+        g.add_node(
+            "Condition", condition_id,
+            name=condition_name,
+            canonical_name=condition_name,
+        )
+        g.add_node("Panel", panel_id, name=panel, display_name=panel)
+
+        # Thêm edge INDICATES với thuộc tính direction và source_pattern
+        g.add_edge(
+            "Test", test_id,
+            "INDICATES",
+            "Condition", condition_id,
+            confidence=confidence,
+            provenance=source_pattern,
+        )
+
+    print(f"Done: {len(INDICATES_MAPPING)} INDICATES edges added.")
+
+
 # =========================================================
 # STATIC PATTERN MATCHING
 # =========================================================
@@ -1061,6 +1115,8 @@ def main():
     g = GraphBuilder()
 
     add_kb_to_graph(g, kb)
+    add_indicates_to_graph(g)
+
     add_cases_to_graph(
         g=g,
         cases=cases,

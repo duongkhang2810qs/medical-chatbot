@@ -21,6 +21,14 @@ except Exception:
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 
+# Neo4j GraphRAG retriever (thêm vào để hỗ trợ graph retrieval)
+try:
+    from neo4j_retriever import neo4j_retrieve, retrieve_reasoning_chain
+    NEO4J_RETRIEVER_AVAILABLE = True
+except ImportError:
+    NEO4J_RETRIEVER_AVAILABLE = False
+    print("[lab_core] WARNING: neo4j_retriever.py chưa có hoặc thiếu package neo4j.")
+
 from config import (
     TEST_NORMALIZATION,
     TEST_LABELS,
@@ -1396,6 +1404,14 @@ def rerank_evidence(evidence: list[dict], reasoning_context: dict) -> list[dict]
         elif e.get("type") == "definition":
             score += 0.03
 
+        # Penalty Neo4j chunk không nhắc đến test nào trong phiếu
+        if e.get("retrieval_path", "").startswith("neo4j"):
+            test_keywords = {t.lower() for t in abnormal_tests}
+            text_lower = str(e.get("text", "")).lower()
+            keyword_hits = sum(1 for kw in test_keywords if kw in text_lower)
+            if keyword_hits == 0:
+                score -= 0.25
+
         x = dict(e)
         x["final_score"] = round(score, 4)
         ranked.append(x)
@@ -1405,22 +1421,44 @@ def rerank_evidence(evidence: list[dict], reasoning_context: dict) -> list[dict]
 
 
 def retrieve_evidence(reasoning_context: dict) -> list[dict]:
-    queries = build_query_hints(reasoning_context)
-
+    """
+    GraphRAG retrieval: kết hợp Qdrant (semantic) + Neo4j (graph relation).
+    - Qdrant: tìm evidence gần nghĩa với query
+    - Neo4j Path A: Evidence theo Test bất thường (MENTIONS_TEST)
+    - Neo4j Path B: Evidence theo Condition từ Pattern (SUPPORTS)
+    """
     all_evidence: list[dict] = []
 
-    print(f"Query hints: {queries[:5]}")
+    # --- Qdrant semantic retrieval ---
+    queries = build_query_hints(reasoning_context)
+    print(f"[retrieve] Qdrant queries: {queries[:3]}")
 
     for query in queries[:10]:
         try:
             hits = qdrant_search(query, top_k=TOP_K_PER_QUERY)
             all_evidence.extend(hits)
         except Exception as exc:
-            print(f"Qdrant search failed for query='{query}': {exc}")
+            print(f"[retrieve] Qdrant failed for query='{query}': {exc}")
 
+    qdrant_count = len(all_evidence)
+    print(f"[retrieve] Qdrant → {qdrant_count} evidence (before dedup)")
+
+    # --- Neo4j graph retrieval ---
+    if NEO4J_RETRIEVER_AVAILABLE:
+        try:
+            graph_evidence = neo4j_retrieve(reasoning_context)
+            all_evidence.extend(graph_evidence)
+            print(f"[retrieve] Neo4j → {len(graph_evidence)} evidence")
+        except Exception as exc:
+            print(f"[retrieve] Neo4j retrieval failed: {exc}")
+    else:
+        print("[retrieve] Neo4j không khả dụng, chỉ dùng Qdrant")
+
+    # --- Dedup + rerank ---
     all_evidence = dedup_evidence(all_evidence)
     all_evidence = rerank_evidence(all_evidence, reasoning_context)
 
+    print(f"[retrieve] Sau dedup+rerank: {len(all_evidence)} → trả về top {MAX_RAW_EVIDENCE}")
     return all_evidence[:MAX_RAW_EVIDENCE]
 
 
@@ -1433,6 +1471,60 @@ def finding_node_id(case_id: str, panel: str, test: str, status: str) -> str:
 
 
 def build_reasoning_paths(reasoning_context: dict, evidence: list[dict]) -> list[dict]:
+    """
+    Xây dựng reasoning paths để đưa vào prompt LLM.
+    Ưu tiên dùng Neo4j chain (graph thật), fallback về memory nếu không có.
+    """
+    # --- Thử Neo4j chain trước ---
+    if NEO4J_RETRIEVER_AVAILABLE:
+        case_id = reasoning_context.get("case_id", "")
+        try:
+            chain_rows = retrieve_reasoning_chain(case_id, limit=12)
+            if chain_rows:
+                # Group theo finding
+                from collections import defaultdict
+                grouped: dict = defaultdict(lambda: {"patterns": [], "evidence": []})
+                for row in chain_rows:
+                    key = f"{row.get('test_code')}_{row.get('direction')}"
+                    node = grouped[key]
+                    node["finding"] = {
+                        "panel":           "CBC",
+                        "test":            row.get("test_code", ""),
+                        "test_label":      row.get("test_code", ""),
+                        "status":          row.get("direction", ""),
+                        "value":           row.get("value", ""),
+                        "unit":            row.get("unit", ""),
+                        "reference_range": "",
+                    }
+                    pat = {
+                        "pattern_name": row.get("pattern_name", ""),
+                        "conditions":   [row.get("condition_name", "")],
+                        "confidence":   row.get("pattern_score", 0),
+                    }
+                    if pat not in node["patterns"]:
+                        node["patterns"].append(pat)
+                    ev = {
+                        "evidence_id": row.get("ev_id", ""),
+                        "source":      row.get("src_name", ""),
+                        "page":        row.get("page", ""),
+                        "score":       float(row.get("trust") or 0),
+                    }
+                    if ev not in node["evidence"]:
+                        node["evidence"].append(ev)
+                paths_neo4j = [
+                    {
+                        "finding":  v["finding"],
+                        "patterns": v["patterns"][:3],
+                        "evidence": v["evidence"][:3],
+                    }
+                    for v in grouped.values() if v.get("finding")
+                ]
+                if paths_neo4j:
+                    return paths_neo4j
+        except Exception as exc:
+            print(f"[build_reasoning_paths] Neo4j chain failed: {exc}")
+
+    # --- Fallback: build từ memory (logic cũ) ---
     paths: list[dict] = []
 
     abnormal_items = reasoning_context.get("abnormal_items", [])
