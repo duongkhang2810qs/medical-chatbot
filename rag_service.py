@@ -24,6 +24,12 @@ from langfuse.decorators import observe, langfuse_context
 import config
 import lab_core
 
+COLAB_LLM_URL = getattr(config, "COLAB_LLM_URL", "").strip()
+COLAB_API_KEY = getattr(config, "COLAB_API_KEY", "").strip()
+COLAB_MAX_NEW_TOKENS = getattr(config, "COLAB_MAX_NEW_TOKENS", 970)
+COLAB_TEMPERATURE = getattr(config, "COLAB_TEMPERATURE", 0.2)
+COLAB_TIMEOUT = getattr(config, "COLAB_TIMEOUT", 300)
+
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "deepseek/deepseek-chat")
 
@@ -104,18 +110,74 @@ def call_deepseek(prompt):
     res = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=data, timeout=40)
     res.raise_for_status()
     return res.json()["choices"][0]["message"]["content"].strip()
+@observe(as_type="generation", name="Colab LLM Generation")
+def call_colab_llm(prompt):
+    if not COLAB_LLM_URL:
+        raise RuntimeError("Thiếu COLAB_LLM_URL trong .env")
+
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    if COLAB_API_KEY:
+        headers["Authorization"] = f"Bearer {COLAB_API_KEY}"
+
+    payload = {
+        "prompt": prompt,
+        "max_new_tokens": COLAB_MAX_NEW_TOKENS,
+        "temperature": COLAB_TEMPERATURE,
+    }
+
+    res = requests.post(
+        COLAB_LLM_URL,
+        headers=headers,
+        json=payload,
+        timeout=COLAB_TIMEOUT,
+    )
+    res.raise_for_status()
+
+    data = res.json()
+
+    answer = (
+        data.get("response")
+        or data.get("answer")
+        or data.get("text")
+        or data.get("generated_text")
+        or ""
+    )
+
+    if not answer.strip():
+        raise RuntimeError(f"Colab response không có nội dung hợp lệ: {data}")
+
+    return answer.strip()
 
 @observe(as_type="span", name="LLM Execution")
 def call_llm(prompt):
     try:
-        print(f"[LLM] Đang gọi {OPENROUTER_MODEL}...")
-        return call_deepseek(prompt)
+        print(f"[LLM] Đang gọi OpenRouter/{OPENROUTER_MODEL}...")
+        answer = call_deepseek(prompt)
+        print(f"[LLM] OpenRouter/{OPENROUTER_MODEL} thành công.")
+        return answer
+
     except Exception as e:
-        print(f"⚠️ OpenRouter lỗi ({e}) -> Fallback sang {GEMINI_MODEL}...")
+        print(f"⚠️ OpenRouter lỗi ({e}) -> Fallback sang Colab host...")
+
         try:
-            return call_gemini(prompt)
-        except Exception as ex:
-            return "Hệ thống AI đang bận. Vui lòng thử lại sau."
+            answer = call_colab_llm(prompt)
+            print("[LLM] Colab fallback thành công.")
+            return answer
+
+        except Exception as colab_ex:
+            print(f"⚠️ Colab fallback lỗi ({colab_ex}) -> Fallback sang Gemini/{GEMINI_MODEL}...")
+
+            try:
+                answer = call_gemini(prompt)
+                print(f"[LLM] Gemini fallback/{GEMINI_MODEL} thành công.")
+                return answer
+
+            except Exception as gemini_ex:
+                print(f"❌ Gemini fallback cũng lỗi: {gemini_ex}")
+                return "Hệ thống AI đang bận. Vui lòng thử lại sau."
 
 
 # =========================================================
